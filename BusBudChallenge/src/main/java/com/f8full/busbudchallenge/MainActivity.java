@@ -1,9 +1,10 @@
 package com.f8full.busbudchallenge;
 
+import android.content.IntentSender;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,14 +13,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.location.LocationClient;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -27,10 +31,23 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements
+        GooglePlayServicesClient.ConnectionCallbacks,
+        GooglePlayServicesClient.OnConnectionFailedListener {
 
 
-    public static final String ENDPOINT = "https://api-staging.busbud.com/";
+    private static final String BUSBUD_API_ENDPOINT = "https://api-staging.busbud.com/";
+    private static String USER_LANG_CODE = "en";
+
+
+    /*
+     * Define a request code to send to Google Play services
+     * This code is returned in Activity.onActivityResult
+     */
+    private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
+
+    private LocationClient mLocationClient;
+    private Location mUserLocation;
 
 
 
@@ -45,7 +62,23 @@ public class MainActivity extends ActionBarActivity {
                     .commit();
         }
 
-        new HttpAsyncTask().execute(ENDPOINT + "en/api/v1/languages");
+        mLocationClient = new LocationClient(this, this, this);
+
+        //new HttpAsyncTask().execute(BUSBUD_API_ENDPOINT + "en/api/v1/languages");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Connect the client.
+        mLocationClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        // Disconnecting the client invalidates it.
+        mLocationClient.disconnect();
+        super.onStop();
     }
 
 
@@ -137,8 +170,18 @@ public class MainActivity extends ActionBarActivity {
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-            Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG).show();
             //etResponse.setText(result);
+            JSONObject resultJSON = null;
+
+            try {
+
+                resultJSON = new JSONObject(result);
+                ((TextView)findViewById(R.id.OriginTV)).setText(resultJSON.getJSONObject("current").getString("name"));
+
+            }catch (Exception e) {
+                Log.d("InputStream", e.getLocalizedMessage());
+            }
         }
     }
 
@@ -152,6 +195,70 @@ public class MainActivity extends ActionBarActivity {
         inputStream.close();
         return result;
 
+    }
+
+    /*
+     * Called by Location Services when the request to connect the
+     * client finishes successfully. At this point, you can
+     * request the current location or start periodic updates
+     */
+    @Override
+    public void onConnected(Bundle dataBundle) {
+        // Display the connection status
+        Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show();
+
+        mUserLocation = mLocationClient.getLastLocation();
+
+        new HttpAsyncTask().execute(BUSBUD_API_ENDPOINT + USER_LANG_CODE +
+                "/api/v1/search/locations/?latitude=" +
+                String.valueOf(mUserLocation.getLatitude()) +
+                "&longitude=" + String.valueOf(mUserLocation.getLongitude()) +
+                "&accuracy=10");
+
+    }
+    /*
+     * Called by Location Services if the connection to the
+     * location client drops because of an error.
+     */
+    @Override
+    public void onDisconnected() {
+        // Display the connection status
+        Toast.makeText(this, "Disconnected. Please re-connect.",
+                Toast.LENGTH_SHORT).show();
+    }
+    /*
+     * Called by Location Services if the attempt to
+     * Location Services fails.
+     */
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        /*
+         * Google Play services can resolve some errors it detects.
+         * If the error has a resolution, try sending an Intent to
+         * start a Google Play services activity that can resolve
+         * error.
+         */
+        if (connectionResult.hasResolution()) {
+            try {
+                // Start an Activity that tries to resolve the error
+                connectionResult.startResolutionForResult(
+                        this,
+                        CONNECTION_FAILURE_RESOLUTION_REQUEST);
+                /*
+                 * Thrown if Google Play services canceled the original
+                 * PendingIntent
+                 */
+            } catch (IntentSender.SendIntentException e) {
+                // Log the error
+                e.printStackTrace();
+            }
+        } else {
+            /*
+             * If no resolution is available, display a dialog to the
+             * user with the error.
+             */
+            //showErrorDialog(connectionResult.getErrorCode());
+        }
     }
 
 }
