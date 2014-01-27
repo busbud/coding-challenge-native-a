@@ -4,5 +4,9 @@
     <string name="app_name">BusBudChallenge</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="welcome">Welcome to Busbus ! To view a trip, select your destination and then tap the button.</string>
+    <string name="origin">Origin</string>
+    <string name="destination">Destination</string>
+    <string name="show_trip">Go</string>
 
 </resources>
