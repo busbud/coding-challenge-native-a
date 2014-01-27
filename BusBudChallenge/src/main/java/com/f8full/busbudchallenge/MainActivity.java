@@ -13,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,12 +26,15 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends ActionBarActivity implements
         GooglePlayServicesClient.ConnectionCallbacks,
@@ -177,12 +182,48 @@ public class MainActivity extends ActionBarActivity implements
             try {
 
                 resultJSON = new JSONObject(result);
-                ((TextView)findViewById(R.id.OriginTV)).setText(resultJSON.getJSONObject("current").getString("name"));
+
+                if(resultJSON.has("current"))
+                {
+                    ((TextView)findViewById(R.id.OriginTV)).setText(resultJSON.getJSONObject("current").getString("name"));
+
+                    new HttpAsyncTask().execute(BUSBUD_API_ENDPOINT + USER_LANG_CODE +
+                            "/api/v1/search/locations-from/" +
+                            resultJSON.getJSONObject("current").getString("urlform"));
+                }
+                else if (resultJSON.has("from"))
+                {
+                    setupDestinationSpinner(resultJSON);
+                }
 
             }catch (Exception e) {
                 Log.d("InputStream", e.getLocalizedMessage());
             }
         }
+
+        private void setupDestinationSpinner(JSONObject resultJSON)
+        {
+            try {
+                JSONArray locationsArray = resultJSON.getJSONArray("locations");
+
+                final List<String> list=new ArrayList<String>();
+
+                for (int i=0; i<locationsArray.length(); i++)
+                {
+                    list.add(locationsArray.getJSONObject(i).getString("name"));
+                }
+
+                final ArrayAdapter<String> adp= new ArrayAdapter<String>(getBaseContext(),
+                        android.R.layout.simple_list_item_1,list);
+                adp.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                ((Spinner)findViewById(R.id.destination_spinner)).setAdapter(adp);
+            }catch (Exception e) {
+                Log.d("InputStream", e.getLocalizedMessage());
+            }
+        }
+
+
     }
 
     private static String convertInputStreamToString(InputStream inputStream) throws IOException {

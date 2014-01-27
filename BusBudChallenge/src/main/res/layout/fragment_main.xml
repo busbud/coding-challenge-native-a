@@ -5,42 +5,54 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="97dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/welcome"
-        android:id="@+id/textView" />
+        android:id="@+id/textView"
+        android:minLines="5" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/origin"
-        android:id="@+id/OriginTV" />
+        android:text="@string/from"
+        android:id="@+id/textView2" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
-        android:id="@+id/textView3" />
+        android:id="@+id/OriginTV"
+        android:minLines="3" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/destination"
-        android:id="@+id/textView4" />
+        android:text="@string/to"
+        android:id="@+id/textView3" />
 
-    <ExpandableListView
+    <Spinner
         android:layout_width="wrap_content"
-        android:layout_height="58dp"
-        android:id="@+id/expandableListView" />
+        android:layout_height="wrap_content"
+        android:id="@+id/destination_spinner" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/language"
+        android:id="@+id/textView4"
+        android:minLines="4" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/show_trip"
         android:id="@+id/button"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center_horizontal|bottom"
         android:onClick="onClick" />
+
 </LinearLayout>
