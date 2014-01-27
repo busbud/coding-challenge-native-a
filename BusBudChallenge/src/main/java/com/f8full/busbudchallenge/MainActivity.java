@@ -54,7 +54,9 @@ public class MainActivity extends ActionBarActivity implements
     private LocationClient mLocationClient;
     private Location mUserLocation;
 
+    private String originUrlForm = "";
 
+    private List<String> destUrlFormList = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,13 +124,16 @@ public class MainActivity extends ActionBarActivity implements
         }
     }
 
-    final String url = "http://www.busbud.com/en/bus-schedules/Montreal,Quebec,Canada/Toronto,Ontario,Canada";
+
 
     public void onClick(View v) {
 
+        final String tripUrl = "http://www.busbud.com/en/bus-schedules/" +
+        originUrlForm + "/" + destUrlFormList.get(((Spinner)findViewById(R.id.destination_spinner)).getSelectedItemPosition());
+
         Fragment frag = new WebFragment();
         Bundle bundle = new Bundle();
-        bundle.putString(WebFragment.EXTRA_URL, url);
+        bundle.putString(WebFragment.EXTRA_URL, tripUrl);
         frag.setArguments(bundle);
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -187,9 +192,10 @@ public class MainActivity extends ActionBarActivity implements
                 {
                     ((TextView)findViewById(R.id.OriginTV)).setText(resultJSON.getJSONObject("current").getString("name"));
 
+                    originUrlForm = resultJSON.getJSONObject("current").getString("urlform");
+
                     new HttpAsyncTask().execute(BUSBUD_API_ENDPOINT + USER_LANG_CODE +
-                            "/api/v1/search/locations-from/" +
-                            resultJSON.getJSONObject("current").getString("urlform"));
+                            "/api/v1/search/locations-from/" + originUrlForm);
                 }
                 else if (resultJSON.has("from"))
                 {
@@ -211,6 +217,7 @@ public class MainActivity extends ActionBarActivity implements
                 for (int i=0; i<locationsArray.length(); i++)
                 {
                     list.add(locationsArray.getJSONObject(i).getString("name"));
+                    destUrlFormList.add(locationsArray.getJSONObject(i).getString("urlform"));
                 }
 
                 final ArrayAdapter<String> adp= new ArrayAdapter<String>(getBaseContext(),
