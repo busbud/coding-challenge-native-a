@@ -1,5 +1,6 @@
 package com.f8full.busbudchallenge;
 
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -57,9 +58,23 @@ public class MainActivity extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
+            return inflater.inflate(R.layout.fragment_main, container, false);
         }
+    }
+
+    final String url = "http://www.busbud.com/en/bus-schedules/Montreal,Quebec,Canada/Toronto,Ontario,Canada";
+
+    public void onClick(View v) {
+
+        Fragment frag = new WebFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(WebFragment.EXTRA_URL, url);
+        frag.setArguments(bundle);
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.add(R.id.container, frag);
+        ft.addToBackStack(WebFragment.class.getSimpleName());
+        ft.commit();
     }
 
 }
