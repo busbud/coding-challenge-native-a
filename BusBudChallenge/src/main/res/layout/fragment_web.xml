@@ -9,7 +9,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" >
+        android:layout_weight="1"
+        android:background="@color/busbud_blue">
 
         <FrameLayout
             android:id="@+id/web_view"
@@ -20,11 +21,12 @@
             android:id="@+id/web_view_progress"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="3dp"
+            android:layout_height="6dp"
             android:layout_alignParentTop="true"
             android:background="@drawable/progress_bar_status"
             android:indeterminateOnly="false"
-            android:max="100" />
+            android:max="100"
+            android:progressDrawable="@drawable/progress_bar_status" />
 
 
     </RelativeLayout>

@@ -4,6 +4,7 @@ import android.content.IntentSender;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -40,7 +41,6 @@ public class MainActivity extends ActionBarActivity implements
         GooglePlayServicesClient.ConnectionCallbacks,
         GooglePlayServicesClient.OnConnectionFailedListener {
 
-
     private static final String BUSBUD_API_ENDPOINT = "https://api-staging.busbud.com/";
     private static String USER_LANG_CODE = "en";
 
@@ -71,6 +71,9 @@ public class MainActivity extends ActionBarActivity implements
 
         mLocationClient = new LocationClient(this, this, this);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         //new HttpAsyncTask().execute(BUSBUD_API_ENDPOINT + "en/api/v1/languages");
     }
 
@@ -86,27 +89,6 @@ public class MainActivity extends ActionBarActivity implements
         // Disconnecting the client invalidates it.
         mLocationClient.disconnect();
         super.onStop();
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     /**
@@ -253,7 +235,7 @@ public class MainActivity extends ActionBarActivity implements
     @Override
     public void onConnected(Bundle dataBundle) {
         // Display the connection status
-        Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show();
 
         mUserLocation = mLocationClient.getLastLocation();
 

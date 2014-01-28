@@ -46,7 +46,7 @@ public class WebFragment extends Fragment {
         mView = (FrameLayout) view.findViewById(R.id.web_view);
 
         mImageView = new ImageView(getActivity());
-        mImageView.setBackgroundColor(getResources().getColor(android.R.color.white));
+        mImageView.setBackgroundColor(getResources().getColor(R.color.busbud_blue));
         mImageView.setImageResource(R.drawable.big_image_loading);
         mImageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         mImageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
@@ -68,6 +68,7 @@ public class WebFragment extends Fragment {
             mWebview.setWebChromeClient(new MyWebChromeClient());
             mWebview.getSettings().setUseWideViewPort(true);
             mWebview.getSettings().setBuiltInZoomControls(true);
+            mWebview.getSettings().setLoadWithOverviewMode(true);
             mWebview.getSettings().setSupportZoom(true);
             mWebview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
             mWebview.getSettings().setAllowFileAccess(true);
