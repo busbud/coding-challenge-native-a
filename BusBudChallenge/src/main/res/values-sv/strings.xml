@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BusBudChallenge</string>
+    <string name="welcome">Welcome to Busbud ! To view a trip, select your destination and then tap \'Show trip\'.</string>
+    <string name="from">.From (based on your location)</string>
+    <string name="to">.To (choose)</string>
+    <string name="show_trip">Show trip</string>
+    <string name="waiting">Waiting on location</string>
+
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BusBudChallenge</string>
+    <string name="welcome">Benvenuti a Busbud! Per visualizzare un viaggio, selezionare la destinazione e toccare \'Mostra viaggio\'.</string>
+    <string name="from">.Dalla (in base alla posizione)</string>
+    <string name="to">.A (scegliere)</string>
+    <string name="show_trip">Mostra viaggio</string>
+    <string name="waiting">In attesa sul posto</string>
+
+</resources>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/busbud_blue"
+        android:id="@+id/scrollView">
+
+        <RelativeLayout
+
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/welcome"
+                android:id="@+id/textView"
+                android:minLines="5"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="0dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="0dp"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/busbud_orange" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/from"
+                android:id="@+id/textView2"
+                android:layout_below="@+id/textView"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/waiting"
+                android:id="@+id/OriginTV"
+                android:minLines="2"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="26dp"
+                android:layout_below="@+id/textView2"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/to"
+                android:id="@+id/textView3"
+                android:layout_below="@+id/OriginTV"
+                android:layout_alignParentLeft="true"/>
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/destination_spinner"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/textView3"
+                android:layout_centerHorizontal="true"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/show_trip"
+                android:id="@+id/button"
+                android:layout_gravity="center_horizontal"
+                android:onClick="onShowTripClick"
+                android:layout_below="@+id/destination_spinner"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="37dp"/>
+        </RelativeLayout>
+ </ScrollView>
