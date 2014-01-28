@@ -36,12 +36,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends ActionBarActivity implements
         GooglePlayServicesClient.ConnectionCallbacks,
         GooglePlayServicesClient.OnConnectionFailedListener {
 
     private static final String BUSBUD_API_ENDPOINT = "https://api-staging.busbud.com/";
+
+    //default language
     private static String USER_LANG_CODE = "en";
 
 
@@ -74,7 +77,7 @@ public class MainActivity extends ActionBarActivity implements
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        //new HttpAsyncTask().execute(BUSBUD_API_ENDPOINT + "en/api/v1/languages");
+        new HttpAsyncTask().execute(BUSBUD_API_ENDPOINT + "en/api/v1/languages");
     }
 
     @Override
@@ -110,7 +113,7 @@ public class MainActivity extends ActionBarActivity implements
 
     public void onClick(View v) {
 
-        final String tripUrl = "http://www.busbud.com/en/bus-schedules/" +
+        final String tripUrl = "http://www.busbud.com/" + USER_LANG_CODE + "/bus-schedules/" +
         originUrlForm + "/" + destUrlFormList.get(((Spinner)findViewById(R.id.destination_spinner)).getSelectedItemPosition());
 
         Fragment frag = new WebFragment();
@@ -185,7 +188,25 @@ public class MainActivity extends ActionBarActivity implements
                 }
 
             }catch (Exception e) {
-                Log.d("InputStream", e.getLocalizedMessage());
+                try {
+                    //Language answer is an array
+                    JSONArray langArray = new JSONArray(result);
+
+                    for (int i=0; i<langArray.length(); i++)
+                    {
+                        String code = langArray.getJSONObject(i).getString("code");
+                        if (code.equals(Locale.getDefault().getLanguage()))
+                        {
+                            USER_LANG_CODE = code;
+                            break;
+                        }
+                    }
+
+                } catch (Exception e1){
+                    Log.d("InputStream", e1.getLocalizedMessage());
+
+                }
+
             }
         }
 

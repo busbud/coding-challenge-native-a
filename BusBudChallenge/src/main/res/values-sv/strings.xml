@@ -8,7 +8,4 @@
     <string name="show_trip">Show trip</string>
     <string name="waiting">Waiting on location</string>
 
-    <color name="busbud_blue">#27a9e1</color>
-    <color name="busbud_orange">#fbaf17</color>
-
 </resources>

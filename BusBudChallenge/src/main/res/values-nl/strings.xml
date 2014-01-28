@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BusBudChallenge</string>
+    <string name="welcome">Welkom bij Busbud! Om een ​​reis te bekijken, selecteert u uw bestemming en tik \'Show reis\'.</string>
+    <string name="from">.Van (op basis van uw locatie)</string>
+    <string name="to">.Naar (kies)</string>
+    <string name="show_trip">Show reis</string>
+    <string name="waiting">Wachten op locatie</string>
+
+</resources>

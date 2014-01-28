@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="welcome">Bienvenue chez Busbud ! Pour voir un trajet, sélectionnez votre destination et pressez \'Voir trajet\'.</string>
+    <string name="from">.Départ (basé sur votre position)</string>
+    <string name="to">.Arrivée (choisissez)</string>
+    <string name="show_trip">Voir trajet</string>
+    <string name="waiting">En attente de position</string>
+
+</resources>
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BusBudChallenge</string>
+    <string name="welcome">Busbud hoşgeldiniz! Bir gezi görüntülemek için, hedefinizi seçin ve ardından dokunun \'göster trip\'.</string>
+    <string name="from">.Gönderen (yere göre)</string>
+    <string name="to">.(Seçin)</string>
+    <string name="show_trip">göster trip</string>
+    <string name="waiting">Yere bekliyorum</string>
+
+</resources>
