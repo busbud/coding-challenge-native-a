@@ -3,15 +3,13 @@ package com.f8full.busbudchallenge;
 import android.content.IntentSender;
 import android.location.Location;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -47,7 +45,6 @@ public class MainActivity extends ActionBarActivity implements
     //default language
     private static String USER_LANG_CODE = "en";
 
-
     /*
      * Define a request code to send to Google Play services
      * This code is returned in Activity.onActivityResult
@@ -55,7 +52,6 @@ public class MainActivity extends ActionBarActivity implements
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
     private LocationClient mLocationClient;
-    private Location mUserLocation;
 
     private String originUrlForm = "";
 
@@ -109,9 +105,7 @@ public class MainActivity extends ActionBarActivity implements
         }
     }
 
-
-
-    public void onClick(View v) {
+    public void onShowTripClick(View v) {
 
         final String tripUrl = "http://www.busbud.com/" + USER_LANG_CODE + "/bus-schedules/" +
         originUrlForm + "/" + destUrlFormList.get(((Spinner)findViewById(R.id.destination_spinner)).getSelectedItemPosition());
@@ -132,7 +126,7 @@ public class MainActivity extends ActionBarActivity implements
         @Override
         protected String doInBackground(String... urls) {
 
-            InputStream inputStream = null;
+            InputStream inputStream;
             String result = "";
             try {
 
@@ -167,7 +161,7 @@ public class MainActivity extends ActionBarActivity implements
         protected void onPostExecute(String result) {
             //Toast.makeText(getBaseContext(), "Received!", Toast.LENGTH_LONG).show();
             //etResponse.setText(result);
-            JSONObject resultJSON = null;
+            JSONObject resultJSON;
 
             try {
 
@@ -238,7 +232,7 @@ public class MainActivity extends ActionBarActivity implements
 
     private static String convertInputStreamToString(InputStream inputStream) throws IOException {
         BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
+        String line;
         String result = "";
         while((line = bufferedReader.readLine()) != null)
             result += line;
@@ -258,12 +252,12 @@ public class MainActivity extends ActionBarActivity implements
         // Display the connection status
         //Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show();
 
-        mUserLocation = mLocationClient.getLastLocation();
+        Location userLocation = mLocationClient.getLastLocation();
 
         new HttpAsyncTask().execute(BUSBUD_API_ENDPOINT + USER_LANG_CODE +
                 "/api/v1/search/locations/?latitude=" +
-                String.valueOf(mUserLocation.getLatitude()) +
-                "&longitude=" + String.valueOf(mUserLocation.getLongitude()) +
+                String.valueOf(userLocation.getLatitude()) +
+                "&longitude=" + String.valueOf(userLocation.getLongitude()) +
                 "&accuracy=10");
 
     }

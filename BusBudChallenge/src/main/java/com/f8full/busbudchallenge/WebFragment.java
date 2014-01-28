@@ -25,9 +25,7 @@ public class WebFragment extends Fragment {
 
     private String mUrl = null;
 
-    private ProgressBar mPbar = null;
-    private WebView mWebview = null;
-    private FrameLayout mView = null;
+    private ProgressBar mPBar = null;
     private ImageView mImageView;
 
     @Override
@@ -41,46 +39,46 @@ public class WebFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_web, container, false);
 
-        mPbar = (ProgressBar) view.findViewById(R.id.web_view_progress);
+        mPBar = (ProgressBar) view.findViewById(R.id.web_view_progress);
 
-        mView = (FrameLayout) view.findViewById(R.id.web_view);
+        FrameLayout view1 = (FrameLayout) view.findViewById(R.id.web_view);
 
         mImageView = new ImageView(getActivity());
         mImageView.setBackgroundColor(getResources().getColor(R.color.busbud_blue));
         mImageView.setImageResource(R.drawable.big_image_loading);
         mImageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         mImageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT));
+                 ViewGroup.LayoutParams.MATCH_PARENT));
         mImageView.post(new Runnable() {
-            @Override
-            public void run() {
-                ((AnimationDrawable) mImageView.getDrawable()).start();
-            }
-        });
-        mView.addView(mImageView);
+             @Override
+             public void run() {
+                 ((AnimationDrawable) mImageView.getDrawable()).start();
+             }
+         });
+        view1.addView(mImageView);
 
 
-        mWebview = new WebView(getActivity());
-        mWebview.setVisibility(View.GONE);
+        WebView webview = new WebView(getActivity());
+        webview.setVisibility(View.GONE);
 
         if (mUrl != null) {
-            mWebview.setWebViewClient(new MyWebViewClient());
-            mWebview.setWebChromeClient(new MyWebChromeClient());
-            mWebview.getSettings().setUseWideViewPort(true);
-            mWebview.getSettings().setBuiltInZoomControls(true);
-            mWebview.getSettings().setLoadWithOverviewMode(true);
-            mWebview.getSettings().setSupportZoom(true);
-            mWebview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-            mWebview.getSettings().setAllowFileAccess(true);
-            mWebview.getSettings().setDomStorageEnabled(true);
-            mWebview.getSettings().setJavaScriptEnabled(true);
-            mWebview.getSettings().setAppCacheEnabled(true);
+            webview.setWebViewClient(new MyWebViewClient());
+            webview.setWebChromeClient(new MyWebChromeClient());
+            webview.getSettings().setUseWideViewPort(true);
+            webview.getSettings().setBuiltInZoomControls(true);
+            webview.getSettings().setLoadWithOverviewMode(true);
+            webview.getSettings().setSupportZoom(true);
+            webview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+            webview.getSettings().setAllowFileAccess(true);
+            webview.getSettings().setDomStorageEnabled(true);
+            webview.getSettings().setJavaScriptEnabled(true);
+            webview.getSettings().setAppCacheEnabled(true);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-                mWebview.getSettings().setDisplayZoomControls(false);
+                webview.getSettings().setDisplayZoomControls(false);
 
-            mWebview.loadUrl(mUrl);
+            webview.loadUrl(mUrl);
         }
-        mView.addView(mWebview);
+        view1.addView(webview);
 
 
         return view;
@@ -91,11 +89,11 @@ public class WebFragment extends Fragment {
         @Override
         public void onProgressChanged(WebView view, int progress)
         {
-            if (progress < 100 && mPbar.getVisibility() == ProgressBar.GONE)
-                mPbar.setVisibility(ProgressBar.VISIBLE);
-            mPbar.setProgress(progress);
+            if (progress < 100 && mPBar.getVisibility() == ProgressBar.GONE)
+                mPBar.setVisibility(ProgressBar.VISIBLE);
+            mPBar.setProgress(progress);
             if (progress == 100)
-                mPbar.setVisibility(ProgressBar.GONE);
+                mPBar.setVisibility(ProgressBar.GONE);
         }
     }
 

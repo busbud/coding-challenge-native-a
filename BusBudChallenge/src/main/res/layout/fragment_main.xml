@@ -69,7 +69,7 @@
                 android:text="@string/show_trip"
                 android:id="@+id/button"
                 android:layout_gravity="center_horizontal"
-                android:onClick="onClick"
+                android:onClick="onShowTripClick"
                 android:layout_below="@+id/destination_spinner"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="37dp"/>
