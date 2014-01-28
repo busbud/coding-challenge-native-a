@@ -1,3 +1,12 @@
+#TODO
+Add Google Play Services APK validation code
+
+#Known limitations
+Location provider connection is not fool proof (doesn't monitor GPS status)
+Network connection status is not monitored
+
+UX could be improved with clear messages regarding the two issues above
+
 # Requirements
 Write a native Busbud app that
 - uses geo-location to find the user's current city as an origin city
