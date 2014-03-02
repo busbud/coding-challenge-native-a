@@ -10,6 +10,7 @@
 		3704DB0818C2D72B00D913C3 /* Busbud_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3704DB0718C2D72B00D913C3 /* Busbud_iPhone.storyboard */; };
 		3704DB0B18C2D7B000D913C3 /* BBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3704DB0A18C2D7B000D913C3 /* BBWebViewController.m */; };
 		3704DB0E18C2D81E00D913C3 /* BBSearchRouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3704DB0D18C2D81E00D913C3 /* BBSearchRouteViewController.m */; };
+		3743D73518C3DE000031C9CD /* BBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3743D73418C3DE000031C9CD /* BBViewController.m */; };
 		37C77DB518C24F3D009CB6EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C77DB418C24F3D009CB6EC /* Foundation.framework */; };
 		37C77DB718C24F3D009CB6EC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C77DB618C24F3D009CB6EC /* CoreGraphics.framework */; };
 		37C77DB918C24F3D009CB6EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C77DB818C24F3D009CB6EC /* UIKit.framework */; };
@@ -42,6 +43,8 @@
 		3704DB0A18C2D7B000D913C3 /* BBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBWebViewController.m; sourceTree = "<group>"; };
 		3704DB0C18C2D81E00D913C3 /* BBSearchRouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSearchRouteViewController.h; sourceTree = "<group>"; };
 		3704DB0D18C2D81E00D913C3 /* BBSearchRouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSearchRouteViewController.m; sourceTree = "<group>"; };
+		3743D73318C3DE000031C9CD /* BBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBViewController.h; sourceTree = "<group>"; };
+		3743D73418C3DE000031C9CD /* BBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBViewController.m; sourceTree = "<group>"; };
 		37C77DB118C24F3D009CB6EC /* Busbud App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Busbud App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37C77DB418C24F3D009CB6EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		37C77DB618C24F3D009CB6EC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -88,6 +91,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3743D73118C3DCA00031C9CD /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3743D73318C3DE000031C9CD /* BBViewController.h */,
+				3743D73418C3DE000031C9CD /* BBViewController.m */,
+				3704DB0C18C2D81E00D913C3 /* BBSearchRouteViewController.h */,
+				3704DB0D18C2D81E00D913C3 /* BBSearchRouteViewController.m */,
+				3704DB0918C2D7B000D913C3 /* BBWebViewController.h */,
+				3704DB0A18C2D7B000D913C3 /* BBWebViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		3743D73218C3DCC00031C9CD /* Data Classes */ = {
+			isa = PBXGroup;
+			children = (
+				37EB01A618C2DEE4003DACAE /* BBLocation.h */,
+				37EB01A718C2DEE4003DACAE /* BBLocation.m */,
+			);
+			name = "Data Classes";
+			sourceTree = "<group>";
+		};
 		37C77DA818C24F3D009CB6EC = {
 			isa = PBXGroup;
 			children = (
@@ -126,12 +151,8 @@
 				37C77DC318C24F3D009CB6EC /* BBAppDelegate.h */,
 				37C77DC418C24F3D009CB6EC /* BBAppDelegate.m */,
 				3704DB0718C2D72B00D913C3 /* Busbud_iPhone.storyboard */,
-				37EB01A618C2DEE4003DACAE /* BBLocation.h */,
-				37EB01A718C2DEE4003DACAE /* BBLocation.m */,
-				3704DB0C18C2D81E00D913C3 /* BBSearchRouteViewController.h */,
-				3704DB0D18C2D81E00D913C3 /* BBSearchRouteViewController.m */,
-				3704DB0918C2D7B000D913C3 /* BBWebViewController.h */,
-				3704DB0A18C2D7B000D913C3 /* BBWebViewController.m */,
+				3743D73218C3DCC00031C9CD /* Data Classes */,
+				3743D73118C3DCA00031C9CD /* View Controllers */,
 				37C77DC618C24F3D009CB6EC /* Images.xcassets */,
 				37C77DBB18C24F3D009CB6EC /* Supporting Files */,
 			);
@@ -268,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3743D73518C3DE000031C9CD /* BBViewController.m in Sources */,
 				3704DB0E18C2D81E00D913C3 /* BBSearchRouteViewController.m in Sources */,
 				37EB01A818C2DEE4003DACAE /* BBLocation.m in Sources */,
 				3704DB0B18C2D7B000D913C3 /* BBWebViewController.m in Sources */,

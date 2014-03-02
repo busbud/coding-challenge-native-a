@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BBViewController.h"
 
-@interface BBWebViewController : UIViewController
+@interface BBWebViewController : BBViewController
 
 // UI Outlets
 @property(nonatomic) IBOutlet UIWebView *webView;

@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BBViewController.h"
 
 @class BBLocation;
 
-@interface BBSearchRouteViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface BBSearchRouteViewController : BBViewController <UITableViewDataSource, UITableViewDelegate>
 
 // UI outlets
 @property(nonatomic) IBOutlet UILabel *departureCityLabel;

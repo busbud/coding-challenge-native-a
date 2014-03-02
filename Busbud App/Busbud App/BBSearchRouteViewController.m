@@ -39,7 +39,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+
+    self.navigationItem.titleView =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NavBarImage"]];
+
     // remove separators in table view for "phantom cells"
     self.destinationTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
