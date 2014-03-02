@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3704DB0818C2D72B00D913C3 /* Busbud_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3704DB0718C2D72B00D913C3 /* Busbud_iPhone.storyboard */; };
+		3704DB0B18C2D7B000D913C3 /* BBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3704DB0A18C2D7B000D913C3 /* BBWebViewController.m */; };
+		3704DB0E18C2D81E00D913C3 /* BBSearchRouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3704DB0D18C2D81E00D913C3 /* BBSearchRouteViewController.m */; };
 		37C77DB518C24F3D009CB6EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C77DB418C24F3D009CB6EC /* Foundation.framework */; };
 		37C77DB718C24F3D009CB6EC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C77DB618C24F3D009CB6EC /* CoreGraphics.framework */; };
 		37C77DB918C24F3D009CB6EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C77DB818C24F3D009CB6EC /* UIKit.framework */; };
@@ -19,6 +22,8 @@
 		37C77DD018C24F3E009CB6EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C77DB818C24F3D009CB6EC /* UIKit.framework */; };
 		37C77DD818C24F3E009CB6EC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37C77DD618C24F3E009CB6EC /* InfoPlist.strings */; };
 		37C77DDA18C24F3E009CB6EC /* Busbud_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C77DD918C24F3E009CB6EC /* Busbud_AppTests.m */; };
+		37C77E2A18C27224009CB6EC /* Screen Shot 2014-03-01 at 2.52.18 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = 37C77E2918C27224009CB6EC /* Screen Shot 2014-03-01 at 2.52.18 PM.png */; };
+		37EB01A818C2DEE4003DACAE /* BBLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EB01A718C2DEE4003DACAE /* BBLocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +37,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3704DB0718C2D72B00D913C3 /* Busbud_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Busbud_iPhone.storyboard; sourceTree = "<group>"; };
+		3704DB0918C2D7B000D913C3 /* BBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebViewController.h; sourceTree = "<group>"; };
+		3704DB0A18C2D7B000D913C3 /* BBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBWebViewController.m; sourceTree = "<group>"; };
+		3704DB0C18C2D81E00D913C3 /* BBSearchRouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSearchRouteViewController.h; sourceTree = "<group>"; };
+		3704DB0D18C2D81E00D913C3 /* BBSearchRouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSearchRouteViewController.m; sourceTree = "<group>"; };
 		37C77DB118C24F3D009CB6EC /* Busbud App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Busbud App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37C77DB418C24F3D009CB6EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		37C77DB618C24F3D009CB6EC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -48,6 +58,10 @@
 		37C77DD518C24F3E009CB6EC /* Busbud AppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Busbud AppTests-Info.plist"; sourceTree = "<group>"; };
 		37C77DD718C24F3E009CB6EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		37C77DD918C24F3E009CB6EC /* Busbud_AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Busbud_AppTests.m; sourceTree = "<group>"; };
+		37C77E2918C27224009CB6EC /* Screen Shot 2014-03-01 at 2.52.18 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Screen Shot 2014-03-01 at 2.52.18 PM.png"; path = "../../Screen Shot 2014-03-01 at 2.52.18 PM.png"; sourceTree = "<group>"; };
+		37EB01A618C2DEE4003DACAE /* BBLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBLocation.h; sourceTree = "<group>"; };
+		37EB01A718C2DEE4003DACAE /* BBLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBLocation.m; sourceTree = "<group>"; };
+		37EB01A918C2E020003DACAE /* conf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = conf.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +91,7 @@
 		37C77DA818C24F3D009CB6EC = {
 			isa = PBXGroup;
 			children = (
+				37C77E2918C27224009CB6EC /* Screen Shot 2014-03-01 at 2.52.18 PM.png */,
 				37C77DBA18C24F3D009CB6EC /* Busbud App */,
 				37C77DD318C24F3E009CB6EC /* Busbud AppTests */,
 				37C77DB318C24F3D009CB6EC /* Frameworks */,
@@ -107,8 +122,16 @@
 		37C77DBA18C24F3D009CB6EC /* Busbud App */ = {
 			isa = PBXGroup;
 			children = (
+				37EB01A918C2E020003DACAE /* conf.h */,
 				37C77DC318C24F3D009CB6EC /* BBAppDelegate.h */,
 				37C77DC418C24F3D009CB6EC /* BBAppDelegate.m */,
+				3704DB0718C2D72B00D913C3 /* Busbud_iPhone.storyboard */,
+				37EB01A618C2DEE4003DACAE /* BBLocation.h */,
+				37EB01A718C2DEE4003DACAE /* BBLocation.m */,
+				3704DB0C18C2D81E00D913C3 /* BBSearchRouteViewController.h */,
+				3704DB0D18C2D81E00D913C3 /* BBSearchRouteViewController.m */,
+				3704DB0918C2D7B000D913C3 /* BBWebViewController.h */,
+				3704DB0A18C2D7B000D913C3 /* BBWebViewController.m */,
 				37C77DC618C24F3D009CB6EC /* Images.xcassets */,
 				37C77DBB18C24F3D009CB6EC /* Supporting Files */,
 			);
@@ -192,6 +215,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Dan Greencorn";
 				TargetAttributes = {
+					37C77DB018C24F3D009CB6EC = {
+						DevelopmentTeam = BLPLPEFV8Q;
+					};
 					37C77DCB18C24F3E009CB6EC = {
 						TestTargetID = 37C77DB018C24F3D009CB6EC;
 					};
@@ -220,7 +246,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3704DB0818C2D72B00D913C3 /* Busbud_iPhone.storyboard in Resources */,
 				37C77DBF18C24F3D009CB6EC /* InfoPlist.strings in Resources */,
+				37C77E2A18C27224009CB6EC /* Screen Shot 2014-03-01 at 2.52.18 PM.png in Resources */,
 				37C77DC718C24F3D009CB6EC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +268,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3704DB0E18C2D81E00D913C3 /* BBSearchRouteViewController.m in Sources */,
+				37EB01A818C2DEE4003DACAE /* BBLocation.m in Sources */,
+				3704DB0B18C2D7B000D913C3 /* BBWebViewController.m in Sources */,
 				37C77DC518C24F3D009CB6EC /* BBAppDelegate.m in Sources */,
 				37C77DC118C24F3D009CB6EC /* main.m in Sources */,
 			);
@@ -362,10 +393,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Busbud App/Busbud App-Prefix.pch";
 				INFOPLIST_FILE = "Busbud App/Busbud App-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -375,10 +408,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Busbud App/Busbud App-Prefix.pch";
 				INFOPLIST_FILE = "Busbud App/Busbud App-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -444,6 +479,7 @@
 				37C77DDF18C24F3E009CB6EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		37C77DE018C24F3E009CB6EC /* Build configuration list for PBXNativeTarget "Busbud AppTests" */ = {
 			isa = XCConfigurationList;
@@ -452,6 +488,7 @@
 				37C77DE218C24F3E009CB6EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
