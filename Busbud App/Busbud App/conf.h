@@ -11,9 +11,9 @@
 
 // Definitions for app configureation
 
-#define BUSBUD_APP_ID @"my-app-id"
+#define BUSBUD_APP_ID @"your-app-ID-here"
 
-#define BUSBUD_API_BASE @"http:\/\/api-staging.busbud.com"
+#define BUSBUD_API_BASE @"http://api-staging.busbud.com"
 
 #define BUSBUD_DEFAULT_LANGUAGE @"en"
 
