@@ -14,6 +14,8 @@
 
 @implementation BBWebViewController
 
+@synthesize url = _url;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,8 +29,20 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    if (self.url) {
+        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
+        NSLog(@"Loading URL: %@", self.url);
+    } else {
+        NSLog(@"No url set");
+    }
+    
+}
+
+-(void) setUrl:(NSString *)url {
+    _url = url;
+    
+    // reload the webview
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
-    NSLog(@"Loading URL: %@", self.url);
 }
 
 - (void)didReceiveMemoryWarning

@@ -104,8 +104,20 @@
 #pragma mark - UITableViewDelegate
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     BBLocation *dest = [self.destinations objectAtIndex:indexPath.row];
-    [self performSegueWithIdentifier:@"showRouteSchedule" sender:[dest urlform]];
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        // iPad
+        UISplitViewController *splitView = (UISplitViewController*)[[[[UIApplication sharedApplication] delegate] window]rootViewController];
+        NSLog(@"%@",[splitView viewControllers]);
+        BBWebViewController *webViewController = [[splitView viewControllers] objectAtIndex:1];
+        NSString *urlToLoad = [NSString stringWithFormat:@"http://www.busbud.com/%@/bus-schedules/%@/%@", BUSBUD_DEFAULT_LANGUAGE, self.currentLocation.urlform, [dest urlform]];
+        
+        webViewController.url = urlToLoad;
+    } else {
+        // iPod/iPhone
+        [self performSegueWithIdentifier:@"showRouteSchedule" sender:[dest urlform]];
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    }
 }
 
 #pragma mark - UITableViewDataSource

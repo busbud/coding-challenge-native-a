@@ -26,6 +26,8 @@
 	<true/>
 	<key>UIMainStoryboardFile</key>
 	<string>Busbud_iPhone</string>
+	<key>UIMainStoryboardFile~ipad</key>
+	<string>Busbud_iPad</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
