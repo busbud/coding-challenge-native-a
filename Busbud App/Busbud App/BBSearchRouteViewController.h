@@ -11,7 +11,7 @@
 
 @class BBLocation;
 
-@interface BBSearchRouteViewController : BBViewController <UITableViewDataSource, UITableViewDelegate>
+@interface BBSearchRouteViewController : BBViewController <UITableViewDataSource, UITableViewDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
 // UI outlets
 @property(nonatomic) IBOutlet UILabel *departureCityLabel;
@@ -20,8 +20,5 @@
 // Data properties
 @property(nonatomic) NSMutableArray *destinations;
 @property(nonatomic, strong) BBLocation *currentLocation;
-
-
--(IBAction)getCurrentLocation:(id)sender;
 
 @end
