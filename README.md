@@ -2,7 +2,8 @@
 
 ## Configuration
 
-You will need to rename conf.h.default to conf.h and supply a valid application identifier for access to the busbud staging API
+You will need to rename conf.h.default to conf.h and supply a valid application identifier for access to the busbud staging API in 
+"Busbud App/Busbud App/"
 
 ## App Flow
 
