@@ -20,6 +20,8 @@
 @synthesize destinations = _destinations;
 @synthesize currentLocation = _currentLocation;
 
+#pragma  mark - property override methods
+// override setter for currentLocation property
 -(void) setCurrentLocation:(BBLocation *)currentLocation {
     _currentLocation = currentLocation;
     
@@ -38,6 +40,7 @@
     }
 }
 
+// override setter for destinations array
 -(void) setDestinations:(NSMutableArray *)destinations {
     _destinations = destinations;
     
@@ -45,6 +48,7 @@
     [self.destinationTableView reloadData];
 }
 
+#pragma mark - API Calls
 -(void) getNewDestinations  {
     // Make API call to get destinations from GET /:lang/api/v1/search/locations-from/:origin_city.urlform
     NSString *urlString = [NSString stringWithFormat:@"%@/%@/api/v1/search/locations-from/%@", BUSBUD_API_BASE, BUSBUD_DEFAULT_LANGUAGE, self.currentLocation.urlform];
@@ -93,6 +97,7 @@
 }
 
 #pragma mark - before segue
+// pass the url string to the webview during segue (iPhone/iPod Touch UI Only)
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     BBWebViewController *webController = segue.destinationViewController;
     
@@ -107,12 +112,16 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     BBLocation *dest = [self.destinations objectAtIndex:indexPath.row];
     
+    // trigger load of webview (differs by iPad/iPhone)
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         // iPad
+        
+        // get the webview controller by navigating entire view hierarchy
         UISplitViewController *splitView = (UISplitViewController*)[[[[UIApplication sharedApplication] delegate] window]rootViewController];
         NSLog(@"%@",[splitView viewControllers]);
         BBWebViewController *webViewController = [[splitView viewControllers] objectAtIndex:1];
         
+        // assign url to load
         NSString *apiLang = NSLocalizedString(@"api language", nil);
         NSString *urlToLoad = [NSString stringWithFormat:@"http://www.busbud.com/%@/bus-schedules/%@/%@", apiLang, self.currentLocation.urlform, [dest urlform]];
         
@@ -152,6 +161,7 @@
 
 #pragma mark - NSURLConnectionDataDelegate
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    // parse returned JSON into dictionary
     NSError *error;
     NSDictionary* responseDict = [NSJSONSerialization
                                   JSONObjectWithData:data
@@ -164,6 +174,8 @@
     
     NSMutableArray *destinations = [[NSMutableArray alloc] initWithCapacity:[responseLocations count]];
     
+    
+    // create a BBLocation object for each location returned from API
     for (NSDictionary *loc in responseLocations) {
         BBLocation *destination = [[BBLocation alloc] initWithName:[loc objectForKey:@"name"] fullname:[loc objectForKey:@"fullname"] urlform:[loc objectForKey:@"urlform"]];
         

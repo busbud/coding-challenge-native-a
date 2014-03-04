@@ -11,7 +11,9 @@
 @implementation BBSplitViewControllerDelegate
 
 
+
 -(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation {
+    //always show the master view (in all device orientations)
     return NO;
 }
 

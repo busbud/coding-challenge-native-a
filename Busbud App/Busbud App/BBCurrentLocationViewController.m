@@ -23,6 +23,7 @@
 @synthesize currentLocation;
 @synthesize currentBBLocation;
 
+#pragma mark - UIViewController
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -95,6 +96,37 @@
     }
 }
 
+
+
+#pragma mark - NSURLConnectionDelegate
+-(void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"Connection Error: Request for location in busbud API");
+}
+
+#pragma mark - NSURLConnectionDataDelegate
+-(void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    // parse response data into dictionary
+    NSError *error;
+    NSDictionary* responseDict = [NSJSONSerialization
+                          JSONObjectWithData:data
+                          
+                          options:kNilOptions
+                          error:&error];
+    NSLog(@"API RESPONSE");
+    NSLog(@"%@",responseDict);
+    
+    
+    
+    NSDictionary *current = [responseDict objectForKey:@"current"];
+    
+    // set current BBlocation
+    currentBBLocation = [[BBLocation alloc] initWithName:[current objectForKey:@"name"] fullname:[current objectForKey:@"fullname"] urlform:[current objectForKey:@"urlform"]];
+    
+    [self showFindRoutes];
+}
+
+#pragma mark - Custom methods
+#pragma mark API calls
 -(void)getAPILocation:(CLLocation*)location {
     
     NSString *apiLang = NSLocalizedString(@"api language", nil);
@@ -114,28 +146,7 @@
     
 }
 
--(void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"Connection Error: Request for location in busbud API");
-}
-
--(void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    NSError *error;
-    NSDictionary* responseDict = [NSJSONSerialization
-                          JSONObjectWithData:data
-                          
-                          options:kNilOptions
-                          error:&error];
-    
-    NSLog(@"API RESPONSE");
-    NSLog(@"%@",responseDict);
-    
-    NSDictionary *current = [responseDict objectForKey:@"current"];
-    
-    currentBBLocation = [[BBLocation alloc] initWithName:[current objectForKey:@"name"] fullname:[current objectForKey:@"fullname"] urlform:[current objectForKey:@"urlform"]];
-    
-    [self showFindRoutes];
-}
-
+#pragma mark UI Configurations
 -(void) showFindRoutes {
     loadingLabel.hidden = YES;
     activityView.hidden = YES;

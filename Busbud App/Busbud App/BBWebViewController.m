@@ -16,6 +16,15 @@
 
 @synthesize url = _url;
 
+#pragma mark - Property overrides
+-(void) setUrl:(NSString *)url {
+    _url = url;
+    
+    // reload the webview
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
+}
+
+#pragma mark - UIViewController
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -36,13 +45,6 @@
         NSLog(@"No url set");
     }
     
-}
-
--(void) setUrl:(NSString *)url {
-    _url = url;
-    
-    // reload the webview
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
 }
 
 - (void)didReceiveMemoryWarning
