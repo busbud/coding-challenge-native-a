@@ -96,7 +96,9 @@
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     BBWebViewController *webController = segue.destinationViewController;
     
-    NSString *urlToLoad = [NSString stringWithFormat:@"http://www.busbud.com/%@/bus-schedules/%@/%@", BUSBUD_DEFAULT_LANGUAGE, self.currentLocation.urlform, (NSString*)sender];
+    NSString *apiLang = NSLocalizedString(@"api language", nil);
+    
+    NSString *urlToLoad = [NSString stringWithFormat:@"http://www.busbud.com/%@/bus-schedules/%@/%@", apiLang , self.currentLocation.urlform, (NSString*)sender];
     
     webController.url = urlToLoad;
 }
@@ -110,7 +112,9 @@
         UISplitViewController *splitView = (UISplitViewController*)[[[[UIApplication sharedApplication] delegate] window]rootViewController];
         NSLog(@"%@",[splitView viewControllers]);
         BBWebViewController *webViewController = [[splitView viewControllers] objectAtIndex:1];
-        NSString *urlToLoad = [NSString stringWithFormat:@"http://www.busbud.com/%@/bus-schedules/%@/%@", BUSBUD_DEFAULT_LANGUAGE, self.currentLocation.urlform, [dest urlform]];
+        
+        NSString *apiLang = NSLocalizedString(@"api language", nil);
+        NSString *urlToLoad = [NSString stringWithFormat:@"http://www.busbud.com/%@/bus-schedules/%@/%@", apiLang, self.currentLocation.urlform, [dest urlform]];
         
         webViewController.url = urlToLoad;
     } else {

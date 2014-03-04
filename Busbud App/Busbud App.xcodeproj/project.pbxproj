@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3704DB0818C2D72B00D913C3 /* Busbud_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3704DB0718C2D72B00D913C3 /* Busbud_iPhone.storyboard */; };
 		3704DB0B18C2D7B000D913C3 /* BBWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3704DB0A18C2D7B000D913C3 /* BBWebViewController.m */; };
 		3704DB0E18C2D81E00D913C3 /* BBSearchRouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3704DB0D18C2D81E00D913C3 /* BBSearchRouteViewController.m */; };
 		3743D73518C3DE000031C9CD /* BBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3743D73418C3DE000031C9CD /* BBViewController.m */; };
 		37864B7218C507A500E44EE3 /* BBCurrentLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37864B7118C507A500E44EE3 /* BBCurrentLocationViewController.m */; };
-		37864B7818C52EE500E44EE3 /* Busbud_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37864B7718C52EE500E44EE3 /* Busbud_iPad.storyboard */; };
 		37864B7A18C5315300E44EE3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37864B7918C5315300E44EE3 /* CoreLocation.framework */; };
 		37864B7D18C537C100E44EE3 /* BBSplitViewControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37864B7C18C537C100E44EE3 /* BBSplitViewControllerDelegate.m */; };
+		37B388E018C61E5E00660476 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37B388E218C61E5E00660476 /* Localizable.strings */; };
 		37C77DB518C24F3D009CB6EC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C77DB418C24F3D009CB6EC /* Foundation.framework */; };
 		37C77DB718C24F3D009CB6EC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C77DB618C24F3D009CB6EC /* CoreGraphics.framework */; };
 		37C77DB918C24F3D009CB6EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C77DB818C24F3D009CB6EC /* UIKit.framework */; };
@@ -27,8 +26,9 @@
 		37C77DD018C24F3E009CB6EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37C77DB818C24F3D009CB6EC /* UIKit.framework */; };
 		37C77DD818C24F3E009CB6EC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37C77DD618C24F3E009CB6EC /* InfoPlist.strings */; };
 		37C77DDA18C24F3E009CB6EC /* Busbud_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C77DD918C24F3E009CB6EC /* Busbud_AppTests.m */; };
-		37C77E2A18C27224009CB6EC /* Screen Shot 2014-03-01 at 2.52.18 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = 37C77E2918C27224009CB6EC /* Screen Shot 2014-03-01 at 2.52.18 PM.png */; };
 		37EB01A818C2DEE4003DACAE /* BBLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EB01A718C2DEE4003DACAE /* BBLocation.m */; };
+		37F51E1218C61A2800B6180A /* Busbud_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37F51E1418C61A2800B6180A /* Busbud_iPhone.storyboard */; };
+		37F51E1918C61BAC00B6180A /* Busbud_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37F51E1B18C61BAC00B6180A /* Busbud_iPad.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +42,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3704DB0718C2D72B00D913C3 /* Busbud_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Busbud_iPhone.storyboard; sourceTree = "<group>"; };
 		3704DB0918C2D7B000D913C3 /* BBWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBWebViewController.h; sourceTree = "<group>"; };
 		3704DB0A18C2D7B000D913C3 /* BBWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBWebViewController.m; sourceTree = "<group>"; };
 		3704DB0C18C2D81E00D913C3 /* BBSearchRouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSearchRouteViewController.h; sourceTree = "<group>"; };
@@ -51,10 +50,11 @@
 		3743D73418C3DE000031C9CD /* BBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBViewController.m; sourceTree = "<group>"; };
 		37864B7018C507A500E44EE3 /* BBCurrentLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCurrentLocationViewController.h; sourceTree = "<group>"; };
 		37864B7118C507A500E44EE3 /* BBCurrentLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBCurrentLocationViewController.m; sourceTree = "<group>"; };
-		37864B7718C52EE500E44EE3 /* Busbud_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Busbud_iPad.storyboard; sourceTree = "<group>"; };
 		37864B7918C5315300E44EE3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		37864B7B18C537C100E44EE3 /* BBSplitViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBSplitViewControllerDelegate.h; sourceTree = "<group>"; };
 		37864B7C18C537C100E44EE3 /* BBSplitViewControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBSplitViewControllerDelegate.m; sourceTree = "<group>"; };
+		37B388E118C61E5E00660476 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		37B388E318C61E6600660476 /* fr */ = {isa = PBXFileReference; lastKnownFileType = file; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		37C77DB118C24F3D009CB6EC /* Busbud App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Busbud App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37C77DB418C24F3D009CB6EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		37C77DB618C24F3D009CB6EC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -71,10 +71,15 @@
 		37C77DD518C24F3E009CB6EC /* Busbud AppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Busbud AppTests-Info.plist"; sourceTree = "<group>"; };
 		37C77DD718C24F3E009CB6EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		37C77DD918C24F3E009CB6EC /* Busbud_AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Busbud_AppTests.m; sourceTree = "<group>"; };
-		37C77E2918C27224009CB6EC /* Screen Shot 2014-03-01 at 2.52.18 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Screen Shot 2014-03-01 at 2.52.18 PM.png"; path = "../../Screen Shot 2014-03-01 at 2.52.18 PM.png"; sourceTree = "<group>"; };
 		37EB01A618C2DEE4003DACAE /* BBLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBLocation.h; sourceTree = "<group>"; };
 		37EB01A718C2DEE4003DACAE /* BBLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBLocation.m; sourceTree = "<group>"; };
 		37EB01A918C2E020003DACAE /* conf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = conf.h; sourceTree = "<group>"; };
+		37F51E1318C61A2800B6180A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Busbud_iPhone.storyboard; sourceTree = "<group>"; };
+		37F51E1618C61A3600B6180A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		37F51E1718C61A3600B6180A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		37F51E1818C61A7A00B6180A /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = fr; path = fr.lproj/Busbud_iPhone.storyboard; sourceTree = "<group>"; };
+		37F51E1A18C61BAC00B6180A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Busbud_iPad.storyboard; sourceTree = "<group>"; };
+		37F51E1E18C61D6600B6180A /* fr */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = fr; path = fr.lproj/Busbud_iPad.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,7 +143,7 @@
 		37C77DA818C24F3D009CB6EC = {
 			isa = PBXGroup;
 			children = (
-				37C77E2918C27224009CB6EC /* Screen Shot 2014-03-01 at 2.52.18 PM.png */,
+				37B388E218C61E5E00660476 /* Localizable.strings */,
 				37C77DBA18C24F3D009CB6EC /* Busbud App */,
 				37C77DD318C24F3E009CB6EC /* Busbud AppTests */,
 				37C77DB318C24F3D009CB6EC /* Frameworks */,
@@ -173,8 +178,8 @@
 				37EB01A918C2E020003DACAE /* conf.h */,
 				37C77DC318C24F3D009CB6EC /* BBAppDelegate.h */,
 				37C77DC418C24F3D009CB6EC /* BBAppDelegate.m */,
-				3704DB0718C2D72B00D913C3 /* Busbud_iPhone.storyboard */,
-				37864B7718C52EE500E44EE3 /* Busbud_iPad.storyboard */,
+				37F51E1418C61A2800B6180A /* Busbud_iPhone.storyboard */,
+				37F51E1B18C61BAC00B6180A /* Busbud_iPad.storyboard */,
 				37864B7618C5151B00E44EE3 /* Functional Classes */,
 				3743D73218C3DCC00031C9CD /* Data Classes */,
 				3743D73118C3DCA00031C9CD /* View Controllers */,
@@ -275,6 +280,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				fr,
 			);
 			mainGroup = 37C77DA818C24F3D009CB6EC;
 			productRefGroup = 37C77DB218C24F3D009CB6EC /* Products */;
@@ -292,10 +298,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3704DB0818C2D72B00D913C3 /* Busbud_iPhone.storyboard in Resources */,
+				37B388E018C61E5E00660476 /* Localizable.strings in Resources */,
+				37F51E1218C61A2800B6180A /* Busbud_iPhone.storyboard in Resources */,
 				37C77DBF18C24F3D009CB6EC /* InfoPlist.strings in Resources */,
-				37864B7818C52EE500E44EE3 /* Busbud_iPad.storyboard in Resources */,
-				37C77E2A18C27224009CB6EC /* Screen Shot 2014-03-01 at 2.52.18 PM.png in Resources */,
+				37F51E1918C61BAC00B6180A /* Busbud_iPad.storyboard in Resources */,
 				37C77DC718C24F3D009CB6EC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,10 +351,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		37B388E218C61E5E00660476 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37B388E118C61E5E00660476 /* en */,
+				37B388E318C61E6600660476 /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		37C77DBD18C24F3D009CB6EC /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				37C77DBE18C24F3D009CB6EC /* en */,
+				37F51E1618C61A3600B6180A /* fr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -357,8 +373,27 @@
 			isa = PBXVariantGroup;
 			children = (
 				37C77DD718C24F3E009CB6EC /* en */,
+				37F51E1718C61A3600B6180A /* fr */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		37F51E1418C61A2800B6180A /* Busbud_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37F51E1318C61A2800B6180A /* en */,
+				37F51E1818C61A7A00B6180A /* fr */,
+			);
+			name = Busbud_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		37F51E1B18C61BAC00B6180A /* Busbud_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37F51E1A18C61BAC00B6180A /* en */,
+				37F51E1E18C61D6600B6180A /* fr */,
+			);
+			name = Busbud_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

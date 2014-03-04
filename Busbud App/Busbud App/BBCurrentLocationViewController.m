@@ -96,7 +96,10 @@
 }
 
 -(void)getAPILocation:(CLLocation*)location {
-    NSString *requestURL = [NSString stringWithFormat:@"%@//%@/api/v1/search/locations/?latitude=%f&longitude=%f&accuracy=%f",BUSBUD_API_BASE, BUSBUD_DEFAULT_LANGUAGE, location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy];
+    
+    NSString *apiLang = NSLocalizedString(@"api language", nil);
+    
+    NSString *requestURL = [NSString stringWithFormat:@"%@/%@/api/v1/search/locations/?latitude=%f&longitude=%f&accuracy=%f",BUSBUD_API_BASE, apiLang, location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestURL]];
     
     request.HTTPMethod = @"GET";
@@ -143,7 +146,6 @@
 
 -(void) showLoading {
     loadingLabel.hidden = NO;
-    loadingLabel.text = @"Loading...";
     activityView.hidden = NO;
     [activityView startAnimating];
     
