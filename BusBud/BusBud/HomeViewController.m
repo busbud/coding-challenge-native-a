@@ -15,9 +15,8 @@
 @property (nonatomic, strong) IBOutlet UIButton *fromButton;
 @property (nonatomic, strong) IBOutlet UIButton *toButton;
 @property (nonatomic, strong) IBOutlet UIButton *searchButton;
+@property (nonatomic, assign) SearchType searchType;
 
-@property (nonatomic, strong) NSString *fromString;
-@property (nonatomic, strong) NSString *toString;
 @property (nonatomic, strong) NSString *languageString;
 
 @end
@@ -84,11 +83,6 @@
         self.languageString = kDefaultLanguage;
     }*/
     
-    //test
-    self.fromString = @"Montreal,Quebec,Canada";
-    self.toString = @"Toronto,Ontario,Canada";
-    
-    
     [self updateUI];
     
 }
@@ -97,6 +91,12 @@
     [super viewDidAppear:animated];
     
     [kAppDelegate startUpdatingLocation];
+}
+
+-(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self updateUI];
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
@@ -116,32 +116,30 @@
 - (void)updateUI {
     
     //color based on valid locations
-    
     if(self.fromString) {
+        [self.fromButton setTitle:self.fromStringFull forState:UIControlStateNormal];
+
         [self.fromButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
     else {
+        [self.fromButton setTitle:NSLocalizedString(@"kStringFromButton", nil) forState:UIControlStateNormal];
+
         [self.fromButton setTitleColor:kColorPlaceholder forState:UIControlStateNormal];
     }
 
         
     if(self.toString) {
+        [self.toButton setTitle:self.toStringFull forState:UIControlStateNormal];
+
         [self.toButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
     else {
+        [self.toButton setTitle:NSLocalizedString(@"kStringToButton", nil) forState:UIControlStateNormal];
+
         [self.toButton setTitleColor:kColorPlaceholder forState:UIControlStateNormal];
     }
     
-    
     [self.searchButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    /*if(self.toString && self.toString) {
-        [self.searchButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    }
-    
-    else {
-        
-        [self.searchButton setTitleColor:kColorPlaceholder forState:UIControlStateNormal];
-    }*/
 
 }
 
@@ -151,12 +149,13 @@
 
 
 - (IBAction)actionFrom:(id)sender {
+    self.searchType = SearchTypeFrom;
     [self performSegueWithIdentifier:@"city" sender:nil];
 }
 
 - (IBAction)actionTo:(id)sender {
+    self.searchType = SearchTypeTo;
     [self performSegueWithIdentifier:@"city" sender:nil];
-    
 }
 
 - (IBAction)actionSearch:(id)sender {
@@ -167,10 +166,11 @@
     }
     else  {
         
-        //[SVProgressHUD showErrorWithStatus:NSLocalizedString(@"kStringErrorInvalidLocation", nil)];
+        //error
+        [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"kStringErrorInvalidLocation", nil)];
     
-        //test
-        [self performSegueWithIdentifier:@"search" sender:nil];
+        //forcetest
+        //[self performSegueWithIdentifier:@"search" sender:nil];
     }
 }
 
@@ -187,7 +187,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if([[segue identifier] isEqualToString:@"city"]){
-        //CityViewController* viewController = [segue destinationViewController];
+        CityViewController* viewController = [segue destinationViewController];
+        viewController.languageString = self.languageString;
+        viewController.searchType = self.searchType;
 
     }
     else if([[segue identifier] isEqualToString:@"search"]){

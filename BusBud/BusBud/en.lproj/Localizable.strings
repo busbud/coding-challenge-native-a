@@ -13,6 +13,11 @@
 "kStringButtonOpenInSafari" = "Open in Safari";
 "kStringClose" = "Back";
 "kVersion" = "Version";
+"kStringUnknown" = "Unknown";
+"kStringMyLocation" = "My location";
+"kStringFromButton" = "Leaving from";
+"kStringToButton" = "Going to";
+
 
 //Alerts
 "kStringLocationUnavailableError" = "Location is not available. You can enable Location Services in:\nSettings > Privacy > Location Services.";

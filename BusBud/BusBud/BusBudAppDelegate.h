@@ -11,10 +11,17 @@
 
 #define kAppDelegate ((BusBudAppDelegate *)[[UIApplication sharedApplication] delegate])
 
+typedef enum
+{
+    SearchTypeFrom = 0,
+    SearchTypeTo = 1
+} SearchType;
+
 @interface BusBudAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) NSString *apiToken;
 
 //location
 - (void)startUpdatingLocation;

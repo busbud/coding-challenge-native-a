@@ -10,6 +10,10 @@
 
 @interface HomeViewController : UIViewController
 
+@property (nonatomic, strong) NSString *fromString;
+@property (nonatomic, strong) NSString *toString;
+@property (nonatomic, strong) NSString *fromStringFull;
+@property (nonatomic, strong) NSString *toStringFull;
 
 @end
 
