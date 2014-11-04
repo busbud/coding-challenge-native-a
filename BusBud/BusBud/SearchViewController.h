@@ -1,5 +1,5 @@
 //
-//  HomeViewController.h
+//  SearchViewController.h
 //  BusBud
 //
 //  Created by Chris Comeau on 2014-11-02.
@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeViewController : UIViewController
-
+@interface SearchViewController : UIViewController <UIWebViewDelegate>
 
 @end
 

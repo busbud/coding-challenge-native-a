@@ -1,5 +1,5 @@
 //
-//  HomeViewController.h
+//  CityViewController.h
 //  BusBud
 //
 //  Created by Chris Comeau on 2014-11-02.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HomeViewController : UIViewController
+@interface CityViewController : UIViewController
 
 
 @end

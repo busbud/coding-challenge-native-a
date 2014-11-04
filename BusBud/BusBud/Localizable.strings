@@ -12,6 +12,10 @@
 "kStringError" = "Error";
 "kStringButtonOpenInSafari" = "Open in Safari";
 "kStringClose" = "Back";
+"kVersion" = "Version";
+"kFromButton" = "Leaving from";
+"kToButton" = "Leaving to";
+"kSearchButton" = "Search";
 
 //Alerts
 "kStringLocationUnavailableError" = "Location is not available. You can enable Location Services in:\nSettings > Privacy > Location Services.";
@@ -21,24 +25,9 @@
 "kStringConnectionError" = "Connection error";
 "kStringUnknownError" = "Unknown error";
 "kStringOffline" = "No internet connection found.";
-"kStringFacebookError" = "Could not connect with Facebook.";
-"kStringFacebookSignupError" = "Could not sign in with Facebook.";
-"kStringFacebookSignupError203" = "The email in this Facebook account is already registered. Please log in manually.";
-"kStringSignInError" = "Could not sign in.";
-"kStringSignUpError" = "Could not sign up.";
 "kStringConnecting" = "Connecting...";
 "kStringSearching" = "Searching...";
 "kStringSuccess" = "Success";
-"kStringErrorValidateNameGeneric" = "Please enter a valid name.";
-"kStringErrorValidateEmailGeneric" = "Please enter a valid email.";
-"kStringErrorValidateEmailSame" = "Please enter a different email than your own.";
-"kStringErrorValidatePasswordGeneric" = "Please enter a valid password.";
-"kStringErrorValidatePasswordInvalidCharacters" = "Please enter a valid password. It contains invalid characters.";
-"kStringErrorValidatePasswordShort" = "Please enter a valid password. It must contain at least 6 characters.";
-"kStringErrorValidatePasswordMatch" = "Passwords don't match.";
-"kStringSaveImageError" = "Could not save image";
-"kStringNotLoggedIn" = "Not logged in";
 
-"kStringUploadCamera" = "Take Photo";
-"kStringUploadAlbum" = "Choose Existing";
+"kStringErrorInvalidLocation" = "Please enter valid locations.";
 

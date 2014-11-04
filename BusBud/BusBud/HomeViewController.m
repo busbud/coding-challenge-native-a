@@ -1,5 +1,5 @@
 //
-//  ViewController.m
+//  HomeViewController.m
 //  BusBud
 //
 //  Created by Chris Comeau on 2014-11-02.
@@ -13,6 +13,9 @@
 @property (nonatomic, strong) IBOutlet UIButton *fromButton;
 @property (nonatomic, strong) IBOutlet UIButton *toButton;
 @property (nonatomic, strong) IBOutlet UIButton *searchButton;
+
+@property (nonatomic, strong) NSString *fromString;
+@property (nonatomic, strong) NSString *toString;
 
 @end
 
@@ -29,12 +32,13 @@
     logoButton.userInteractionEnabled = NO;
     self.navigationItem.titleView = logoButton;
     self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.barTintColor = kColorBusBudBlue;
-    self.navigationController.navigationBar.backgroundColor = kColorBusBudBlue;
+    self.navigationController.navigationBar.barTintColor = kColorBlue;
+    self.navigationController.navigationBar.backgroundColor = kColorBlue;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 
     //version
-    self.versionLabel.text = [NSString stringWithFormat:@"Version %@ (%@) - Chris Comeau",
+    self.versionLabel.text = [NSString stringWithFormat:@"%@ %@ (%@) - Chris Comeau",
+                            NSLocalizedString(@"kVersion", nil),
                          [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"],
                          [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
     
@@ -45,18 +49,20 @@
     
     
     //buttons
-    
+    [self.fromButton setTitle:NSLocalizedString(@"kFromButton", nil) forState:UIControlStateNormal];
     self.fromButton.titleLabel.font = [UIFont fontWithName:@"AshemoreSoftCondMedium" size:14];
-    [self.fromButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.fromButton.titleEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    self.fromButton.titleEdgeInsets = UIEdgeInsetsMake(0, kButtonTitleOffset, 0, 0);
 
+    [self.toButton setTitle:NSLocalizedString(@"kToButton", nil) forState:UIControlStateNormal];
     self.toButton.titleLabel.font = [UIFont fontWithName:@"AshemoreSoftCondMedium" size:14];
-    [self.toButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.toButton.titleEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    self.toButton.titleEdgeInsets = UIEdgeInsetsMake(0, kButtonTitleOffset, 0, 0);
 
+    [self.searchButton setTitle:NSLocalizedString(@"kSearchButton", nil) forState:UIControlStateNormal];
     self.searchButton.titleLabel.font = [UIFont fontWithName:@"AshemoreSoftCondMedium" size:14];
-    [self.searchButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.searchButton.titleEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    self.searchButton.titleEdgeInsets = UIEdgeInsetsMake(0, kButtonTitleOffset, 0, 0);
+
+    
+    [self updateUI];
     
 }
 
@@ -67,21 +73,88 @@
 
 
 #pragma mark -
+#pragma mark - UI
+
+- (void)updateUI {
+    
+    //color based on valid locations
+    
+    if(self.fromString) {
+        [self.fromButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
+    else {
+        [self.fromButton setTitleColor:kColorPlaceholder forState:UIControlStateNormal];
+    }
+
+        
+    if(self.toString) {
+        [self.toButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
+    else {
+        [self.toButton setTitleColor:kColorPlaceholder forState:UIControlStateNormal];
+    }
+    
+    
+    [self.searchButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    /*if(self.toString && self.toString) {
+        [self.searchButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
+    
+    else {
+        
+        [self.searchButton setTitleColor:kColorPlaceholder forState:UIControlStateNormal];
+    }*/
+
+}
+
+
+#pragma mark -
 #pragma mark - Actions
 
+
 - (IBAction)actionFrom:(id)sender {
-    [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"kStringNotImplemented", nil)];
+    [self performSegueWithIdentifier:@"city" sender:nil];
 }
 
 - (IBAction)actionTo:(id)sender {
-    [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"kStringNotImplemented", nil)];
+    [self performSegueWithIdentifier:@"city" sender:nil];
     
 }
 
 - (IBAction)actionSearch:(id)sender {
-    [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"kStringNotImplemented", nil)];
+
+    //valid locations
+    if(self.toString && self.toString) {
+        [self performSegueWithIdentifier:@"search" sender:nil];
+    }
+    else  {
+        
+        //[SVProgressHUD showErrorWithStatus:NSLocalizedString(@"kStringErrorInvalidLocation", nil)];
     
+        //test
+        [self performSegueWithIdentifier:@"search" sender:nil];
+    }
 }
+
+
+#pragma mark - Segue
+
+/*
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    
+    return YES;
+}
+*/
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if([[segue identifier] isEqualToString:@"city"]){
+    }
+    else if([[segue identifier] isEqualToString:@"search"]){
+    }
+
+}
+
 
 
 @end

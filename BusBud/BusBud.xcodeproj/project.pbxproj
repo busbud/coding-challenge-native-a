@@ -22,6 +22,10 @@
 		833FD75A1A086FC90080B713 /* home_to_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 833FD7541A086FC90080B713 /* home_to_button.png */; };
 		833FD75B1A086FC90080B713 /* home_to_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 833FD7551A086FC90080B713 /* home_to_button@2x.png */; };
 		833FD75D1A0871D40080B713 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 833FD75C1A0871D40080B713 /* Localizable.strings */; };
+		833FD7621A087C050080B713 /* city_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 833FD7601A087C050080B713 /* city_bg.png */; };
+		833FD7631A087C060080B713 /* city_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 833FD7611A087C050080B713 /* city_bg@2x.png */; };
+		833FD7681A087D0C0080B713 /* CityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833FD7651A087D0C0080B713 /* CityViewController.m */; };
+		833FD7691A087D0C0080B713 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 833FD7671A087D0C0080B713 /* SearchViewController.m */; };
 		8379BFA11A08136A00A647EB /* icon60.png in Resources */ = {isa = PBXBuildFile; fileRef = 8379BF9C1A08136A00A647EB /* icon60.png */; };
 		8379BFA31A08136A00A647EB /* icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 8379BF9E1A08136A00A647EB /* icon120.png */; };
 		8379BFA41A08136A00A647EB /* icon512.png in Resources */ = {isa = PBXBuildFile; fileRef = 8379BF9F1A08136A00A647EB /* icon512.png */; };
@@ -67,6 +71,12 @@
 		833FD7541A086FC90080B713 /* home_to_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home_to_button.png; path = Assets/home_to_button.png; sourceTree = SOURCE_ROOT; };
 		833FD7551A086FC90080B713 /* home_to_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home_to_button@2x.png"; path = "Assets/home_to_button@2x.png"; sourceTree = SOURCE_ROOT; };
 		833FD75C1A0871D40080B713 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		833FD7601A087C050080B713 /* city_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = city_bg.png; path = Assets/city_bg.png; sourceTree = SOURCE_ROOT; };
+		833FD7611A087C050080B713 /* city_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "city_bg@2x.png"; path = "Assets/city_bg@2x.png"; sourceTree = SOURCE_ROOT; };
+		833FD7641A087D0C0080B713 /* CityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityViewController.h; sourceTree = "<group>"; };
+		833FD7651A087D0C0080B713 /* CityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityViewController.m; sourceTree = "<group>"; };
+		833FD7661A087D0C0080B713 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		833FD7671A087D0C0080B713 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		8379BF9C1A08136A00A647EB /* icon60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon60.png; sourceTree = "<group>"; };
 		8379BF9E1A08136A00A647EB /* icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon120.png; sourceTree = "<group>"; };
 		8379BF9F1A08136A00A647EB /* icon512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon512.png; sourceTree = "<group>"; };
@@ -130,6 +140,10 @@
 				830A1C3F1A06570800F30649 /* BusBudAppDelegate.m */,
 				830A1C411A06570800F30649 /* HomeViewController.h */,
 				830A1C421A06570800F30649 /* HomeViewController.m */,
+				833FD7641A087D0C0080B713 /* CityViewController.h */,
+				833FD7651A087D0C0080B713 /* CityViewController.m */,
+				833FD7661A087D0C0080B713 /* SearchViewController.h */,
+				833FD7671A087D0C0080B713 /* SearchViewController.m */,
 				8379BFAD1A0818F000A647EB /* Resources */,
 				8379BF9A1A0812D100A647EB /* Assets */,
 				8379BFB61A08302700A647EB /* Fonts */,
@@ -166,10 +180,28 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		833FD75E1A087BF50080B713 /* Cty */ = {
+			isa = PBXGroup;
+			children = (
+				833FD7601A087C050080B713 /* city_bg.png */,
+				833FD7611A087C050080B713 /* city_bg@2x.png */,
+			);
+			name = Cty;
+			sourceTree = "<group>";
+		};
+		833FD75F1A087BFC0080B713 /* Results */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Results;
+			sourceTree = "<group>";
+		};
 		8379BF9A1A0812D100A647EB /* Assets */ = {
 			isa = PBXGroup;
 			children = (
 				8379BFB51A082BD400A647EB /* Home */,
+				833FD75E1A087BF50080B713 /* Cty */,
+				833FD75F1A087BFC0080B713 /* Results */,
 				8379BFA61A08137E00A647EB /* Splash */,
 				8379BF9B1A08136300A647EB /* Icons */,
 			);
@@ -328,6 +360,7 @@
 				830A1C461A06570800F30649 /* Main.storyboard in Resources */,
 				8379BFAB1A0817EF00A647EB /* Default-568h@2x.png in Resources */,
 				833FD75A1A086FC90080B713 /* home_to_button.png in Resources */,
+				833FD7621A087C050080B713 /* city_bg.png in Resources */,
 				8379BFB41A082BD000A647EB /* nav_logo@2x.png in Resources */,
 				833FD7591A086FC90080B713 /* home_search_button@2x.png in Resources */,
 				8379BFA31A08136A00A647EB /* icon120.png in Resources */,
@@ -341,6 +374,7 @@
 				8379BFCC1A08345A00A647EB /* AshemoreSoftCondMedium.otf in Resources */,
 				833FD7561A086FC90080B713 /* home_from_button.png in Resources */,
 				8379BFA81A0813DE00A647EB /* icon180.png in Resources */,
+				833FD7631A087C060080B713 /* city_bg@2x.png in Resources */,
 				833FD74E1A086E4E0080B713 /* home_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,7 +428,9 @@
 			files = (
 				830A1C431A06570800F30649 /* HomeViewController.m in Sources */,
 				830A1C401A06570800F30649 /* BusBudAppDelegate.m in Sources */,
+				833FD7691A087D0C0080B713 /* SearchViewController.m in Sources */,
 				830A1C3D1A06570800F30649 /* main.m in Sources */,
+				833FD7681A087D0C0080B713 /* CityViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
