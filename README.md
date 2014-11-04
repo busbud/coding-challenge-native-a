@@ -64,7 +64,7 @@ Returns a list of the top cities supported by Busbud that are closest to the sup
 
 
 #Submission Notes 
-Updated by Chris Comeau: 2014.11.03
+Updated by Chris Comeau: 2014.11.04
 
 ##Compile
 IMPORTANT: To compile project, first install required Cocoapods in the Terminal :
