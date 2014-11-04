@@ -18,9 +18,13 @@
 #define kButtonTitleOffset 34
 
 //API
-
 #define kDefaultLanguage @"en"
 #define kAPISearch @"https://www.busbud.com/%@/bus-schedules/%@/%@"
+
+//location
+#define kNewLocationNotification @"newLocationNotification"
+#define kNewLocationKey @"newLocationResult"
+#define DBL_EPSILON2 0.00000001f
 
 
 #endif

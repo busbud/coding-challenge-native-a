@@ -27,6 +27,8 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     
+    [super viewDidAppear:animated];
+
     [SVProgressHUD showWithStatus:NSLocalizedString(@"kStringSearching", nil)];
 
     NSString *urlString = [NSString stringWithFormat:kAPISearch, self.languageString, self.fromString, self.toString];
@@ -36,12 +38,16 @@
 
 -(void) viewWillDisappear:(BOOL)animated {
     
+    [super viewWillDisappear:animated];
+
+    //reset
+    [self.webView stopLoading];
    [SVProgressHUD dismiss];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 

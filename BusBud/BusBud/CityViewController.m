@@ -11,9 +11,14 @@
 @interface CityViewController ()
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 
+@property (nonatomic, assign) float latitude;
+@property (nonatomic, assign) float longitude;
+
+
 @end
 
 @implementation CityViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,11 +38,60 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    //subscribe to location updates
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updatedLocation:)
+                                                 name:kNewLocationNotification
+                                               object:nil];
+
+    [kAppDelegate startUpdatingLocation];
+    
+    //no location, alert
+    if(![kAppDelegate isLocationAvailable]) {
+
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:NSLocalizedString(@"kStringError", nil)
+                              message:NSLocalizedString(@"kStringLocationUnavailableError", nil)
+                              delegate:self
+                              cancelButtonTitle:NSLocalizedString(@"kStringOK", nil)
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    //location
+    self.latitude = kAppDelegate.locationManager.location.coordinate.latitude;
+    self.longitude = kAppDelegate.locationManager.location.coordinate.longitude;
+
+    [self updateData];
+    [self updateUI];
+
+}
+
+-(void) viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNewLocationNotification object:nil];
+}
+
+
 
 #pragma mark -
-#pragma mark - UI
+#pragma mark - Methods
+
+- (void)updateData {
+    
+    
+
+}
 
 - (void)updateUI {
+    
+    [self.tableView reloadData];
 }
 
 
@@ -81,6 +135,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self actionBack:nil];
+}
+
+
+#pragma mark - Location
+
+-(void) updatedLocation:(NSNotification*)notif {
+    
+    self.latitude = kAppDelegate.locationManager.location.coordinate.latitude;
+    self.longitude = kAppDelegate.locationManager.location.coordinate.longitude;
+    
+    [self updateData];
+    [self updateUI];
 }
 
 

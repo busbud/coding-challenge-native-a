@@ -17,7 +17,7 @@
     #import <AFNetworking/AFNetworking.h>
     #import "SVProgressHUD.h"
 
-    #import "BusBudAppDelegate.h"
     #import "Config.h"
+    #import "BusBudAppDelegate.h"
 
 #endif

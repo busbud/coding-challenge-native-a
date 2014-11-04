@@ -7,11 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface BusBudAppDelegate : UIResponder <UIApplicationDelegate>
+#define kAppDelegate ((BusBudAppDelegate *)[[UIApplication sharedApplication] delegate])
+
+@interface BusBudAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) CLLocationManager *locationManager;
 
+//location
+- (void)startUpdatingLocation;
+- (void)stopUpdatingLocation;
+- (BOOL)isLocationAvailable;
+-(BOOL) isValidLatitude:(float)latitude andLongitude:(float)longitude;
+-(float) getLatitude;
+-(float) getLongitude;
+
+//math
+-(BOOL)doublesEqual:(double)first second:(double)second;
 
 @end
 

@@ -93,6 +93,17 @@
     
 }
 
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [kAppDelegate startUpdatingLocation];
+}
+
+-(void) viewWillDisappear:(BOOL)animated {
+    
+    [super viewWillDisappear:animated];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -189,7 +200,5 @@
     }
 
 }
-
-
 
 @end
