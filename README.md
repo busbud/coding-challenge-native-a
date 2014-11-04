@@ -60,3 +60,31 @@ Returns a list of the top cities supported by Busbud that are closest to the sup
       }
      ]
    ```
+
+
+
+#Submission Notes 
+Updated by Chris Comeau: 2014.11.03
+
+##Compile
+To compile project, first install required Cocoapods in the Terminal :
+- `pod install`
+
+Project uses these Cocoapods:
+- AFNetworking for simple block based networking
+- Testing online/offline
+- SVProgressHUD show progress during network operation
+
+
+##Notes
+- logo for icon/splash taken from  `https://www.busbud.com/en/about/press`
+- using similar font "Ashemore Softened Condensed Medium", purchased from `https://www.myfonts.com` reverse-found using `https://www.myfonts.com/WhatTheFont/`
+- using terms from `https://www.busbud.com/` "Leaving from", "Going to"
+- using auto layout and size classes (not customized for different classes)
+
+##Contact
+Thanks for the consideration and let me know if you have any questions!
+- Chris Comeau
+- chris.comeau@skyriser.com
+- 514-949-1852
+- https://github.com/chriscomeau
