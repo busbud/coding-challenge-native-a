@@ -2,5 +2,4 @@ platform :ios, '7.0'
 
 pod 'AFNetworking', '1.3.3'
 pod 'Reachability'
-pod 'NSString-HTML'
 pod 'SVProgressHUD'
