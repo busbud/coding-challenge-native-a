@@ -231,6 +231,11 @@
         CityViewController* viewController = [segue destinationViewController];
         viewController.languageString = self.languageString;
         viewController.searchType = self.searchType;
+        
+        //send origin?
+        if(self.searchType == SearchTypeTo && self.fromId) {
+            viewController.fromId = self.fromId;
+        }
 
     }
     else if([[segue identifier] isEqualToString:@"search"]){
@@ -238,8 +243,6 @@
         viewController.languageString = self.languageString;
         viewController.fromString = self.fromString;
         viewController.toString = self.toString;
-        
-
     }
 
 }

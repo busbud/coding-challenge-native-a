@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSString *toString;
 @property (nonatomic, strong) NSString *fromStringFull;
 @property (nonatomic, strong) NSString *toStringFull;
+@property (nonatomic, strong) NSString *fromId;
 
 @end
 

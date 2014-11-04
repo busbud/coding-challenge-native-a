@@ -11,7 +11,7 @@
 @interface CityViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSString *languageString;
-
 @property (nonatomic, assign) SearchType searchType;
+@property (nonatomic, strong) NSString *fromId;
 
 @end

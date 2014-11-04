@@ -21,6 +21,7 @@
 #define kDefaultLanguage @"en"
 #define kAPISearchWeb @"https://www.busbud.com/%@/bus-schedules/%@/%@"
 #define kAPICity @"https://busbud-napi-prod.global.ssl.fastly.net/search?lang=%@&limit=20&lat=%f&lon=%f"
+#define kAPICityOriginParam @"&origin_id="
 #define kAPIToken @"https://busbud-napi-prod.global.ssl.fastly.net/auth/guest"
 
 //location

@@ -14,6 +14,7 @@
 
 @property (nonatomic, assign) float latitude;
 @property (nonatomic, assign) float longitude;
+@property (nonatomic, assign) BOOL alreadyUpdating;
 @property (strong, nonatomic) NSString *foundCityString;
 @property (strong, nonatomic) NSArray *citiesArray;
 
@@ -94,6 +95,10 @@
 
 - (void)updateData {
     
+    if(self.alreadyUpdating)
+        return;
+                        
+    
     self.foundCityString = nil;
     self.citiesArray = nil;
     
@@ -135,10 +140,19 @@
     
     NSString * urlString = nil;
     urlString = [NSString stringWithFormat:kAPICity, self.languageString, self.latitude, self.longitude];
+    
+    //origin
+    if(self.fromId) {
+        urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"%@%@", kAPICityOriginParam, self.fromId]];
+    }
+    
     NSLog(@"url: %@", urlString);
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     
+    
+    self.alreadyUpdating = YES;
+
     //token
     [request setValue:kAppDelegate.apiToken forHTTPHeaderField:@"X-Busbud-Token"];
 
@@ -146,6 +160,8 @@
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation* operation, id responseObject){
         
+        self.alreadyUpdating = NO;
+
         [SVProgressHUD dismiss];
 
         NSData* data =  [operation responseData];
@@ -170,6 +186,8 @@
         
     }failure:^(AFHTTPRequestOperation* operation, NSError* error){
         //error
+        self.alreadyUpdating = NO;
+
         [SVProgressHUD dismiss];
 
         NSLog(@"Error getting cities ");
@@ -245,12 +263,14 @@
     NSDictionary *dict = [self.citiesArray objectAtIndex:indexPath.row];
     NSString *cityString = [dict objectForKey:@"full_name"];
     NSString *cityStringURL = [dict objectForKey:@"city_url"];
+    NSString *cityId= [dict objectForKey:@"city_id"];
     self.foundCityString = cityString;
     
     //set
     if(self.searchType == SearchTypeFrom) {
         controller.fromString = cityStringURL;
         controller.fromStringFull = cityString;
+        controller.fromId = cityId; //origin
     }
     else{
         controller.toString = cityStringURL;
