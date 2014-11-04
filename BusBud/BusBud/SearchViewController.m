@@ -18,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //webview
+    self.webView.backgroundColor = [UIColor clearColor];
+    self.webView.opaque = NO;
+    
     [self updateUI];
 }
 
@@ -25,7 +29,7 @@
     
     [SVProgressHUD showWithStatus:NSLocalizedString(@"kStringSearching", nil)];
 
-    NSString *urlString = [NSString stringWithFormat:kAPISearch, @"en", self.fromString, self.toString];
+    NSString *urlString = [NSString stringWithFormat:kAPISearch, self.languageString, self.fromString, self.toString];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [self.webView loadRequest:request];
 }
@@ -46,12 +50,6 @@
 
 - (void)updateUI {
 }
-
-
-#pragma mark -
-#pragma mark - Actions
-
-
 
 
 #pragma mark - WebView

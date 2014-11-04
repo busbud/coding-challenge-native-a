@@ -62,28 +62,27 @@
     self.versionLabel.font = [UIFont fontWithName:@"AshemoreSoftCondMedium" size:12];
     self.versionLabel.textAlignment = NSTextAlignmentLeft;
     self.versionLabel.textColor = [UIColor whiteColor];;
-    self.versionLabel.alpha = 0.4f;
+    self.versionLabel.alpha = 0.8f;
     
     //buttons
-    [self.fromButton setTitle:NSLocalizedString(@"kFromButton", nil) forState:UIControlStateNormal];
     self.fromButton.titleLabel.font = [UIFont fontWithName:@"AshemoreSoftCondMedium" size:14];
     self.fromButton.titleEdgeInsets = UIEdgeInsetsMake(0, kButtonTitleOffset, 0, 0);
 
-    [self.toButton setTitle:NSLocalizedString(@"kToButton", nil) forState:UIControlStateNormal];
     self.toButton.titleLabel.font = [UIFont fontWithName:@"AshemoreSoftCondMedium" size:14];
     self.toButton.titleEdgeInsets = UIEdgeInsetsMake(0, kButtonTitleOffset, 0, 0);
 
-    [self.searchButton setTitle:NSLocalizedString(@"kSearchButton", nil) forState:UIControlStateNormal];
     self.searchButton.titleLabel.font = [UIFont fontWithName:@"AshemoreSoftCondMedium" size:14];
     self.searchButton.titleEdgeInsets = UIEdgeInsetsMake(0, kButtonTitleOffset, 0, 0);
 
     
     //language
     self.languageString = [[NSLocale preferredLanguages] objectAtIndex:0];
-    if( !([self.languageString isEqualToString:@"en"] || [self.languageString isEqualToString:@"fr"]) ) {
+    
+    //validate?
+    /*if( !([self.languageString isEqualToString:@"en"] || [self.languageString isEqualToString:@"fr"]) ) {
         //only support en/fr for now
         self.languageString = kDefaultLanguage;
-    }
+    }*/
     
     //test
     self.fromString = @"Montreal,Quebec,Canada";

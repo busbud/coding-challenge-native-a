@@ -1,0 +1,12 @@
+
+/* Class = "IBUIButton"; normalTitle = "Going to"; ObjectID = "1ps-QU-72w"; */
+"1ps-QU-72w.normalTitle" = "Aller à";
+
+/* Class = "IBUIButton"; normalTitle = "Search"; ObjectID = "4gp-kR-5fx"; */
+"4gp-kR-5fx.normalTitle" = "Recherche";
+
+/* Class = "IBUIButton"; normalTitle = "Leaving from"; ObjectID = "PuE-Ia-Voj"; */
+"PuE-Ia-Voj.normalTitle" = "Départ de";
+
+/* Class = "IBUILabel"; text = "Version"; ObjectID = "lMT-1C-0kM"; */
+"lMT-1C-0kM.text" = "Version";

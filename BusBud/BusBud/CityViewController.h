@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CityViewController : UIViewController
+@interface CityViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 
 @end

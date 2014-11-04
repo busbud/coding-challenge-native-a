@@ -9,6 +9,7 @@
 #import "CityViewController.h"
 
 @interface CityViewController ()
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 
 @end
 
@@ -16,6 +17,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //table
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.separatorColor = [UIColor whiteColor];
+    
+    //don't show empty cells
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     [self updateUI];
 }
@@ -33,12 +41,47 @@
 }
 
 
-#pragma mark -
 #pragma mark - Actions
 
+- (IBAction)actionBack:(id)sender {
+    if(self.navigationController.viewControllers.count > 1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 
+#pragma mark - Table
 
-#pragma mark - Segue
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    //test
+    int count = 3;
+    return count;
+    
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+
+    //style
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.backgroundColor = kColorBlueCell;
+    cell.textLabel.font = [UIFont fontWithName:@"AshemoreSoftCondMedium" size:14.0];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    
+    //test
+    cell.textLabel.text = @"test";
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self actionBack:nil];
+}
 
 
 @end
