@@ -36,6 +36,9 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
 
+    //token
+    [self updateAPIToken];
+    
     return YES;
 }
 
@@ -54,6 +57,56 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
 }
 
+
+#pragma mark - API
+
+- (void)updateAPIToken {
+   
+    self.apiToken = nil;
+    
+    NSString * urlString = nil;
+    
+    urlString = [NSString stringWithFormat:@"%@", kAPIToken];
+    
+    NSLog(@"url: %@", urlString);
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation* operation, id responseObject){
+        
+        NSData* data =  [operation responseData];
+        NSError* error;
+        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+                                                             options:0
+                                                               error:&error];
+        
+        //check error
+        if(error != nil) {
+            NSLog(@"JSON error");
+        } else {
+            NSLog(@"JSON success: %@", json);
+            
+            //check result
+            BOOL success = [[json objectForKey:@"success"] integerValue];
+            
+            if(success) {
+                //good
+                self.apiToken = [json objectForKey:@"token"];
+                NSLog(@"API token: %@", self.apiToken);
+            }
+            else {
+                //error
+                NSLog(@"Error getting API token ");
+            }
+        }
+        
+    }failure:^(AFHTTPRequestOperation* operation, NSError* error){
+        //error
+        NSLog(@"Error getting API token ");
+    }];
+    
+    [operation start];
+}
 
 #pragma mark - Location
 

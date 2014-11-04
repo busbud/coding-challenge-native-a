@@ -168,9 +168,6 @@
         
         //error
         [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"kStringErrorInvalidLocation", nil)];
-    
-        //forcetest
-        //[self performSegueWithIdentifier:@"search" sender:nil];
     }
 }
 

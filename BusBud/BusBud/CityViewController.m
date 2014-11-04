@@ -15,7 +15,7 @@
 @property (nonatomic, assign) float latitude;
 @property (nonatomic, assign) float longitude;
 @property (strong, nonatomic) NSString *foundCityString;
-
+@property (strong, nonatomic) NSArray *citiesArray;
 
 @end
 
@@ -88,25 +88,93 @@
 - (void)updateData {
     
     self.foundCityString = nil;
+    self.citiesArray = nil;
     
-    //test
-    if([kAppDelegate isValidLatitude:self.latitude andLongitude:self.longitude]) {
-        self.foundCityString =[NSString stringWithFormat:@"%f, %f", self.latitude, self.longitude];
-    }
+    //valid location
+    if(![kAppDelegate isValidLatitude:self.latitude andLongitude:self.longitude]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:NSLocalizedString(@"kStringError", nil)
+                              message:NSLocalizedString(@"kStringLocationUnavailableError", nil)
+                              delegate:self
+                              cancelButtonTitle:NSLocalizedString(@"kStringOK", nil)
+                              otherButtonTitles:nil];
+        [alert show];
 
+        
+        [self updateUI];
+        return;
+    }
     
-    return;
+    
+    //token
+    if(!kAppDelegate.apiToken) {
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:NSLocalizedString(@"kStringError", nil)
+                              message:NSLocalizedString(@"kStringErrorToken", nil)
+                              delegate:self
+                              cancelButtonTitle:NSLocalizedString(@"kStringOK", nil)
+                              otherButtonTitles:nil];
+        [alert show];
+        
+        
+        [self updateUI];
+        return;
+    }
     
     
     [SVProgressHUD showWithStatus:NSLocalizedString(@"kStringSearching", nil)];
-
     
+    NSString * urlString = nil;
+    urlString = [NSString stringWithFormat:kAPICity, self.latitude, self.longitude];
+    NSLog(@"url: %@", urlString);
     
-    [SVProgressHUD dismiss];
-    [self updateUI];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    
+    //token
+    [request setValue:kAppDelegate.apiToken forHTTPHeaderField:@"X-Busbud-Token"];
 
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation* operation, id responseObject){
+        
+        [SVProgressHUD dismiss];
 
+        NSData* data =  [operation responseData];
+        NSError* error;
+        NSArray* json = [NSJSONSerialization JSONObjectWithData:data
+                                                             options:0
+                                                               error:&error];
+        
+        //check error
+        if(error != nil) {
+            NSLog(@"JSON error");
+        } else {
+            NSLog(@"JSON success: %@", json);
+            
+            //copy
+            if(json) {
+                self.citiesArray = json;
+            }
+        }
+        
+        [self updateUI];
+        
+    }failure:^(AFHTTPRequestOperation* operation, NSError* error){
+        //error
+        [SVProgressHUD dismiss];
+
+        NSLog(@"Error getting cities ");
+        
+        [self updateUI];
+
+    }];
+    
+    [operation start];
 }
+
+
 
 - (void)updateUI {
     
@@ -127,7 +195,11 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     //test
-    int count = 3;
+    int count = 0;
+    if(self.citiesArray) {
+        count = (int)self.citiesArray.count;
+    }
+        
     return count;
     
 }
@@ -143,29 +215,17 @@
     //style
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = kColorBlueCell;
-    cell.textLabel.font = [UIFont fontWithName:@"AshemoreSoftCondMedium" size:14.0];
+    cell.textLabel.font = [UIFont fontWithName:@"AshemoreSoftCondMedium" size:16.0];
     cell.textLabel.textColor = [UIColor whiteColor];
     
     
     //data
     cell.textLabel.text = NSLocalizedString(@"kStringUnknown", nil);
 
-    if(indexPath.row == 0) {
-        //1st row
-        if(self.foundCityString) {
-            //show city
-            cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", NSLocalizedString(@"kStringMyLocation", nil), self.foundCityString];
-        }
-        else {
-            //not found,
-            cell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", NSLocalizedString(@"kStringMyLocation", nil), NSLocalizedString(@"kStringUnknown", nil)];
-
-        }
-        
-    }
-    else {
-        //normal
-    }
+    NSDictionary *dict = [self.citiesArray objectAtIndex:indexPath.row];
+    
+    NSString *cityString = [dict objectForKey:@"full_name"];
+    cell.textLabel.text = cityString;
     
     return cell;
 }
@@ -174,59 +234,22 @@
 {
     //previous controller
     HomeViewController *controller = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
-
-    if(indexPath.row == 0) {
-        
-        //1st row
-        
-        if(self.foundCityString) {
-            //good
-            
-            //test
-            if(self.searchType == SearchTypeFrom) {
-                controller.fromString = self.foundCityString;
-                controller.fromStringFull = self.foundCityString;
-            }
-            else{
-                controller.toString = self.foundCityString;
-                controller.toStringFull = self.foundCityString;
-            }
-        }
-        
-        else{
-            //no location found
-            //[SVProgressHUD showErrorWithStatus:NSLocalizedString(@"kStringLocationUnavailableError", nil)];
-            
-            
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:NSLocalizedString(@"kStringError", nil)
-                                  message:NSLocalizedString(@"kStringLocationUnavailableError", nil)
-                                  delegate:self
-                                  cancelButtonTitle:NSLocalizedString(@"kStringOK", nil)
-                                  otherButtonTitles:nil];
-            [alert show];
-
-            return;
-        }
-        
-        ;
-        
-    }
-    else {
-        //normal
-        
-        //test
-        if(self.searchType == SearchTypeFrom) {
-            controller.fromString = @"Montreal,Quebec,Canada";
-            controller.fromStringFull = @"Montreal, Quebec, Canada";
-        }
-        else{
-            controller.toString = @"Toronto,Ontario,Canada";
-            controller.toStringFull = @"Montreal, Quebec, Canada";
-        }
-
-    }
     
+    NSDictionary *dict = [self.citiesArray objectAtIndex:indexPath.row];
+    NSString *cityString = [dict objectForKey:@"full_name"];
+    NSString *cityStringURL = [dict objectForKey:@"city_url"];
+    self.foundCityString = cityString;
+    
+    //set
+    if(self.searchType == SearchTypeFrom) {
+        controller.fromString = cityStringURL;
+        controller.fromStringFull = cityString;
+    }
+    else{
+        controller.toString = cityStringURL;
+        controller.toStringFull = cityString;
+    }
+
     [self actionBack:nil];
 }
 

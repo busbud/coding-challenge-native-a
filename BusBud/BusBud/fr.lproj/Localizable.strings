@@ -32,6 +32,5 @@
 "kStringConnecting" = "Connexion...";
 "kStringSearching" = "Recherche...";
 "kStringSuccess" = "Succès";
-
 "kStringErrorInvalidLocation" = "SVP entrer emplacements valides.";
-
+"kStringErrorToken" = "Erreur token API";

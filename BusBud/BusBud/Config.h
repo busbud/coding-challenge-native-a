@@ -20,7 +20,7 @@
 //API
 #define kDefaultLanguage @"en"
 #define kAPISearchWeb @"https://www.busbud.com/%@/bus-schedules/%@/%@"
-#define kAPICity @"https://busbud-napi-prod.global.ssl.fastly.net/search?lang=en&limit=5&lat=45.5019&lon=-73.5853"
+#define kAPICity @"https://busbud-napi-prod.global.ssl.fastly.net/search?lang=en&limit=8&lat=%f&lon=%f"
 #define kAPIToken @"https://busbud-napi-prod.global.ssl.fastly.net/auth/guest"
 
 //location
