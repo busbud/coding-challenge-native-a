@@ -13,6 +13,6 @@
 #define RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 #define kColorBlue RGB(33,121,190)
 #define kColorPlaceholder RGB(159,203,243)
-#define kButtonTitleOffset 30
+#define kButtonTitleOffset 34
 
 #endif

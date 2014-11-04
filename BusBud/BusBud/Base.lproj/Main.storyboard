@@ -113,10 +113,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PuE-Ia-Voj">
-                                <rect key="frame" x="200" y="56" width="200" height="25"/>
+                                <rect key="frame" x="156" y="56" width="288" height="36"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="GJV-5d-tJm"/>
-                                    <constraint firstAttribute="height" constant="25" id="f0L-nz-Wn5"/>
+                                    <constraint firstAttribute="width" constant="288" id="GJV-5d-tJm"/>
+                                    <constraint firstAttribute="height" constant="36" id="f0L-nz-Wn5"/>
                                 </constraints>
                                 <state key="normal" title="Leaving from" backgroundImage="home_from_button.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -127,10 +127,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ps-QU-72w">
-                                <rect key="frame" x="200" y="106" width="200" height="25"/>
+                                <rect key="frame" x="156" y="116" width="288" height="36"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="cnv-tl-2qD"/>
-                                    <constraint firstAttribute="height" constant="25" id="oQ7-WU-heJ"/>
+                                    <constraint firstAttribute="width" constant="288" id="cnv-tl-2qD"/>
+                                    <constraint firstAttribute="height" constant="36" id="oQ7-WU-heJ"/>
                                 </constraints>
                                 <state key="normal" title="Going to" backgroundImage="home_to_button.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -141,10 +141,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4gp-kR-5fx">
-                                <rect key="frame" x="220" y="186" width="160" height="25"/>
+                                <rect key="frame" x="185" y="206" width="230" height="36"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="160" id="2Fv-O6-Kqc"/>
-                                    <constraint firstAttribute="height" constant="25" id="KkL-6e-4b3"/>
+                                    <constraint firstAttribute="width" constant="230" id="2Fv-O6-Kqc"/>
+                                    <constraint firstAttribute="height" constant="36" id="KkL-6e-4b3"/>
                                 </constraints>
                                 <state key="normal" title="Search" backgroundImage="home_search_button.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -157,7 +157,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1ps-QU-72w" firstAttribute="centerY" secondItem="PuE-Ia-Voj" secondAttribute="centerY" constant="50" id="1hu-fm-8PK"/>
+                            <constraint firstItem="1ps-QU-72w" firstAttribute="centerY" secondItem="PuE-Ia-Voj" secondAttribute="centerY" constant="60" id="1hu-fm-8PK"/>
                             <constraint firstAttribute="trailing" secondItem="YM8-6P-Q5Z" secondAttribute="trailing" id="5Nm-9j-mGk"/>
                             <constraint firstAttribute="centerX" secondItem="1ps-QU-72w" secondAttribute="centerX" id="RQ3-Yo-SIm"/>
                             <constraint firstItem="PuE-Ia-Voj" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="56" id="Sti-tn-Vav"/>
@@ -167,7 +167,7 @@
                             <constraint firstAttribute="centerX" secondItem="4gp-kR-5fx" secondAttribute="centerX" id="jlB-gq-pfE"/>
                             <constraint firstItem="YM8-6P-Q5Z" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="qgN-JY-bjp"/>
                             <constraint firstAttribute="bottom" secondItem="YM8-6P-Q5Z" secondAttribute="bottom" id="qne-Q1-OuU"/>
-                            <constraint firstItem="4gp-kR-5fx" firstAttribute="centerY" secondItem="1ps-QU-72w" secondAttribute="centerY" constant="80" id="sUj-T6-P4V"/>
+                            <constraint firstItem="4gp-kR-5fx" firstAttribute="centerY" secondItem="1ps-QU-72w" secondAttribute="centerY" constant="90" id="sUj-T6-P4V"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lMT-1C-0kM" secondAttribute="bottom" constant="10" id="tEZ-f5-QUW"/>
                         </constraints>
                     </view>
@@ -189,8 +189,8 @@
     <resources>
         <image name="city_bg.png" width="320" height="568"/>
         <image name="home_bg.png" width="320" height="568"/>
-        <image name="home_from_button.png" width="200" height="25"/>
-        <image name="home_search_button.png" width="160" height="25"/>
-        <image name="home_to_button.png" width="200" height="25"/>
+        <image name="home_from_button.png" width="288" height="36"/>
+        <image name="home_search_button.png" width="230" height="36"/>
+        <image name="home_to_button.png" width="288" height="36"/>
     </resources>
 </document>
