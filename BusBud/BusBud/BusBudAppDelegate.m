@@ -36,8 +36,8 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
 
-    //token
-    [self updateAPIToken];
+    //token, on applicationDidBecomeActive instead
+    //[self updateAPIToken];
     
     return YES;
 }
@@ -49,9 +49,13 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    
+    //token
+    [self updateAPIToken];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

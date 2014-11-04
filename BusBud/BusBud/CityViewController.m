@@ -25,6 +25,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //title
+
+    self.title = NSLocalizedString(@"kTitleCity", nil);
+    
     //table
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorColor = [UIColor whiteColor];
@@ -78,6 +82,9 @@
     [super viewWillDisappear:animated];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kNewLocationNotification object:nil];
+    
+    //hide
+    [SVProgressHUD dismiss];
 }
 
 
@@ -127,7 +134,7 @@
     [SVProgressHUD showWithStatus:NSLocalizedString(@"kStringSearching", nil)];
     
     NSString * urlString = nil;
-    urlString = [NSString stringWithFormat:kAPICity, self.latitude, self.longitude];
+    urlString = [NSString stringWithFormat:kAPICity, self.languageString, self.latitude, self.longitude];
     NSLog(@"url: %@", urlString);
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];

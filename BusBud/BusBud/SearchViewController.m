@@ -18,6 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //title
+    self.title = NSLocalizedString(@"kTitleResults", nil);
+
     //webview
     self.webView.backgroundColor = [UIColor clearColor];
     self.webView.opaque = NO;

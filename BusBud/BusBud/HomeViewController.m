@@ -39,18 +39,15 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     //navbar font
-    [[UINavigationBar appearance] setTitleTextAttributes:
-     [NSDictionary dictionaryWithObjectsAndKeys:
-      [UIFont fontWithName:@"AshemoreSoftCondMedium" size:14.0], NSFontAttributeName,
-      [UIColor whiteColor],NSForegroundColorAttributeName,
-      nil]];
+    NSMutableDictionary *titleBarAttributes = [NSMutableDictionary dictionaryWithDictionary: [[UINavigationBar appearance] titleTextAttributes]];
+    [titleBarAttributes setValue:[UIFont fontWithName:@"AshemoreSoftCondMedium" size:14.0] forKey:NSFontAttributeName];
+    [titleBarAttributes setValue:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    [self.navigationController.navigationBar setTitleTextAttributes:titleBarAttributes];
     
     //navbar back font
     [[UIBarButtonItem appearance] setTitleTextAttributes:@{
                 NSFontAttributeName: [UIFont fontWithName:@"AshemoreSoftCondMedium" size:14.0],
                                                         } forState:UIControlStateNormal];
-
-
     
     //version
     self.versionLabel.text = [NSString stringWithFormat:@"%@ %@ (%@) - Chris Comeau",
@@ -149,13 +146,47 @@
 
 
 - (IBAction)actionFrom:(id)sender {
-    self.searchType = SearchTypeFrom;
-    [self performSegueWithIdentifier:@"city" sender:nil];
+    
+    if(!kAppDelegate.apiToken) {
+        //token
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:NSLocalizedString(@"kStringError", nil)
+                              message:NSLocalizedString(@"kStringErrorToken", nil)
+                              delegate:self
+                              cancelButtonTitle:NSLocalizedString(@"kStringOK", nil)
+                              otherButtonTitles:nil];
+        [alert show];
+        
+        
+        [self updateUI];
+    }
+    else {
+        //good
+        self.searchType = SearchTypeFrom;
+        [self performSegueWithIdentifier:@"city" sender:nil];
+    }
+
 }
 
 - (IBAction)actionTo:(id)sender {
-    self.searchType = SearchTypeTo;
-    [self performSegueWithIdentifier:@"city" sender:nil];
+    if(!kAppDelegate.apiToken) {
+        //token
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:NSLocalizedString(@"kStringError", nil)
+                              message:NSLocalizedString(@"kStringErrorToken", nil)
+                              delegate:self
+                              cancelButtonTitle:NSLocalizedString(@"kStringOK", nil)
+                              otherButtonTitles:nil];
+        [alert show];
+        
+        
+        [self updateUI];
+    }
+    else {
+        //good
+        self.searchType = SearchTypeTo;
+        [self performSegueWithIdentifier:@"city" sender:nil];
+    }
 }
 
 - (IBAction)actionSearch:(id)sender {
@@ -163,6 +194,19 @@
     //valid locations
     if(self.toString && self.toString) {
         [self performSegueWithIdentifier:@"search" sender:nil];
+    }
+    else if(!kAppDelegate.apiToken) {
+        //token
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:NSLocalizedString(@"kStringError", nil)
+                              message:NSLocalizedString(@"kStringErrorToken", nil)
+                              delegate:self
+                              cancelButtonTitle:NSLocalizedString(@"kStringOK", nil)
+                              otherButtonTitles:nil];
+        [alert show];
+        
+        
+        [self updateUI];
     }
     else  {
         

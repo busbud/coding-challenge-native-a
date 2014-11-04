@@ -17,6 +17,8 @@
 "kStringMyLocation" = "Mon emplacement";
 "kStringFromButton" = "Départ de";
 "kStringToButton" = "Aller à";
+"kTitleCity" = "Ville";
+"kTitleResults" = "Résultats";
 
 //Alerts
 "kStringLocationUnavailableError" = "L'emplacement n'est pas disponible . Vous pouvez activer le service de localisation : \ nRéglage > Confidentialité > Service de localisation.
