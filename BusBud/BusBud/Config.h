@@ -15,4 +15,10 @@
 #define kColorPlaceholder RGB(159,203,243)
 #define kButtonTitleOffset 34
 
+//API
+
+#define kDefaultLanguage @"en"
+#define kAPISearch @"https://www.busbud.com/%@/bus-schedules/%@/%@"
+
+
 #endif

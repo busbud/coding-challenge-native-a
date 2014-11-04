@@ -23,9 +23,16 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     
-    //test
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://google.com/"]];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"kStringSearching", nil)];
+
+    NSString *urlString = [NSString stringWithFormat:kAPISearch, @"en", self.fromString, self.toString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [self.webView loadRequest:request];
+}
+
+-(void) viewWillDisappear:(BOOL)animated {
+    
+   [SVProgressHUD dismiss];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,8 +63,6 @@
 - (void)webViewDidStartLoad:(UIWebView *)webViewParam
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"kStringSearching", nil)];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webViewParam

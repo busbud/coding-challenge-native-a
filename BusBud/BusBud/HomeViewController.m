@@ -7,6 +7,8 @@
 //
 
 #import "HomeViewController.h"
+#import "SearchViewController.h"
+#import "CityViewController.h"
 
 @interface HomeViewController ()
 @property (nonatomic, strong) IBOutlet UILabel *versionLabel;
@@ -16,6 +18,7 @@
 
 @property (nonatomic, strong) NSString *fromString;
 @property (nonatomic, strong) NSString *toString;
+@property (nonatomic, strong) NSString *languageString;
 
 @end
 
@@ -35,7 +38,21 @@
     self.navigationController.navigationBar.barTintColor = kColorBlue;
     self.navigationController.navigationBar.backgroundColor = kColorBlue;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    //navbar font
+    [[UINavigationBar appearance] setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIFont fontWithName:@"AshemoreSoftCondMedium" size:14.0], NSFontAttributeName,
+      [UIColor whiteColor],NSForegroundColorAttributeName,
+      nil]];
+    
+    //navbar back font
+    [[UIBarButtonItem appearance] setTitleTextAttributes:@{
+                NSFontAttributeName: [UIFont fontWithName:@"AshemoreSoftCondMedium" size:14.0],
+                                                        } forState:UIControlStateNormal];
 
+
+    
     //version
     self.versionLabel.text = [NSString stringWithFormat:@"%@ %@ (%@) - Chris Comeau",
                             NSLocalizedString(@"kVersion", nil),
@@ -46,7 +63,6 @@
     self.versionLabel.textAlignment = NSTextAlignmentLeft;
     self.versionLabel.textColor = [UIColor whiteColor];;
     self.versionLabel.alpha = 0.4f;
-    
     
     //buttons
     [self.fromButton setTitle:NSLocalizedString(@"kFromButton", nil) forState:UIControlStateNormal];
@@ -61,6 +77,18 @@
     self.searchButton.titleLabel.font = [UIFont fontWithName:@"AshemoreSoftCondMedium" size:14];
     self.searchButton.titleEdgeInsets = UIEdgeInsetsMake(0, kButtonTitleOffset, 0, 0);
 
+    
+    //language
+    self.languageString = [[NSLocale preferredLanguages] objectAtIndex:0];
+    if( !([self.languageString isEqualToString:@"en"] || [self.languageString isEqualToString:@"fr"]) ) {
+        //only support en/fr for now
+        self.languageString = kDefaultLanguage;
+    }
+    
+    //test
+    self.fromString = @"Montreal,Quebec,Canada";
+    self.toString = @"Toronto,Ontario,Canada";
+    
     
     [self updateUI];
     
@@ -149,8 +177,16 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if([[segue identifier] isEqualToString:@"city"]){
+        //CityViewController* viewController = [segue destinationViewController];
+
     }
     else if([[segue identifier] isEqualToString:@"search"]){
+        SearchViewController* viewController = [segue destinationViewController];
+        viewController.languageString = self.languageString;
+        viewController.fromString = self.fromString;
+        viewController.toString = self.toString;
+        
+
     }
 
 }

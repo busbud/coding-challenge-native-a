@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface SearchViewController : UIViewController <UIWebViewDelegate>
-
+@property (nonatomic, strong) NSString *fromString;
+@property (nonatomic, strong) NSString *toString;
+@property (nonatomic, strong) NSString *languageString;
 @end
 
