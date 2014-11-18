@@ -1,0 +1,37 @@
+//
+//  Localizable.strings
+//  Outpost
+//
+//  Created by Guarana Technologies on 2014-01-30.
+//  Copyright (c) 2014 Guarana Technologies. All rights reserved.
+//
+
+//UI
+"kStringCancel" = "Cancel";
+"kStringOK" = "OK";
+"kStringError" = "Error";
+"kStringButtonOpenInSafari" = "Open in Safari";
+"kStringClose" = "Back";
+"kVersion" = "Version";
+"kStringUnknown" = "Unknown";
+"kStringMyLocation" = "My location";
+"kStringFromButton" = "Leaving from";
+"kStringToButton" = "Going to";
+"kTitleCity" = "City";
+"kTitleResults" = "Results";
+
+//Alerts
+"kStringLocationUnavailableError" = "Location is not available. You can enable Location Services in:\nSettings > Privacy > Location Services.";
+
+"kStringSimulator" = "Not available in Simulator";
+"kStringNotImplemented" = "Feature coming soon.";
+"kStringConnectionError" = "Connection error";
+"kStringUnknownError" = "Unknown error";
+"kStringOffline" = "No internet connection found.";
+"kStringConnecting" = "Connecting...";
+"kStringSearching" = "Searching...";
+"kStringSuccess" = "Success";
+"kStringErrorInvalidLocation" = "Please enter valid locations.";
+"kStringErrorToken" = "API Token error";
+
+
