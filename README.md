@@ -1,7 +1,7 @@
 # Requirements
 Write a native Busbud app that
 - uses geo-location to find the user's current city as an origin city
-- allows the user to choose their destination city from the origin city
+- allows the user to find and choose their destination city from the origin city
 - loads a web view of the page for the origin and destination
    - the url to load is `https://www.busbud.com/:lang/bus-schedules/:origin.city_url/:destination.city_url`
 
