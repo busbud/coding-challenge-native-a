@@ -12,17 +12,22 @@ import android.view.ViewGroup;
 import android.os.Build;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements CityListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
+            new LocationFragment().show(getFragmentManager(), "location");
         }
+    }
+
+    @Override
+    public void found() {
+        getFragmentManager().beginTransaction()
+                .add(R.id.container, new PlaceholderFragment())
+                .commit();
     }
 
     /**
