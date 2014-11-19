@@ -45,23 +45,7 @@ public class MainActivity extends Activity implements CityListener {
     @Override
     public void found(City city) {
         getFragmentManager().beginTransaction()
-                .add(R.id.container, new PlaceholderFragment())
+                .add(R.id.container, SearchFragment.getInstance(city))
                 .commit();
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_search, container, false);
-            return rootView;
-        }
     }
 }
