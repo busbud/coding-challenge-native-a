@@ -55,15 +55,11 @@ public class LocationFragment extends DialogFragment implements GoogleApiClient.
                     @Override
                     protected City doInBackground(Location... loc) {
                         Location location = loc[0];
-                        if (MainActivity.token == null) {
-                            Token token = MainActivity.service.getToken();
-                            if (token.success) {
-                                MainActivity.token = token.token;
-                            } else {
-                                return null;
-                            }
+                        List<City> cities = MainActivity.service.getCity(MainActivity.getToken(), Locale.getDefault().getLanguage(),
+                                location.getLatitude(), location.getLongitude());
+                        if (cities != null && cities.size() > 0) {
+                            return cities.get(0);
                         }
-                        List<City> cities = MainActivity.service.getCity(MainActivity.token, Locale.getDefault().getLanguage(), location.getLatitude(), location.getLongitude());
                         return null;
                     }
 

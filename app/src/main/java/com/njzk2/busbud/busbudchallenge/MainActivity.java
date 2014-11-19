@@ -21,7 +21,22 @@ public class MainActivity extends Activity implements CityListener {
 
     static BusbudService service;
     // Being static, the token lives as long as the application is not destroyed.
-    static String token;
+    private static String token;
+
+    /**
+     * Call me on a bg thread only, this performs network operation
+     *
+     * @return
+     */
+    public static String getToken() {
+        if (MainActivity.token == null) {
+            Token token = MainActivity.service.getToken();
+            if (token.success) {
+                MainActivity.token = token.token;
+            }
+        }
+        return token;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
