@@ -63,4 +63,11 @@ public class MainActivity extends Activity implements CityListener {
                 .add(R.id.container, SearchFragment.getInstance(city))
                 .commit();
     }
+
+    @Override
+    public void selected(City origin, City destination) {
+        getFragmentManager().beginTransaction()
+                .replace(R.id.container, WebViewFragment.getInstance(origin, destination)).addToBackStack("webview")
+                .commit();
+    }
 }
