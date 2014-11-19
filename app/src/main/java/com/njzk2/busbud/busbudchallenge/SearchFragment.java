@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -71,6 +72,16 @@ public class SearchFragment extends Fragment {
             }
         });
         toView.setThreshold(1);
+        // Add the magnifier
+        search.setText("\uD83D\uDD0D " + getString(R.string.search));
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (destination != null) {
+                    // TODO call activity with selected values
+                }
+            }
+        });
 
         return rootView;
     }
