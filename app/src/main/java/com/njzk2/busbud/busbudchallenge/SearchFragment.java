@@ -1,12 +1,11 @@
 package com.njzk2.busbud.busbudchallenge;
 
 import android.app.Fragment;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -33,15 +32,21 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        final City origin = (City) getArguments().getSerializable("city");
+
+        Typeface interstate = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Interstate.ttf");
         View rootView = inflater.inflate(R.layout.fragment_search, container, false);
         final TextView fromView = (TextView) rootView.findViewById(R.id.from_tv);
-        final City origin = (City) getArguments().getSerializable("city");
+        fromView.setTypeface(interstate);
         fromView.setText(origin.fullName);
 
         final Button search = ((Button) rootView.findViewById(R.id.search));
+        search.setTypeface(interstate);
         // Button is disabled until a valid city is selected
         search.setEnabled(false);
         final AutoCompleteTextView toView = (AutoCompleteTextView) rootView.findViewById(R.id.to_tv);
+        toView.setTypeface(interstate);
+        toView.requestFocus();
         final CityAdapter adapter = new CityAdapter(getActivity(), origin);
         toView.setAdapter(adapter);
         toView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -72,13 +77,11 @@ public class SearchFragment extends Fragment {
             }
         });
         toView.setThreshold(1);
-        // Add the magnifier
-        search.setText("\uD83D\uDD0D " + getString(R.string.search));
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (destination != null) {
-                    // TODO call activity with selected values
+                    ((CityListener) getActivity()).selected(origin, destination);
                 }
             }
         });
