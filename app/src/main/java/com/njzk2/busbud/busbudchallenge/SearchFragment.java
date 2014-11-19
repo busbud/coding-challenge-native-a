@@ -2,7 +2,10 @@ package com.njzk2.busbud.busbudchallenge;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -45,6 +48,38 @@ public class SearchFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 destination = adapter.getCity(position);
                 search.setEnabled(true);
+            }
+        });
+        toView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Disable the search button as soon as the content changes
+                if (destination == null || !editable.toString().equals(destination.fullName)) {
+                    search.setEnabled(false);
+                } else {
+                    search.setEnabled(true);
+                }
+            }
+        });
+        // Trigger the search with empty query
+        toView.setText("");
+        // Threshold < 1 is still 1, so the drop down is shown on touch
+        toView.setThreshold(1);
+        toView.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                toView.showDropDown();
+                return false;
             }
         });
 
