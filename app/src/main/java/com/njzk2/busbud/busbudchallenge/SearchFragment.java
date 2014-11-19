@@ -85,4 +85,19 @@ public class SearchFragment extends Fragment {
 
         return rootView;
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("destination", destination);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState != null) {
+            destination = (City) savedInstanceState.getSerializable("destination");
+        }
+    }
+
 }
