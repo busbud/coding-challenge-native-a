@@ -7,6 +7,12 @@
         <!-- Customize your theme here. -->
         <item name="android:buttonStyle">@style/Button</item>
         <item name="android:autoCompleteTextViewStyle">@style/ACText</item>
+        <item name="android:dropDownListViewStyle">@style/NoDivider</item>
+    </style>
+
+    <style name="NoDivider" parent="@android:style/Widget.ListView">
+        <item name="android:divider">@android:color/transparent</item>
+        <item name="android:dividerHeight">0px</item>
     </style>
 
 

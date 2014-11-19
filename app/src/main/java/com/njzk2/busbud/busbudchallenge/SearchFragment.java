@@ -19,6 +19,7 @@ import com.njzk2.busbud.busbudchallenge.api.City;
  * Created by simon on 18/11/14.
  */
 public class SearchFragment extends Fragment {
+    static Typeface interstate;
     private City destination;
 
     public static SearchFragment getInstance(City city) {
@@ -34,7 +35,7 @@ public class SearchFragment extends Fragment {
                              Bundle savedInstanceState) {
         final City origin = (City) getArguments().getSerializable("city");
 
-        Typeface interstate = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Interstate.ttf");
+        interstate = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Interstate.ttf");
         View rootView = inflater.inflate(R.layout.fragment_search, container, false);
         final TextView fromView = (TextView) rootView.findViewById(R.id.from_tv);
         fromView.setTypeface(interstate);

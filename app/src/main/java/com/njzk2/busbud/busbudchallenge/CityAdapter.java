@@ -2,8 +2,11 @@ package com.njzk2.busbud.busbudchallenge;
 
 import android.content.Context;
 import android.location.Location;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
+import android.widget.TextView;
 
 import com.njzk2.busbud.busbudchallenge.api.City;
 
@@ -21,7 +24,7 @@ public class CityAdapter extends ArrayAdapter<String> {
 
 
     public CityAdapter(Context context, City origin) {
-        super(context, android.R.layout.simple_list_item_1, android.R.id.text1);
+        super(context, R.layout.autocomplete_tv, android.R.id.text1);
         this.origin = origin;
         this.location = location;
     }
@@ -38,6 +41,15 @@ public class CityAdapter extends ArrayAdapter<String> {
 
     public City getCity(int index) {
         return resultList.get(index);
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View view = super.getView(position, convertView, parent);
+        if (SearchFragment.interstate != null) {
+            ((TextView) view.findViewById(android.R.id.text1)).setTypeface(SearchFragment.interstate);
+        }
+        return view;
     }
 
     @Override
