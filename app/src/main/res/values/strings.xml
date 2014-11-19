@@ -2,6 +2,6 @@
 <resources>
 
     <string name="app_name">Busbud Challenge</string>
-    <string name="searching">Searching for the bus station&#2026;</string>
+    <string name="searching">Searching for the bus station&#8230;</string>
 
 </resources>
