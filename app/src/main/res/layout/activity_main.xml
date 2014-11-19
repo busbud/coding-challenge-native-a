@@ -1,18 +1,32 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    tools:ignore="MergeRootFrame">
-
+    android:orientation="vertical"
+    tools:context=".MainActivity" tools:ignore="MergeRootFrame">
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/c70405abolivia" />
+        android:layout_height="wrap_content"
+        android:paddingBottom="9dp"
+        android:paddingTop="9dp"
+        android:background="@color/header_blue"
+        android:scaleType="center"
+        android:src="@drawable/busbud_logo"/>
 
-    <FrameLayout
-        android:id="@+id/container"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</RelativeLayout>
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/c70405abolivia" />
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        </RelativeLayout>
+
+</LinearLayout>
