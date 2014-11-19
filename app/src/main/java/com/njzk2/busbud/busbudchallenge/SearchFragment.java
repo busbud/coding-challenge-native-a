@@ -70,18 +70,7 @@ public class SearchFragment extends Fragment {
                 }
             }
         });
-        // Trigger the search with empty query
-        toView.setText("");
-        // Threshold < 1 is still 1, so the drop down is shown on touch
         toView.setThreshold(1);
-        toView.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                toView.showDropDown();
-                return false;
-            }
-        });
 
         return rootView;
     }
