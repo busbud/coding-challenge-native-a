@@ -5,14 +5,20 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.njzk2.busbud.busbudchallenge.api.City;
+import com.njzk2.busbud.busbudchallenge.api.Token;
+
+import java.util.List;
+import java.util.Locale;
 
 /**
- * Created by niluge on 18/11/14.
+ * Created by simon on 18/11/14.
  */
 public class LocationFragment extends DialogFragment implements GoogleApiClient.ConnectionCallbacks {
     private GoogleApiClient client;
@@ -31,6 +37,7 @@ public class LocationFragment extends DialogFragment implements GoogleApiClient.
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         ProgressDialog dialog = new ProgressDialog(getActivity());
         dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
         dialog.setIndeterminate(true);
         dialog.setTitle(R.string.searching);
 
@@ -43,7 +50,31 @@ public class LocationFragment extends DialogFragment implements GoogleApiClient.
             @Override
             public void onLocationChanged(final Location location) {
 
-                ((CityListener) getActivity()).found();
+                new AsyncTask<Location, Void, City>() {
+
+                    @Override
+                    protected City doInBackground(Location... loc) {
+                        Location location = loc[0];
+                        if (MainActivity.token == null) {
+                            Token token = MainActivity.service.getToken();
+                            if (token.success) {
+                                MainActivity.token = token.token;
+                            } else {
+                                return null;
+                            }
+                        }
+                        List<City> cities = MainActivity.service.getCity(MainActivity.token, Locale.getDefault().getLanguage(), location.getLatitude(), location.getLongitude());
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(City city) {
+                        if (getActivity() != null) {
+                            ((CityListener) getActivity()).found(city);
+                        }
+                        dismiss();
+                    }
+                }.execute(location);
 
                 LocationServices.FusedLocationApi.removeLocationUpdates(client, this);
                 client.disconnect();
