@@ -39,7 +39,7 @@ public class LocationFragment extends DialogFragment implements GoogleApiClient.
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
         dialog.setIndeterminate(true);
-        dialog.setTitle(R.string.searching);
+        dialog.setMessage(getString(R.string.searching));
 
         return dialog;
     }
