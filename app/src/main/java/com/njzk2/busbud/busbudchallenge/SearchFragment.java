@@ -42,6 +42,7 @@ public class SearchFragment extends Fragment {
 
         final Button search = ((Button) rootView.findViewById(R.id.search));
         search.setTypeface(interstate);
+        search.setText("\uD83D\uDD0D " + getString(R.string.search));
         // Button is disabled until a valid city is selected
         search.setEnabled(false);
         final AutoCompleteTextView toView = (AutoCompleteTextView) rootView.findViewById(R.id.to_tv);

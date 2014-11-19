@@ -29,6 +29,7 @@
             style="@style/ACText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/arrow"
             android:enabled="false"
             android:text="@string/from_placeholder" />
 
@@ -36,7 +37,8 @@
             android:id="@+id/to_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:drawableLeft="@drawable/marker"
             android:hint="@string/to_placeholder"
             android:inputType="textNoSuggestions" />
 
@@ -44,7 +46,7 @@
             android:id="@+id/search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/search" />
     </LinearLayout>
 </LinearLayout>
