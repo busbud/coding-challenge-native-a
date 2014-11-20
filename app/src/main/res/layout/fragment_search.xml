@@ -7,11 +7,11 @@
     <ImageView
         android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:background="@color/header_blue"
-        android:paddingBottom="9dp"
-        android:paddingTop="9dp"
-        android:scaleType="center"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:scaleType="fitCenter"
         android:src="@drawable/busbud_logo" />
 
     <ImageView
