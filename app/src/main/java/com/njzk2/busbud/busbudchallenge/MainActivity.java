@@ -53,15 +53,10 @@ public class MainActivity extends Activity implements CityListener {
 
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
-            new LocationFragment().show(getFragmentManager(), "location");
+            getFragmentManager().beginTransaction()
+                    .add(R.id.container, SearchFragment.getInstance())
+                    .commit();
         }
-    }
-
-    @Override
-    public void found(City city) {
-        getFragmentManager().beginTransaction()
-                .add(R.id.container, SearchFragment.getInstance(city))
-                .commit();
     }
 
     @Override

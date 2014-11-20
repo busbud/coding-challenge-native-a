@@ -65,10 +65,12 @@ public class LocationFragment extends DialogFragment implements GoogleApiClient.
 
                     @Override
                     protected void onPostExecute(City city) {
-                        if (getActivity() != null) {
-                            ((CityListener) getActivity()).found(city);
+                        if (getTargetFragment() != null && getTargetFragment().isVisible()) {
+                            ((SearchFragment) getTargetFragment()).setOrigin(city);
                         }
-                        dismiss();
+                        if (isResumed()) {
+                            dismiss();
+                        }
                     }
                 }.execute(location);
 

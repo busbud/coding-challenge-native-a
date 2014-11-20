@@ -21,41 +21,51 @@ import com.njzk2.busbud.busbudchallenge.api.City;
 public class SearchFragment extends Fragment {
     static Typeface interstate;
     private City destination;
+    private City origin;
+    private TextView fromView;
+    private Button search;
+    private AutoCompleteTextView toView;
 
-    public static SearchFragment getInstance(City city) {
+    public static SearchFragment getInstance() {
         SearchFragment fragment = new SearchFragment();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("city", city);
-        fragment.setArguments(bundle);
         return fragment;
+    }
+
+    public void setOrigin(City origin) {
+        this.origin = origin;
+        if (origin != null) {
+            fromView.setText(origin.fullName);
+            toView.setAdapter(new CityAdapter(getActivity(), origin));
+        }
+    }
+
+    public void setDestination(City destination) {
+        this.destination = destination;
+        if (search != null) {
+            search.setEnabled(destination != null);
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final City origin = (City) getArguments().getSerializable("city");
-
         interstate = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Interstate.ttf");
         View rootView = inflater.inflate(R.layout.fragment_search, container, false);
-        final TextView fromView = (TextView) rootView.findViewById(R.id.from_tv);
+        fromView = (TextView) rootView.findViewById(R.id.from_tv);
         fromView.setTypeface(interstate);
-        fromView.setText(origin.fullName);
 
-        final Button search = ((Button) rootView.findViewById(R.id.search));
+        search = ((Button) rootView.findViewById(R.id.search));
         search.setTypeface(interstate);
         search.setText("\uD83D\uDD0D " + getString(R.string.search));
         // Button is disabled until a valid city is selected
         search.setEnabled(false);
-        final AutoCompleteTextView toView = (AutoCompleteTextView) rootView.findViewById(R.id.to_tv);
+        toView = (AutoCompleteTextView) rootView.findViewById(R.id.to_tv);
         toView.setTypeface(interstate);
         toView.requestFocus();
-        final CityAdapter adapter = new CityAdapter(getActivity(), origin);
-        toView.setAdapter(adapter);
         toView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                destination = adapter.getCity(position);
-                search.setEnabled(true);
+                setDestination(((CityAdapter) parent.getAdapter()).getCity(position));
             }
         });
         toView.addTextChangedListener(new TextWatcher() {
@@ -92,17 +102,23 @@ public class SearchFragment extends Fragment {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putSerializable("destination", destination);
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (savedInstanceState == null) {
+            LocationFragment locationFragment = new LocationFragment();
+            locationFragment.setTargetFragment(this, 42);
+            locationFragment.show(getFragmentManager(), "location");
+        } else {
+            setOrigin((City) savedInstanceState.getSerializable("origin"));
+            setDestination((City) savedInstanceState.getSerializable("destination"));
+        }
+
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        if (savedInstanceState != null) {
-            destination = (City) savedInstanceState.getSerializable("destination");
-        }
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("origin", origin);
+        outState.putSerializable("destination", destination);
     }
-
 }
