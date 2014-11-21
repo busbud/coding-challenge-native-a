@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Busbud Challenge</string>
+    <string name="searching">Searching for the bus station&#8230;</string>
+    <string name="intro">Find a bus for your next trip</string>
+    <string name="from_placeholder">Leaving from</string>
+    <string name="to_placeholder">Going to</string>
+    <string name="search">Search</string>
+
+</resources>
