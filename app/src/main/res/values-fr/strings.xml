@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Challenge Busbud</string>
+    <string name="searching">Recherche de la station de bus&#8230;</string>
+    <string name="intro">Trouvez un bus pour votre prochain voyage</string>
+    <string name="from_placeholder">Départ de</string>
+    <string name="to_placeholder">Aller à</string>
+    <string name="search">Rechercher</string>
+</resources>
