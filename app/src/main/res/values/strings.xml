@@ -3,8 +3,8 @@
 
     <string name="app_name">BusBud</string>
     <string name="help_title">Welcome on Busbud by JBM</string>
-    <string name="help_text">This application is going to use your location and help you to find bus ticket to escape morosity</string>
-    <string name="help_button">Search a bus from my position</string>
+    <string name="help_text">This application is going to use your location and help you to find bus tickets to escape morosity</string>
+    <string name="help_button">Search a bus tickets</string>
     <string name="from">From:</string>
     <string name="from_hint">Choose a city</string>
     <string name="to">To:</string>
@@ -12,11 +12,11 @@
 
     <string name="search">Search</string>
 
-    <string name="no_location_available">Your device does not have location or the location services are disabled. Please change that in your settings in order to be able to use the application. Thanks!</string>
-    <string name="geolocation_in_progress">Geolocalisation in progress...</string>
-    <string name="finding_city">Finding closest city...</string>
-    <string name="finding_city_error">Unable to find a close city with bus stops</string>
-    <string name="choose_a_valid_city">Choose valid cities please...</string>
+    <string name="no_location_available">Your device is not able to provide location or the location services are disabled. Please change your settings in order to let application localize you. Thanks!</string>
+    <string name="geolocation_in_progress">Geolocalisation in progress…</string>
+    <string name="finding_city">Finding closest bus station…</string>
+    <string name="finding_city_error">Unable to find a city near you with bus station</string>
+    <string name="choose_a_valid_city">Choose valid cities please…</string>
 
 
 </resources>
