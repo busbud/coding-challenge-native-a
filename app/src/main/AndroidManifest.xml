@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="jbm.busbud" >
+          package="jbm.busbud">
 
     <!-- We don't need a very precise Location, let's use Coarse -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
@@ -13,16 +13,18 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/BusBudTheme" >
+        android:theme="@style/BusBudTheme">
         <activity
             android:name="jbm.busbud.BBMainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name="jbm.busbud.util.SingleFragmentActivity"/>
     </application>
 
 </manifest>

@@ -1,10 +1,10 @@
 package jbm.busbud.util;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 import java.lang.reflect.Constructor;
 
@@ -12,6 +12,7 @@ import jbm.busbud.R;
 
 /**
  * An activity that display a fragment
+ * Avoid to declare always the activities in the Manifest
  * @author Jean-Baptiste Morin - jb.morin@gmail.com
  */
 public class SingleFragmentActivity extends FragmentActivity {
@@ -24,11 +25,13 @@ public class SingleFragmentActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_bbmain);
+
         if (getIntent().hasExtra(EXTRA_TITLE)) {
             setTitle(getIntent().getStringExtra(EXTRA_TITLE));
         }
 
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
 
         if (findViewById(R.id.container) == null) {
             throw new IllegalArgumentException("R.id.container missing");
@@ -46,6 +49,7 @@ public class SingleFragmentActivity extends FragmentActivity {
                 fragmentTransaction.replace(R.id.container, fragment);
                 fragmentTransaction.commitAllowingStateLoss();
             } catch (Exception e) {
+                e.printStackTrace();
                 finish();
             }
         }

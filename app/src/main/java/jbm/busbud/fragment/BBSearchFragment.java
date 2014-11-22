@@ -98,70 +98,6 @@ public class BBSearchFragment extends Fragment implements LocationListener {
 
         View rootView = inflater.inflate(R.layout.search_layout, container, false);
 
-        mFrom = (AutoCompleteTextView) rootView.findViewById(R.id.from);
-        mFrom.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                // Reset the text on focus
-                if (hasFocus) {
-                    mFrom.setText(null);
-                    mFromCity = null;
-                    mTo.setText(null);
-                    mToCity = null;
-                }
-            }
-        });
-        mFrom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mFromCity = (BBCity) parent.getAdapter().getItem(position);
-                // Change the from city
-                mToSearchFilter.setOriginCity(mFromCity);
-                mTo.requestFocus();
-                if (mFromCity != null) {
-                    mFrom.setText(mFromCity.getFullName());
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                mFrom.setText(null);
-            }
-        });
-        mFromSearchFilter = new BBSearchFilter(new BBSearchAPIListenerImpl(mFrom));
-        mFrom.setAdapter(new AutoCompleteAdapter(container.getContext(), mFromSearchFilter));
-
-        mTo = (AutoCompleteTextView) rootView.findViewById(R.id.to);
-        mTo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                // Reset the text on focus
-                if (hasFocus) {
-                    mTo.setText(null);
-                    mToCity = null;
-                }
-            }
-        });
-        mTo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mToCity = (BBCity) parent.getAdapter().getItem(position);
-                if (mToCity != null && mFromCity != null) {
-                    mSearchButton.requestFocus();
-                }
-                if (mToCity != null) {
-                    mTo.setText(mToCity.getFullName());
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                mTo.setText(null);
-            }
-        });
-        mToSearchFilter = new BBSearchFilter(new BBSearchAPIListenerImpl(mTo));
-        mTo.setAdapter(new AutoCompleteAdapter(container.getContext(), mToSearchFilter));
-
         mSearchButton = (Button) rootView.findViewById(R.id.search);
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,10 +114,67 @@ public class BBSearchFragment extends Fragment implements LocationListener {
                     getActivity().startActivity(intent);
                 } else {
                     // Display a toast, the user has to choose valid cities!!!
-                    Toast.makeText(v.getContext(), R.string.choose_a_valid_city, Toast.LENGTH_SHORT);
+                    Toast.makeText(v.getContext(), R.string.choose_a_valid_city, Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+        mFrom = (AutoCompleteTextView) rootView.findViewById(R.id.from);
+        mFrom.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                // Reset the text on focus
+                if (hasFocus) {
+                    mFrom.setText(null);
+                    mFromCity = null;
+                    mTo.setText(null);
+                    mToCity = null;
+                }
+            }
+        });
+        mFrom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mFromCity = (BBCity) parent.getAdapter().getItem(position);
+                // Change the from city
+                mToSearchFilter.setOriginCity(mFromCity);
+                mTo.requestFocus();
+                if (mFromCity != null) {
+                    mFrom.setText(mFromCity.getFullName());
+                }
+            }
+        });
+        mFromSearchFilter = new BBSearchFilter(new BBSearchAPIListenerImpl(mFrom));
+        mFrom.setAdapter(new AutoCompleteAdapter(container.getContext(), mFromSearchFilter));
+
+        mTo = (AutoCompleteTextView) rootView.findViewById(R.id.to);
+        mTo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                // Reset the text on focus
+                if (hasFocus) {
+                    mTo.setText(null);
+                    mToCity = null;
+                }
+            }
+        });
+        mTo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mToCity = (BBCity) parent.getAdapter().getItem(position);
+                if (mToCity != null && mFromCity != null) {
+                    mSearchButton.requestFocus();
+                }
+                if (mToCity != null) {
+                    mTo.setText(mToCity.getFullName());
+                }
+            }
+        });
+        mToSearchFilter = new BBSearchFilter(new BBSearchAPIListenerImpl(mTo));
+        mTo.setAdapter(new AutoCompleteAdapter(container.getContext(), mToSearchFilter));
+
         mState = (TextView) rootView.findViewById(R.id.state);
 
         return rootView;
@@ -191,10 +184,15 @@ public class BBSearchFragment extends Fragment implements LocationListener {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        mFrom.setText(null);
+        mTo.setText(null);
+
         mFrom = null;
         mTo = null;
         mSearchButton = null;
         mState = null;
+        mFromCity = null;
+        mToCity = null;
     }
 
     @Override
@@ -328,16 +326,21 @@ public class BBSearchFragment extends Fragment implements LocationListener {
                         final BBCity currentCity = cities.get(0);
                         mFrom.setText(currentCity.getFullName());
                         mFromCity = currentCity;
+                        // Set the origin city
                         mToSearchFilter.setOriginCity(currentCity);
                         mToSearchFilter.setLocation(location);
                         mFromSearchFilter.setLocation(location);
-                        // Focus in to
+
+                        // Focus in To and erase value as the from has changed
+                        mTo.setText(null);
+                        mToCity = null;
                         mTo.requestFocus();
 
                         // Enable inputs now we are localized!
                         enableInput(mFrom, true);
                         enableInput(mTo, true);
                         enableInput(mSearchButton, true);
+                        mSearchButton.setClickable(true);
                     }
                 }).execute(location);
                 break;
