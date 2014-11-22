@@ -289,12 +289,14 @@ public class BBSearchFragment extends Fragment implements LocationListener {
                     mState.setVisibility(View.VISIBLE);
                     mState.setText(R.string.no_location_available);
                 }
+                enableInputs(false);
                 break;
             case State.WAITING_FOR_LOCATION:
                 if (mState != null) {
                     mState.setVisibility(View.VISIBLE);
                     mState.setText(R.string.geolocation_in_progress);
                 }
+                enableInputs(false);
                 break;
             case State.ACCURATE_COORDINATES:
                 // Do need to track position anymore
@@ -311,6 +313,7 @@ public class BBSearchFragment extends Fragment implements LocationListener {
                             mState.setVisibility(View.VISIBLE);
                             mState.setText(R.string.finding_city_error);
                         }
+                        enableInputs(false);
                     }
 
                     @Override
@@ -340,14 +343,18 @@ public class BBSearchFragment extends Fragment implements LocationListener {
                         mTo.requestFocus();
 
                         // Enable inputs now we are localized!
-                        enableInput(mFrom, true);
-                        enableInput(mTo, true);
-                        enableInput(mSearchButton, true);
+                        enableInputs(true);
                         mSearchButton.setClickable(true);
                     }
                 }).execute(location);
                 break;
         }
+    }
+
+    private void enableInputs(boolean enabled) {
+        enableInput(mFrom, enabled);
+        enableInput(mTo, enabled);
+        enableInput(mSearchButton, enabled);
     }
 
     private void enableInput(View view, boolean enabled) {
