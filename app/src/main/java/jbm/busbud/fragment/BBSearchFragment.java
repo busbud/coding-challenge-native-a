@@ -232,7 +232,7 @@ public class BBSearchFragment extends Fragment implements LocationListener {
             TextView listItemView = (TextView) convertView;
 
             if (listItemView == null) {
-                listItemView = new TextView(getContext());
+                listItemView = (TextView) getLayoutInflater(null).inflate(R.layout.autocomplete_item, parent, false);
             }
 
             listItemView.setText(getItem(position).getFullName());

@@ -46,7 +46,7 @@ public class BBSearchFilter extends Filter {
                 String filterString = constraint.toString().toLowerCase();
                 HttpResponse response = BBHttpHelper.getInstance().httpGetBusBudUrl(
                         APIUrls.getSearchUrlWithArgs(
-                                Locale.getDefault().getLanguage(), filterString, 5,
+                                Locale.getDefault().getLanguage(), filterString, 4,
                                 mLocation == null ? null : mLocation,
                                 mOriginCity == null ? null : mOriginCity.getCityId()));
                 final int statusCode = response.getStatusLine().getStatusCode();
