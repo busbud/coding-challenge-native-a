@@ -1,6 +1,7 @@
 package jbm.busbud.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -10,13 +11,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,12 +31,47 @@ import jbm.busbud.api.BBAsyncTaskSearch;
 import jbm.busbud.api.BBSearchFilter;
 import jbm.busbud.model.BBCity;
 import jbm.busbud.util.LocationHelper;
+import jbm.busbud.util.SingleFragmentActivity;
 
 /**
  * The Search UI
+ * - Localized the User
+ * - Make a single call to the API to init the From with hte closest city and set the origin city
+ * - Use of AutocompleteTextView to choose destination
+ *
  * @author Jean-Baptiste Morin - jb.morin@gmail.com
  */
-public class BBSearchFragment extends Fragment implements LocationListener, BBAPIListener {
+public class BBSearchFragment extends Fragment implements LocationListener {
+
+    /**
+     * On error we invalidate the search list
+     * On success we change the data
+     */
+    private static final class BBSearchAPIListenerImpl implements BBAPIListener {
+
+        private WeakReference<AutoCompleteTextView> mView;
+
+        public BBSearchAPIListenerImpl(AutoCompleteTextView view) {
+            mView = new WeakReference<AutoCompleteTextView>(view);
+        }
+
+        @Override
+        public void onError() {
+            AutoCompleteTextView view = mView.get();
+            if (view != null) {
+                ((BaseAdapter) view.getAdapter()).notifyDataSetInvalidated();
+            }
+        }
+
+        @Override
+        public void onSuccess(ArrayList<BBCity> cities) {
+            AutoCompleteTextView view = mView.get();
+            if (view != null) {
+                ((AutoCompleteAdapter) view.getAdapter()).setData(cities);
+                ((BaseAdapter) view.getAdapter()).notifyDataSetChanged();
+            }
+        }
+    }
 
     private LocationManager mLocationManager;
 
@@ -42,10 +82,13 @@ public class BBSearchFragment extends Fragment implements LocationListener, BBAP
     private AutoCompleteTextView mTo;
     private Button mSearchButton;
     private TextView mState;
-    private Location mLocation;
 
     private BBCity mFromCity;
     private BBCity mToCity;
+
+    private BBSearchFilter mFromSearchFilter;
+
+    private BBSearchFilter mToSearchFilter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,13 +97,92 @@ public class BBSearchFragment extends Fragment implements LocationListener, BBAP
         }
 
         View rootView = inflater.inflate(R.layout.search_layout, container, false);
-        mFrom = (AutoCompleteTextView) rootView.findViewById(R.id.from);
-        mTo = (AutoCompleteTextView) rootView.findViewById(R.id.to);
-        mSearchButton = (Button) rootView.findViewById(R.id.search);
-        mState = (TextView) rootView.findViewById(R.id.state);
 
-        // Disable and wait for position
-        enableInputs(false);
+        mFrom = (AutoCompleteTextView) rootView.findViewById(R.id.from);
+        mFrom.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                // Reset the text on focus
+                if (hasFocus) {
+                    mFrom.setText(null);
+                    mFromCity = null;
+                    mTo.setText(null);
+                    mToCity = null;
+                }
+            }
+        });
+        mFrom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mFromCity = (BBCity) parent.getAdapter().getItem(position);
+                // Change the from city
+                mToSearchFilter.setOriginCity(mFromCity);
+                mTo.requestFocus();
+                if (mFromCity != null) {
+                    mFrom.setText(mFromCity.getFullName());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                mFrom.setText(null);
+            }
+        });
+        mFromSearchFilter = new BBSearchFilter(new BBSearchAPIListenerImpl(mFrom));
+        mFrom.setAdapter(new AutoCompleteAdapter(container.getContext(), mFromSearchFilter));
+
+        mTo = (AutoCompleteTextView) rootView.findViewById(R.id.to);
+        mTo.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                // Reset the text on focus
+                if (hasFocus) {
+                    mTo.setText(null);
+                    mToCity = null;
+                }
+            }
+        });
+        mTo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mToCity = (BBCity) parent.getAdapter().getItem(position);
+                if (mToCity != null && mFromCity != null) {
+                    mSearchButton.requestFocus();
+                }
+                if (mToCity != null) {
+                    mTo.setText(mToCity.getFullName());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                mTo.setText(null);
+            }
+        });
+        mToSearchFilter = new BBSearchFilter(new BBSearchAPIListenerImpl(mTo));
+        mTo.setAdapter(new AutoCompleteAdapter(container.getContext(), mToSearchFilter));
+
+        mSearchButton = (Button) rootView.findViewById(R.id.search);
+        mSearchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mFromCity != null && mToCity != null) {
+                    // We can search, launch the generic view with the search fragment
+                    Intent intent = new Intent(v.getContext(), SingleFragmentActivity.class);
+                    intent.putExtra(SingleFragmentActivity.EXTRA_TITLE, "");
+                    intent.putExtra(SingleFragmentActivity.EXTRA_CLASS, BBResultFragment.class);
+                    Bundle args = new Bundle();
+                    args.putParcelable(BBResultFragment.ARGS_FROM, mFromCity);
+                    args.putParcelable(BBResultFragment.ARGS_TO, mToCity);
+                    intent.putExtra(SingleFragmentActivity.EXTRA_ARGS, args);
+                    getActivity().startActivity(intent);
+                } else {
+                    // Display a toast, the user has to choose valid cities!!!
+                    Toast.makeText(v.getContext(), R.string.choose_a_valid_city, Toast.LENGTH_SHORT);
+                }
+            }
+        });
+        mState = (TextView) rootView.findViewById(R.id.state);
 
         return rootView;
     }
@@ -73,19 +195,6 @@ public class BBSearchFragment extends Fragment implements LocationListener, BBAP
         mTo = null;
         mSearchButton = null;
         mState = null;
-    }
-
-    private void enableInputs(boolean enabled) {
-        enableInput(mFrom, enabled);
-        enableInput(mTo, enabled);
-        enableInput(mSearchButton, enabled);
-    }
-
-    private void enableInput(View view, boolean enabled) {
-        if (view != null) {
-            view.setEnabled(enabled);
-            view.setSelected(false);
-        }
     }
 
     @Override
@@ -107,41 +216,29 @@ public class BBSearchFragment extends Fragment implements LocationListener, BBAP
         stopTrackingPosition();
     }
 
-    @Override
-    public void onError() {
-        if (mState != null) {
-            mState.setVisibility(View.VISIBLE);
-            mState.setText(R.string.finding_city_error);
-        }
-    }
-
-    @Override
-    public void onSuccess(ArrayList<BBCity> cities) {
-        if (cities == null || cities.size() == 0) {
-            if (mState != null) {
-                mState.setVisibility(View.VISIBLE);
-                mState.setText(R.string.finding_city_error);
-            }
-            return;
-        }
-        if (mState != null) {
-            mState.setVisibility(View.INVISIBLE);
-        }
-
-        final BBCity currentCity = cities.get(0);
-        mFrom.setText(currentCity.getFullName());
-        mFromCity = currentCity;
-
-        enableInputs(true);
-    }
-
     // Let's do the trick with the AutoCompleteAdapter
     public class AutoCompleteAdapter extends ArrayAdapter<BBCity> implements Filterable {
         private ArrayList<BBCity> mData;
+        private final BBSearchFilter mFilter;
 
-        public AutoCompleteAdapter(Context context, int textViewResourceId) {
-            super(context, textViewResourceId);
+        public AutoCompleteAdapter(Context context, BBSearchFilter filter) {
+            super(context, 0);
             mData = new ArrayList<BBCity>();
+            mFilter = filter;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            // Recycle views
+            TextView listItemView = (TextView) convertView;
+
+            if (listItemView == null) {
+                listItemView = new TextView(getContext());
+            }
+
+            listItemView.setText(getItem(position).getFullName());
+
+            return listItemView;
         }
 
         @Override
@@ -156,9 +253,17 @@ public class BBSearchFragment extends Fragment implements LocationListener, BBAP
 
         @Override
         public Filter getFilter() {
-            return new BBSearchFilter(null, this);
+            return mFilter;
+        }
+
+        public void setData(ArrayList<BBCity> data) {
+            mData = data;
         }
     }
+
+    /**
+     * GPS LOCATION METHODS
+     */
 
     private interface State {
         public static final int NO_LOCATION_AVAILABLE = 0;
@@ -166,17 +271,17 @@ public class BBSearchFragment extends Fragment implements LocationListener, BBAP
         public static final int ACCURATE_COORDINATES = 2;
     }
 
-    /***
-     * GPS LOCATION METHODS
-     */
-
     /**
      * Method to update the UI depending on the state of the location
      *
      * @param state
      * @param location
      */
-    private void update(int state, Location location) {
+    private void update(int state, final Location location) {
+        if (state == State.ACCURATE_COORDINATES && location == null) {
+            //Security
+            state = State.NO_LOCATION_AVAILABLE;
+        }
         switch (state) {
             case State.NO_LOCATION_AVAILABLE:
                 // Display error
@@ -194,12 +299,54 @@ public class BBSearchFragment extends Fragment implements LocationListener, BBAP
             case State.ACCURATE_COORDINATES:
                 // Do need to track position anymore
                 stopTrackingPosition();
-                mLocation = location;
                 if (mState != null) {
-                    mState.setVisibility(View.INVISIBLE);
+                    mState.setVisibility(View.VISIBLE);
+                    mState.setText(R.string.finding_city);
                 }
-                new BBAsyncTaskSearch(this).execute(location);
+                new BBAsyncTaskSearch(new BBAPIListener() {
+                    @Override
+                    public void onError() {
+                        if (mState != null) {
+                            mState.setVisibility(View.VISIBLE);
+                            mState.setText(R.string.finding_city_error);
+                        }
+                    }
+
+                    @Override
+                    public void onSuccess(ArrayList<BBCity> cities) {
+                        if (cities == null || cities.size() == 0) {
+                            if (mState != null) {
+                                mState.setVisibility(View.VISIBLE);
+                                mState.setText(R.string.finding_city_error);
+                            }
+                            return;
+                        }
+                        if (mState != null) {
+                            mState.setVisibility(View.INVISIBLE);
+                        }
+
+                        final BBCity currentCity = cities.get(0);
+                        mFrom.setText(currentCity.getFullName());
+                        mFromCity = currentCity;
+                        mToSearchFilter.setOriginCity(currentCity);
+                        mToSearchFilter.setLocation(location);
+                        mFromSearchFilter.setLocation(location);
+                        // Focus in to
+                        mTo.requestFocus();
+
+                        // Enable inputs now we are localized!
+                        enableInput(mFrom, true);
+                        enableInput(mTo, true);
+                        enableInput(mSearchButton, true);
+                    }
+                }).execute(location);
                 break;
+        }
+    }
+
+    private void enableInput(View view, boolean enabled) {
+        if (view != null) {
+            view.setEnabled(enabled);
         }
     }
 

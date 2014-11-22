@@ -63,4 +63,9 @@ public class BBCity implements Parcelable {
     public String getFullName() {
         return mFullName;
     }
+
+    @Override
+    public String toString() {
+        return mFullName;
+    }
 }

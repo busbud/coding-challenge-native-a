@@ -14,6 +14,7 @@ import java.util.Locale;
 import jbm.busbud.model.BBCity;
 
 /**
+ * The search task for the initialized called
  * @author Jean-Baptiste Morin - jb.morin@gmail.com
  */
 public class BBAsyncTaskSearch extends AsyncTask<Location, Void, ArrayList<BBCity>> {

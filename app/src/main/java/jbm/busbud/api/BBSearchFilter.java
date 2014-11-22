@@ -1,7 +1,6 @@
 package jbm.busbud.api;
 
 import android.location.Location;
-import android.widget.BaseAdapter;
 import android.widget.Filter;
 
 import org.apache.http.HttpResponse;
@@ -15,27 +14,40 @@ import jbm.busbud.model.BBCity;
 import jbm.busbud.util.BBException;
 
 /**
- *
+ * For AutoCompleteText background processing
  * @author Jean-Baptiste Morin - jb.morin@gmail.com
  */
 public class BBSearchFilter extends Filter {
 
-    //TODO
-    private final BaseAdapter mAdapter;
-    private final Location mLocation;
+    private final BBAPIListener mListener;
+    private Location mLocation;
 
-    public BBSearchFilter(Location location, BaseAdapter adapter) {
-        mAdapter = adapter;
+    private BBCity mOriginCity;
+
+    public BBSearchFilter(BBAPIListener listener) {
+        mListener = listener;
+    }
+
+    public void setLocation(Location location) {
         mLocation = location;
+    }
+
+    public void setOriginCity(BBCity originCity) {
+        mOriginCity = originCity;
     }
 
     @Override
     protected FilterResults performFiltering(CharSequence constraint) {
         // Asynchronous method - let's make the request!
         FilterResults filterResults = new FilterResults();
-        if(constraint != null) {
+        if (constraint != null) {
             try {
-                HttpResponse response = BBHttpHelper.getInstance().httpGetBusBudUrl(APIUrls.getSearchUrlWithArgs(Locale.getDefault().getLanguage(), null, 5, mLocation, null));
+                String filterString = constraint.toString().toLowerCase();
+                HttpResponse response = BBHttpHelper.getInstance().httpGetBusBudUrl(
+                        APIUrls.getSearchUrlWithArgs(
+                                Locale.getDefault().getLanguage(), filterString, 5,
+                                mLocation == null ? null : mLocation,
+                                mOriginCity == null ? null : mOriginCity.getCityId()));
                 final int statusCode = response.getStatusLine().getStatusCode();
                 if (statusCode == HttpStatus.SC_OK) {
                     ArrayList<BBCity> results = BBSearchHandlerHelper.parseJson(response.getEntity().getContent());
@@ -55,10 +67,12 @@ public class BBSearchFilter extends Filter {
     @Override
     protected void publishResults(CharSequence contraint, FilterResults results) {
         // Main thread
-        if(results != null && results.count > 0) {
-            mAdapter.notifyDataSetChanged();
-        } else {
-            mAdapter.notifyDataSetInvalidated();
+        if (mListener != null) {
+            if (results != null && results.count > 0) {
+                mListener.onSuccess((ArrayList<BBCity>) results.values);
+            } else {
+                mListener.onError();
+            }
         }
     }
 }

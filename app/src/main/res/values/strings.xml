@@ -11,10 +11,12 @@
     <string name="to_hint">Choose a city</string>
 
     <string name="search">Search</string>
+
     <string name="no_location_available">Your device does not have location or the location services are disabled. Please change that in your settings in order to be able to use the application. Thanks!</string>
     <string name="geolocation_in_progress">Geolocalisation in progress...</string>
     <string name="finding_city">Finding closest city...</string>
     <string name="finding_city_error">Unable to find a close city with bus stops</string>
+    <string name="choose_a_valid_city">Choose valid cities please...</string>
 
 
 </resources>

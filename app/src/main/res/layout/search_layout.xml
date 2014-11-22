@@ -36,6 +36,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:hint="@string/from_hint"
                 android:id="@+id/from"
+                android:enabled="false"
                 android:layout_gravity="center"/>
 
         </LinearLayout>
@@ -58,6 +59,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:hint="@string/to_hint"
                 android:id="@+id/to"
+                android:enabled="false"
                 android:layout_gravity="center"/>
 
         </LinearLayout>
@@ -66,6 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/search"
+            android:enabled="false"
             android:id="@+id/search"/>
 
     </LinearLayout>
