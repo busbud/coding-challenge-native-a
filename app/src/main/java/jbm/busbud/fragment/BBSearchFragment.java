@@ -24,6 +24,7 @@ import android.widget.Toast;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import jbm.busbud.R;
 import jbm.busbud.api.BBAPIListener;
@@ -105,7 +106,7 @@ public class BBSearchFragment extends Fragment implements LocationListener {
                 if (mFromCity != null && mToCity != null) {
                     // We can search, launch the generic view with the search fragment
                     Intent intent = new Intent(v.getContext(), SingleFragmentActivity.class);
-                    intent.putExtra(SingleFragmentActivity.EXTRA_TITLE, "");
+                    intent.putExtra(SingleFragmentActivity.EXTRA_TITLE, String.format(Locale.US, "%s > %s", mFromCity.getShortName(), mToCity.getShortName()));
                     intent.putExtra(SingleFragmentActivity.EXTRA_CLASS, BBResultFragment.class);
                     Bundle args = new Bundle();
                     args.putParcelable(BBResultFragment.ARGS_FROM, mFromCity);

@@ -68,4 +68,12 @@ public class BBCity implements Parcelable {
     public String toString() {
         return mFullName;
     }
+
+    public String getShortName() {
+        String[] names = mFullName.split(",");
+        if (names.length > 0) {
+            return names[0];
+        }
+        return mFullName;
+    }
 }
