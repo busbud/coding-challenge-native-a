@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jbm.busbud.R;
+import jbm.busbud.api.BBAPIListener;
+import jbm.busbud.api.BBAsyncTaskSearch;
 import jbm.busbud.api.BBSearchFilter;
 import jbm.busbud.model.BBCity;
 import jbm.busbud.util.LocationHelper;
@@ -29,7 +31,7 @@ import jbm.busbud.util.LocationHelper;
  * The Search UI
  * @author Jean-Baptiste Morin - jb.morin@gmail.com
  */
-public class BBSearchFragment extends Fragment implements LocationListener {
+public class BBSearchFragment extends Fragment implements LocationListener, BBAPIListener {
 
     private LocationManager mLocationManager;
 
@@ -41,6 +43,9 @@ public class BBSearchFragment extends Fragment implements LocationListener {
     private Button mSearchButton;
     private TextView mState;
     private Location mLocation;
+
+    private BBCity mFromCity;
+    private BBCity mToCity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -100,6 +105,34 @@ public class BBSearchFragment extends Fragment implements LocationListener {
         super.onStop();
         // Stop monitoring position if we did'nt have a position yet
         stopTrackingPosition();
+    }
+
+    @Override
+    public void onError() {
+        if (mState != null) {
+            mState.setVisibility(View.VISIBLE);
+            mState.setText(R.string.finding_city_error);
+        }
+    }
+
+    @Override
+    public void onSuccess(ArrayList<BBCity> cities) {
+        if (cities == null || cities.size() == 0) {
+            if (mState != null) {
+                mState.setVisibility(View.VISIBLE);
+                mState.setText(R.string.finding_city_error);
+            }
+            return;
+        }
+        if (mState != null) {
+            mState.setVisibility(View.INVISIBLE);
+        }
+
+        final BBCity currentCity = cities.get(0);
+        mFrom.setText(currentCity.getFullName());
+        mFromCity = currentCity;
+
+        enableInputs(true);
     }
 
     // Let's do the trick with the AutoCompleteAdapter
@@ -165,7 +198,7 @@ public class BBSearchFragment extends Fragment implements LocationListener {
                 if (mState != null) {
                     mState.setVisibility(View.INVISIBLE);
                 }
-                // TODO Launch AsyncTask to get the origin_city
+                new BBAsyncTaskSearch(this).execute(location);
                 break;
         }
     }
