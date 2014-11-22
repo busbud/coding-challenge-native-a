@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">BusBud</string>
-    <string name="help_title">Bienvenue sur BusBud par JBM</string>
+    <string name="help_title">Bienvenue sur busbud par JBM</string>
     <string name="help_text">Cette application utilise votre localisation afin de trouver des tickets de bus pour échapper à la morosité</string>
     <string name="help_button">Chercher des tickets</string>
     <string name="from">De:</string>
@@ -17,5 +16,6 @@
     <string name="finding_city">Recherche d\'une station de bus proche…</string>
     <string name="finding_city_error">Impossible de trouver une station de bus autour de vous.</string>
     <string name="choose_a_valid_city">Choisir des villes valides, merci…</string>
+    <string name="result_error">Impossible de charger les résultats</string>
 
 </resources>

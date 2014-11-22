@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Locale;
@@ -45,14 +47,37 @@ public class BBResultFragment extends Fragment {
         BBCity toCity = getArguments().getParcelable(ARGS_TO);
 
         // Init the web view and load the URL
-        WebView webView = new WebView(container.getContext());
-        webView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        View rootView = inflater.inflate(R.layout.result_layout, container, false);
+        WebView webView = (WebView) rootView.findViewById(R.id.result_webview);
+        final TextView errorView = (TextView) rootView.findViewById(R.id.result_error);
+        final ProgressBar progress = (ProgressBar) rootView.findViewById(R.id.result_progress);
+
+        webView.setVisibility(View.INVISIBLE);
+        errorView.setVisibility(View.GONE);
+
+        // Load the web view
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 return false;
+            }
+
+            @Override
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                super.onReceivedError(view, errorCode, description, failingUrl);
+                // If error hide the progress and display the error
+                errorView.setVisibility(View.VISIBLE);
+                progress.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                // If the page is loaded, display the page and hide the progress
+                view.setVisibility(View.VISIBLE);
+                progress.setVisibility(View.GONE);
             }
         });
         webView.loadUrl(
@@ -61,6 +86,6 @@ public class BBResultFragment extends Fragment {
                         Locale.getDefault().getLanguage(),
                         fromCity.getCityUrl(),
                         toCity.getCityUrl()));
-        return webView;
+        return rootView;
     }
 }

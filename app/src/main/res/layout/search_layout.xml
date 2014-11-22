@@ -35,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:hint="@string/from_hint"
+                android:singleLine="true"
                 android:id="@+id/from"
                 android:enabled="false"
                 android:layout_gravity="center"/>
@@ -58,6 +59,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:hint="@string/to_hint"
+                android:singleLine="true"
                 android:id="@+id/to"
                 android:enabled="false"
                 android:layout_gravity="center"/>
