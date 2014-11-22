@@ -6,6 +6,10 @@
     <string name="help_text">Cette application utilise votre localisation afin de trouver des tickets de bus pour échapper à la morosité</string>
     <string name="help_button">Cherchez un trajet de bus</string>
     <string name="from">De:</string>
+    <string name="from_hint">Choisir une ville</string>
     <string name="to">À:</string>
+    <string name="to_hint">Choisir une ville</string>
+
+    <string name="search">Cherchez</string>
 
 </resources>

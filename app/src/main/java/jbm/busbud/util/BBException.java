@@ -2,7 +2,7 @@ package jbm.busbud.util;
 
 /**
  * Goal: unify basic API exceptions
- * Created by jbm on 14-11-19.
+ * @author Jean-Baptiste Morin - jb.morin@gmail.com
  */
 public class BBException extends Exception {
 
