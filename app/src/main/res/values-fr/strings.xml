@@ -12,9 +12,9 @@
 
     <string name="search">Chercher</string>
 
-    <string name="no_location_available">Votre appareil n'a pas de service de géolocalisation ou votre service de géolocalisation est désactivé. Merci de l'activer.</string>
+    <string name="no_location_available">Votre appareil n\'a pas de service de géolocalisation ou votre service de géolocalisation est désactivé. Merci de l\'activer.</string>
     <string name="geolocation_in_progress">Géolocalisation en cours…</string>
-    <string name="finding_city">Recherche d'une station de bus proche…</string>
+    <string name="finding_city">Recherche d\'une station de bus proche…</string>
     <string name="finding_city_error">Impossible de trouver une station de bus autour de vous.</string>
     <string name="choose_a_valid_city">Choisir des villes valides, merci…</string>
 

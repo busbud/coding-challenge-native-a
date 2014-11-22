@@ -4,7 +4,7 @@
     <string name="app_name">BusBud</string>
     <string name="help_title">Welcome on Busbud by JBM</string>
     <string name="help_text">This application is going to use your location and help you to find bus tickets to escape morosity</string>
-    <string name="help_button">Search a bus tickets</string>
+    <string name="help_button">Search bus tickets</string>
     <string name="from">From:</string>
     <string name="from_hint">Choose a city</string>
     <string name="to">To:</string>
