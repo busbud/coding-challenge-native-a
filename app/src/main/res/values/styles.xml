@@ -2,7 +2,24 @@
 
     <!-- Base application theme. -->
     <style name="BusBudTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/Widget.BusBud.ActionBar</item>
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/Widget.BusBud.ActionBar</item>
+    </style>
 
+    <!-- Action Bar custom -->
+    <style name="Widget.BusBud.ActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/busbud_blue</item>
+        <!-- Support library compatibility -->
+        <item name="background">@color/busbud_blue</item>
+
+        <item name="android:displayOptions">useLogo|showHome</item>
+        <!-- Support library compatibility -->
+        <item name="displayOptions">useLogo|showHome</item>
+
+        <item name="android:logo">@drawable/bb_ab_logo</item>
+        <!-- Support library compatibility -->
+        <item name="logo">@drawable/bb_ab_logo</item>
     </style>
 
 </resources>

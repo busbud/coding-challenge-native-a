@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BusBud</string>
+    <string name="help_title">Bienvenu sur BusBud par JBM</string>
+    <string name="help_text">Cette application utilise votre localisation afin de trouver des tickets de bus pour échapper à la morosité</string>
+    <string name="help_button">Cherchez un trajet de bus</string>
+    <string name="from">De:</string>
+    <string name="to">À:</string>
+
+</resources>
