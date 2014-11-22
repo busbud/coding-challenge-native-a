@@ -10,12 +10,14 @@ import java.io.Writer;
 
 /**
  * Various vital Java utils
+ *
  * @author Jean-Baptiste Morin - jb.morin@gmail.com
  */
 public class StringUtils {
 
     /**
      * Convert an input stream into a String
+     *
      * @param input
      * @return
      */
@@ -50,6 +52,7 @@ public class StringUtils {
 
     /**
      * Check if the String is empty or null
+     *
      * @param str
      * @return
      */

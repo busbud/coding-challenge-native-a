@@ -7,7 +7,6 @@ import android.util.Log;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -15,6 +14,7 @@ import jbm.busbud.model.BBCity;
 
 /**
  * The search task for the initialized called
+ *
  * @author Jean-Baptiste Morin - jb.morin@gmail.com
  */
 public class BBAsyncTaskSearch extends AsyncTask<Location, Void, ArrayList<BBCity>> {
@@ -27,6 +27,12 @@ public class BBAsyncTaskSearch extends AsyncTask<Location, Void, ArrayList<BBCit
         mListener = listener;
     }
 
+    /**
+     * Execute a basic API call in background
+     *
+     * @param params
+     * @return
+     */
     @Override
     protected ArrayList<BBCity> doInBackground(Location... params) {
         if (params == null || params.length == 0) {

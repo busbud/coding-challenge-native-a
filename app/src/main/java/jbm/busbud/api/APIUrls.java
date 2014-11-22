@@ -10,6 +10,7 @@ import jbm.busbud.util.StringUtils;
 
 /**
  * Declare all API URL here and add some helper to compute args.
+ *
  * @author Jean-Baptiste Morin - jb.morin@gmail.com
  */
 public class APIUrls {
@@ -46,6 +47,14 @@ public class APIUrls {
         return url;
     }
 
+    /**
+     * Add parameters to the url
+     *
+     * @param builder
+     * @param baseUrlLenght
+     * @param paramName
+     * @param paramValue
+     */
     private static void addParameter(StringBuilder builder, int baseUrlLenght, String paramName, String paramValue) {
         try {
             if (!StringUtils.isEmpty(paramValue)) {

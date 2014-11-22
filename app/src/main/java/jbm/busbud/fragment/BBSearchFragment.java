@@ -124,7 +124,7 @@ public class BBSearchFragment extends Fragment implements LocationListener {
         mFrom.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                // Reset the text on focus
+                // Reset the two cities on focus the from input
                 if (hasFocus) {
                     mFrom.setText(null);
                     mFromCity = null;
@@ -138,7 +138,7 @@ public class BBSearchFragment extends Fragment implements LocationListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mFromCity = (BBCity) parent.getAdapter().getItem(position);
-                // Change the from city
+                // Change the from city and request focus on To
                 mToSearchFilter.setOriginCity(mFromCity);
                 mTo.requestFocus();
                 if (mFromCity != null) {
@@ -217,7 +217,7 @@ public class BBSearchFragment extends Fragment implements LocationListener {
 
     // Let's do the trick with the AutoCompleteAdapter
     public class AutoCompleteAdapter extends ArrayAdapter<BBCity> implements Filterable {
-        private ArrayList<BBCity> mData;
+        private final ArrayList<BBCity> mData;
         private final BBSearchFilter mFilter;
 
         public AutoCompleteAdapter(Context context, BBSearchFilter filter) {
@@ -256,7 +256,8 @@ public class BBSearchFragment extends Fragment implements LocationListener {
         }
 
         public void setData(ArrayList<BBCity> data) {
-            mData = data;
+            mData.clear();
+            mData.addAll(data);
         }
     }
 
@@ -302,6 +303,7 @@ public class BBSearchFragment extends Fragment implements LocationListener {
                     mState.setVisibility(View.VISIBLE);
                     mState.setText(R.string.finding_city);
                 }
+                // Call the API
                 new BBAsyncTaskSearch(new BBAPIListener() {
                     @Override
                     public void onError() {

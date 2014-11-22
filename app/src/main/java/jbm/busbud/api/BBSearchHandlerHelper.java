@@ -14,6 +14,7 @@ import jbm.busbud.util.StringUtils;
 
 /**
  * This helper is able to parse and handle an input stream of search API response
+ *
  * @author Jean-Baptiste Morin - jb.morin@gmail.com
  */
 public class BBSearchHandlerHelper {

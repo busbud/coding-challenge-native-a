@@ -1,7 +1,6 @@
 package jbm.busbud;
 
 /**
- *
  * @author Jean-Baptiste Morin - jb.morin@gmail.com
  */
 public class AppConstants {

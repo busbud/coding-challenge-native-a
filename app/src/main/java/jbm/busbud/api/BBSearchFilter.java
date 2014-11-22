@@ -15,6 +15,7 @@ import jbm.busbud.util.BBException;
 
 /**
  * For AutoCompleteText background processing
+ *
  * @author Jean-Baptiste Morin - jb.morin@gmail.com
  */
 public class BBSearchFilter extends Filter {

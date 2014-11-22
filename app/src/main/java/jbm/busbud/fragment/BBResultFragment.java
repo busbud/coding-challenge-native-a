@@ -1,6 +1,5 @@
 package jbm.busbud.fragment;
 
-import android.content.ActivityNotFoundException;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 import java.util.Locale;
 
 import jbm.busbud.R;
-import jbm.busbud.api.APIUrls;
 import jbm.busbud.model.BBCity;
 
 /**

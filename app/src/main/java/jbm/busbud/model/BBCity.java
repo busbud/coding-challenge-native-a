@@ -6,6 +6,7 @@ import android.os.Parcelable;
 /**
  * The basic BusBud City object.
  * It's parcelable to be easily pass through Bundles.
+ *
  * @author Jean-Baptiste Morin - jb.morin@gmail.com
  */
 public class BBCity implements Parcelable {

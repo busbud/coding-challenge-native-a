@@ -13,6 +13,7 @@ import jbm.busbud.R;
 /**
  * An activity that display a fragment
  * Avoid to declare always the activities in the Manifest
+ *
  * @author Jean-Baptiste Morin - jb.morin@gmail.com
  */
 public class SingleFragmentActivity extends ActionBarActivity {
