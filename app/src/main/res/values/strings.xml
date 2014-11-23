@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">busbud</string>
+    <string name="help_title">Welcome on busbud by JBM</string>
+    <string name="help_text">This application is going to use your location and help you to find bus tickets to escape morosity</string>
+    <string name="help_button">Search bus tickets</string>
+    <string name="from">From:</string>
+    <string name="from_hint">Choose a city</string>
+    <string name="to">To:</string>
+    <string name="to_hint">Choose a city</string>
+
+    <string name="search">Search</string>
+
+    <string name="no_location_available">Your device is not able to provide location or the location services are disabled. Please change your settings in order to let application localize you. Thanks!</string>
+    <string name="geolocation_in_progress">Geolocalisation in progress…</string>
+    <string name="finding_city">Finding closest bus station…</string>
+    <string name="finding_city_error">Unable to find a city near you with bus station</string>
+    <string name="choose_a_valid_city">Choose valid cities please…</string>
+    <string name="result_error">Unable to load the results</string>
+
+
+</resources>
