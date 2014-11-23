@@ -20,9 +20,9 @@ import jbm.busbud.util.StringUtils;
 public class BBSearchHandlerHelper {
 
     public interface JSONNodes {
-        public final String CITY_ID = "city_id";
-        public final String CITY_URL = "city_url";
-        public final String FULL_NAME = "full_name";
+        String CITY_ID = "city_id";
+        String CITY_URL = "city_url";
+        String FULL_NAME = "full_name";
     }
 
     private static final String LOG_TAG = BBSearchHandlerHelper.class.getSimpleName();

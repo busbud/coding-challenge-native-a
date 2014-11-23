@@ -26,8 +26,8 @@ public class BBHttpHelper {
      * STATIC VARS
      */
     public interface JSONNodes {
-        public final String SUCCESS = "success";
-        public final String TOKEN = "token";
+        String SUCCESS = "success";
+        String TOKEN = "token";
     }
 
     private static final String X_BUSBUD_TOKEN_HEADER = "X-Busbud-Token";
@@ -43,6 +43,8 @@ public class BBHttpHelper {
         }
         return sInstance;
     }
+
+    private BBHttpHelper() {}
 
     /**
      * The long live busbud token
