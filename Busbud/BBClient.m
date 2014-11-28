@@ -7,8 +7,11 @@
 //
 
 #import "BBClient.h"
+#import "BBCity.h"
+
 #import <FXKeychain/FXKeychain.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <Mantle/Mantle.h>
 
 @import CoreLocation;
 
@@ -84,7 +87,7 @@ NSString * const BBClientErrorDomain = @"BBClientErrorDomain";
 }
 
 - (RACSignal *)search:(NSString *)prefix around:(CLLocation *)location origin:(BBCity *)originCity {
-    return [[self fetchToken] flattenMap:^RACStream *(NSString *token) {
+    return [[[[self fetchToken] flattenMap:^RACStream *(NSString *token) {
         NSLog(@"Got token %@", token);
         
         return [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -121,6 +124,21 @@ NSString * const BBClientErrorDomain = @"BBClientErrorDomain";
                 [task cancel];
             }];
         }];
+    }] map:^id(NSDictionary *payload) {
+        NSError *mappingError;
+        
+        BBCity *city = [MTLJSONAdapter modelOfClass: BBCity.class fromJSONDictionary: payload error: &mappingError];
+        if (mappingError) {
+            return mappingError;
+        }
+        
+        return city;
+    }] flattenMap:^RACStream *(id value) {
+        if ([value isKindOfClass: NSError.class]) {
+            return [RACSignal error: value];
+        }
+        
+        return [RACSignal return: value];
     }];
 }
 

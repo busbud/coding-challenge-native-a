@@ -11,7 +11,7 @@
 @implementation BBCity
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"identifier": @"city_id", @"url" : @"url", @"fullname" : @"full_name"};
+    return @{@"identifier": @"city_id", @"url" : @"city_url", @"fullname" : @"full_name"};
 }
 
 @end

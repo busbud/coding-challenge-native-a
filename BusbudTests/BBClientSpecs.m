@@ -17,6 +17,7 @@
 
 #import <FXKeychain/FXKeychain.h>
 #import "BBClient.h"
+#import "BBCity.h"
 
 SpecBegin(BBClient)
 
@@ -98,11 +99,16 @@ describe(@"with a token", ^{
 
     it(@"should fetch cities around the user", ^{
         RACSignal *searchSignal = [client search: @"Quebec" around: nil origin: nil];
-        NSArray *results = [[searchSignal collect] asynchronousFirstOrDefault: nil success: &success error: &error];
+        NSArray *cities = [[searchSignal collect] asynchronousFirstOrDefault: nil success: &success error: &error];
         
         expect(success).to.beTruthy();
         expect(error).to.beNil();
-        expect(results.count).to.equal(5);
+        expect(cities.count).to.equal(5);
+        
+        BBCity *laval = cities[2];
+        expect(laval.identifier).to.equal(@"47d4ea85048e645185b005865a098bc5");
+        expect(laval.url).to.equal(@"Laval,Quebec,Canada");
+        expect(laval.fullname).to.equal(@"Laval, Quebec, Canada");
     });
 });
 

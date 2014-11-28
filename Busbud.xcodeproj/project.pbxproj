@@ -14,6 +14,7 @@
 		62BB68CC1A280BC3006229B4 /* token.json in Resources */ = {isa = PBXBuildFile; fileRef = 62BB68CB1A280BC3006229B4 /* token.json */; };
 		62BB68CE1A281148006229B4 /* search.json in Resources */ = {isa = PBXBuildFile; fileRef = 62BB68CD1A281148006229B4 /* search.json */; };
 		62BB68D11A281276006229B4 /* BBCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BB68D01A281276006229B4 /* BBCity.m */; };
+		62BB68D21A281BDF006229B4 /* BBCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BB68D01A281276006229B4 /* BBCity.m */; };
 		7AB411E61A27D117006D2928 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB411E51A27D117006D2928 /* main.m */; };
 		7AB411E91A27D117006D2928 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB411E81A27D117006D2928 /* AppDelegate.m */; };
 		7AB411EC1A27D117006D2928 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB411EB1A27D117006D2928 /* ViewController.m */; };
@@ -350,6 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62BB68D21A281BDF006229B4 /* BBCity.m in Sources */,
 				626D6F841A2803FA00B72343 /* BBClient.m in Sources */,
 				626D6F831A2803E000B72343 /* BBClientSpecs.m in Sources */,
 			);
