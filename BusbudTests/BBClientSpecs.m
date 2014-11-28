@@ -20,13 +20,14 @@
 
 SpecBegin(BBClient)
 
+
 describe(@"without a token", ^{
     __block BBClient *client;
     __block BOOL success;
     __block NSError *error;
     __block FXKeychain *keychain;
     __block NSString *token;
-    
+
     beforeEach(^{
         keychain = OCMClassMock([FXKeychain class]);
         OCMStub([keychain setObject: @"GUEST_q2Q7vXboR9y5onSPr9661g" forKey: BBClientTokenKey]);
@@ -54,7 +55,34 @@ describe(@"without a token", ^{
         expect(token).to.equal(@"GUEST_q2Q7vXboR9y5onSPr9661g");
         
         OCMVerify([keychain setObject: @"GUEST_q2Q7vXboR9y5onSPr9661g" forKey: BBClientTokenKey]);
+    });
+});
+
+describe(@"with a token", ^{
+    __block BBClient *client;
+    __block BOOL success;
+    __block NSError *error;
+    __block FXKeychain *keychain;
+    __block NSString *token;
+
+    beforeEach(^{
+        keychain = OCMClassMock([FXKeychain class]);
+        OCMStub([keychain objectForKey: BBClientTokenKey]).andReturn(@"GUESS_my-saved-token");
         
+        client = [[BBClient alloc] initWithEndpoint: [NSURL URLWithString: @"https://busbud-napi-prod.herokuapp.com"]
+                                             locale: NSLocale.currentLocale
+                                           keychain: keychain];
+    });
+    
+    it(@"should reuse the token if available", ^{
+        RACSignal *tokenSignal = [client fetchToken];
+        token = [tokenSignal asynchronousFirstOrDefault: nil success: &success error: &error];
+        
+        OCMVerify([keychain objectForKey: BBClientTokenKey]);
+
+        expect(success).to.beTruthy();
+        expect(error).to.beNil();
+        expect(token).to.equal(@"GUESS_my-saved-token");
     });
 });
 

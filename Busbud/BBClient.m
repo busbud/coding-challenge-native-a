@@ -35,6 +35,13 @@ NSString * const BBClientErrorDomain = @"BBClientErrorDomain";
 }
 
 - (RACSignal *)fetchToken {
+    if (self.keychain) {
+        NSString *token = [self.keychain objectForKey: BBClientTokenKey];
+        if (token) {
+            return [RACSignal return: token];
+        }
+    }
+    
     return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         NSURL *tokenUrl = [self.endpoint URLByAppendingPathComponent: @"/auth/guest"];
         
