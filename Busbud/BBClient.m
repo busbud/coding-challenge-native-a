@@ -10,6 +10,8 @@
 #import <FXKeychain/FXKeychain.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
+@import CoreLocation;
+
 NSString * const BBClientTokenKey = @"BBClientToken";
 NSString * const BBClientErrorDomain = @"BBClientErrorDomain";
 
@@ -52,10 +54,10 @@ NSString * const BBClientErrorDomain = @"BBClientErrorDomain";
                 return;
             }
             
-            NSError *mappingError = nil;
-            NSDictionary *payload = [NSJSONSerialization JSONObjectWithData: data options: 0 error: &mappingError];
-            if (mappingError) {
-                [subscriber sendError: error];
+            NSError *payloadError = nil;
+            NSDictionary *payload = [NSJSONSerialization JSONObjectWithData: data options: 0 error: &payloadError];
+            if (payloadError) {
+                [subscriber sendError: payloadError];
                 return;
             }
             
@@ -78,6 +80,47 @@ NSString * const BBClientErrorDomain = @"BBClientErrorDomain";
             BOOL stored = [self.keychain setObject: token forKey: BBClientTokenKey];
             NSLog(@"Stored token : %@", stored ? @"YES" : @"NO");
         }
+    }];
+}
+
+- (RACSignal *)search:(NSString *)prefix around:(CLLocation *)location origin:(BBCity *)originCity {
+    return [[self fetchToken] flattenMap:^RACStream *(NSString *token) {
+        NSLog(@"Got token %@", token);
+        
+        return [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
+            NSURLComponents *components = [[NSURLComponents alloc] initWithURL: self.endpoint resolvingAgainstBaseURL: YES];
+            components.path = @"/search";
+            components.query = [NSString stringWithFormat: @"lang=%@&limit=%d&lat=%f&lon=-%f", prefix, 5, location.coordinate.latitude, location.coordinate.longitude];
+            NSLog(@"Final url = %@", components.URL);
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: components.URL];
+            [request setValue: token forHTTPHeaderField: @"X-Busbud-Token"];
+            
+            NSURLSessionTask *task = [NSURLSession.sharedSession dataTaskWithRequest: request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                if (error) {
+                    [subscriber sendError: error];
+                    return;
+                }
+                
+                NSError *payloadError;
+                NSArray *cities = [NSJSONSerialization JSONObjectWithData: data options: 0 error: &payloadError];
+                
+                if (payloadError) {
+                    [subscriber sendError: payloadError];
+                    return;
+                }
+                
+                [cities enumerateObjectsUsingBlock:^(NSDictionary *cityPayload, NSUInteger idx, BOOL *stop) {
+                    [subscriber sendNext: cityPayload];
+                }];
+                [subscriber sendCompleted];
+            }];
+            
+            [task resume];
+            
+            return [RACDisposable disposableWithBlock:^{
+                [task cancel];
+            }];
+        }];
     }];
 }
 

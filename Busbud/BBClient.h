@@ -10,6 +10,8 @@
 
 @class FXKeychain;
 @class RACSignal;
+@class BBCity;
+@class CLLocation;
 
 extern NSString * const BBClientTokenKey;
 extern NSString * const BBClientErrorDomain;
@@ -23,5 +25,7 @@ typedef NS_ENUM(NSUInteger, BBClientError) {
 - (instancetype)initWithEndpoint:(NSURL *)endpoint locale:(NSLocale *)locale keychain:(FXKeychain *)keychain;
 
 - (RACSignal *)fetchToken;
+
+- (RACSignal *)search:(NSString *)prefix around:(CLLocation *)location origin:(BBCity *)originCity;
 
 @end

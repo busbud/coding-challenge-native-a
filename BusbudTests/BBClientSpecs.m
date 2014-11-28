@@ -20,7 +20,6 @@
 
 SpecBegin(BBClient)
 
-
 describe(@"without a token", ^{
     __block BBClient *client;
     __block BOOL success;
@@ -72,6 +71,18 @@ describe(@"with a token", ^{
         client = [[BBClient alloc] initWithEndpoint: [NSURL URLWithString: @"https://busbud-napi-prod.herokuapp.com"]
                                              locale: NSLocale.currentLocale
                                            keychain: keychain];
+        
+        [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+            NSString *path = request.URL.path;
+            NSString *token = [request valueForHTTPHeaderField: @"X-Busbud-Token"];
+            
+            return [path isEqualToString: @"/search"] && [token isEqualToString: @"GUESS_my-saved-token"];
+        } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+            NSString *path = [[NSBundle bundleForClass: self.class] pathForResource: @"search" ofType: @"json"];
+            return [OHHTTPStubsResponse responseWithFileAtPath: path
+                                                    statusCode: 200
+                                                       headers: @{@"Content-Type": @"application/json; charset=utf-8"}];
+        }];
     });
     
     it(@"should reuse the token if available", ^{
@@ -83,6 +94,15 @@ describe(@"with a token", ^{
         expect(success).to.beTruthy();
         expect(error).to.beNil();
         expect(token).to.equal(@"GUESS_my-saved-token");
+    });
+
+    it(@"should fetch cities around the user", ^{
+        RACSignal *searchSignal = [client search: @"Quebec" around: nil origin: nil];
+        NSArray *results = [[searchSignal collect] asynchronousFirstOrDefault: nil success: &success error: &error];
+        
+        expect(success).to.beTruthy();
+        expect(error).to.beNil();
+        expect(results.count).to.equal(5);
     });
 });
 

@@ -12,6 +12,8 @@
 		626D6F831A2803E000B72343 /* BBClientSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 626D6F821A2803E000B72343 /* BBClientSpecs.m */; };
 		626D6F841A2803FA00B72343 /* BBClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 626D6F801A28034800B72343 /* BBClient.m */; };
 		62BB68CC1A280BC3006229B4 /* token.json in Resources */ = {isa = PBXBuildFile; fileRef = 62BB68CB1A280BC3006229B4 /* token.json */; };
+		62BB68CE1A281148006229B4 /* search.json in Resources */ = {isa = PBXBuildFile; fileRef = 62BB68CD1A281148006229B4 /* search.json */; };
+		62BB68D11A281276006229B4 /* BBCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BB68D01A281276006229B4 /* BBCity.m */; };
 		7AB411E61A27D117006D2928 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB411E51A27D117006D2928 /* main.m */; };
 		7AB411E91A27D117006D2928 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB411E81A27D117006D2928 /* AppDelegate.m */; };
 		7AB411EC1A27D117006D2928 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB411EB1A27D117006D2928 /* ViewController.m */; };
@@ -38,6 +40,9 @@
 		626D6F801A28034800B72343 /* BBClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBClient.m; sourceTree = "<group>"; };
 		626D6F821A2803E000B72343 /* BBClientSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBClientSpecs.m; sourceTree = "<group>"; };
 		62BB68CB1A280BC3006229B4 /* token.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = token.json; sourceTree = "<group>"; };
+		62BB68CD1A281148006229B4 /* search.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = search.json; sourceTree = "<group>"; };
+		62BB68CF1A281276006229B4 /* BBCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCity.h; sourceTree = "<group>"; };
+		62BB68D01A281276006229B4 /* BBCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBCity.m; sourceTree = "<group>"; };
 		7A84C656F41F4CD41E56BAFC /* libPods-Busbud.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Busbud.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB411E01A27D117006D2928 /* Busbud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Busbud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB411E41A27D117006D2928 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -129,6 +134,8 @@
 				7AB411E31A27D117006D2928 /* Supporting Files */,
 				626D6F7F1A28034800B72343 /* BBClient.h */,
 				626D6F801A28034800B72343 /* BBClient.m */,
+				62BB68CF1A281276006229B4 /* BBCity.h */,
+				62BB68D01A281276006229B4 /* BBCity.m */,
 			);
 			path = Busbud;
 			sourceTree = "<group>";
@@ -154,6 +161,7 @@
 		7AB411FD1A27D117006D2928 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				62BB68CD1A281148006229B4 /* search.json */,
 				62BB68CB1A280BC3006229B4 /* token.json */,
 				7AB411FE1A27D117006D2928 /* Info.plist */,
 			);
@@ -256,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62BB68CC1A280BC3006229B4 /* token.json in Resources */,
+				62BB68CE1A281148006229B4 /* search.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +338,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62BB68D11A281276006229B4 /* BBCity.m in Sources */,
 				626D6F811A28034800B72343 /* BBClient.m in Sources */,
 				7AB411EC1A27D117006D2928 /* ViewController.m in Sources */,
 				7AB411E91A27D117006D2928 /* AppDelegate.m in Sources */,
