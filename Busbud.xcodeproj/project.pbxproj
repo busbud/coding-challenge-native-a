@@ -15,6 +15,7 @@
 		62BB68CE1A281148006229B4 /* search.json in Resources */ = {isa = PBXBuildFile; fileRef = 62BB68CD1A281148006229B4 /* search.json */; };
 		62BB68D11A281276006229B4 /* BBCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BB68D01A281276006229B4 /* BBCity.m */; };
 		62BB68D21A281BDF006229B4 /* BBCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BB68D01A281276006229B4 /* BBCity.m */; };
+		62BB68D51A2A2DD5006229B4 /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BB68D41A2A2DD5006229B4 /* BrowserViewController.swift */; };
 		7AB411E61A27D117006D2928 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB411E51A27D117006D2928 /* main.m */; };
 		7AB411E91A27D117006D2928 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB411E81A27D117006D2928 /* AppDelegate.m */; };
 		7AB411EC1A27D117006D2928 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB411EB1A27D117006D2928 /* ViewController.m */; };
@@ -44,6 +45,8 @@
 		62BB68CD1A281148006229B4 /* search.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = search.json; sourceTree = "<group>"; };
 		62BB68CF1A281276006229B4 /* BBCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBCity.h; sourceTree = "<group>"; };
 		62BB68D01A281276006229B4 /* BBCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBCity.m; sourceTree = "<group>"; };
+		62BB68D31A2A2DD4006229B4 /* Busbud-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Busbud-Bridging-Header.h"; sourceTree = "<group>"; };
+		62BB68D41A2A2DD5006229B4 /* BrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
 		7A84C656F41F4CD41E56BAFC /* libPods-Busbud.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Busbud.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB411E01A27D117006D2928 /* Busbud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Busbud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB411E41A27D117006D2928 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -137,6 +140,8 @@
 				626D6F801A28034800B72343 /* BBClient.m */,
 				62BB68CF1A281276006229B4 /* BBCity.h */,
 				62BB68D01A281276006229B4 /* BBCity.m */,
+				62BB68D41A2A2DD5006229B4 /* BrowserViewController.swift */,
+				62BB68D31A2A2DD4006229B4 /* Busbud-Bridging-Header.h */,
 			);
 			path = Busbud;
 			sourceTree = "<group>";
@@ -344,6 +349,7 @@
 				7AB411EC1A27D117006D2928 /* ViewController.m in Sources */,
 				7AB411E91A27D117006D2928 /* AppDelegate.m in Sources */,
 				7AB411E61A27D117006D2928 /* main.m in Sources */,
+				62BB68D51A2A2DD5006229B4 /* BrowserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,11 +476,14 @@
 			baseConfigurationReference = F6379E472837482EB7EC6D60 /* Pods-Busbud.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Busbud/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Busbud/Busbud-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -483,11 +492,13 @@
 			baseConfigurationReference = D00FA9F4DD7757FEF930C97A /* Pods-Busbud.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Busbud/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Busbud/Busbud-Bridging-Header.h";
 			};
 			name = Release;
 		};

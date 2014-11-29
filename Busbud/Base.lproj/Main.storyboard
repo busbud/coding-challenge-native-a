@@ -26,10 +26,46 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="🚌 👦" id="FlD-Zh-pRM"/>
+                    <connections>
+                        <segue destination="9zJ-sp-9a8" kind="show" identifier="ShowDirections" id="GaP-s3-fuA"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kvW-iU-Qlp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1292" y="165"/>
+        </scene>
+        <!--Browser View Controller-->
+        <scene sceneID="dwU-6d-deY">
+            <objects>
+                <viewController id="9zJ-sp-9a8" customClass="BrowserViewController" customModule="Busbud" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aKk-CN-xwj"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hk9-Xr-94O"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uqh-mM-8P3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Wx-fT-ou6">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Hk9-Xr-94O" firstAttribute="top" secondItem="1Wx-fT-ou6" secondAttribute="bottom" id="5RA-fz-SD9"/>
+                            <constraint firstItem="1Wx-fT-ou6" firstAttribute="leading" secondItem="uqh-mM-8P3" secondAttribute="leading" id="TVc-RB-nWd"/>
+                            <constraint firstAttribute="trailing" secondItem="1Wx-fT-ou6" secondAttribute="trailing" id="ibi-bZ-foE"/>
+                            <constraint firstItem="1Wx-fT-ou6" firstAttribute="top" secondItem="uqh-mM-8P3" secondAttribute="top" id="js5-dC-mRv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="browser" destination="1Wx-fT-ou6" id="4ub-za-PF3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cgP-qX-lj8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2016" y="165"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fEC-Mt-TbT">
