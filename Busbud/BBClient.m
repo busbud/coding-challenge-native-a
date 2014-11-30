@@ -93,7 +93,7 @@ NSString * const BBClientErrorDomain = @"BBClientErrorDomain";
         return [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
             NSURLComponents *components = [[NSURLComponents alloc] initWithURL: self.endpoint resolvingAgainstBaseURL: YES];
             components.path = @"/search";
-            components.query = [NSString stringWithFormat: @"lang=%@&limit=%d&lat=%f&lon=-%f", prefix, 5, location.coordinate.latitude, location.coordinate.longitude];
+            components.query = [NSString stringWithFormat: @"lang=%@&limit=%d&lat=%f&lon=%f", prefix, 5, location.coordinate.latitude, location.coordinate.longitude];
             NSLog(@"Final url = %@", components.URL);
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: components.URL];
             [request setValue: token forHTTPHeaderField: @"X-Busbud-Token"];
