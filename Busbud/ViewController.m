@@ -12,6 +12,8 @@
 
 #import <FXKeychain/FXKeychain.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveCocoa/RACEXTScope.h>
+
 @import CoreLocation;
 
 @interface ViewController () <CLLocationManagerDelegate>
@@ -29,25 +31,15 @@
                                               locale: NSLocale.currentLocale
                                             keychain: [FXKeychain defaultKeychain]];
     
-    self.manager = [[CLLocationManager alloc] init];
-    [self.manager requestWhenInUseAuthorization];
-    self.manager.delegate = self;
-    RAC(self, origin) = [[[[[self rac_signalForSelector: @selector(locationManager:didUpdateLocations:)
-                       fromProtocol: @protocol(CLLocationManagerDelegate)] map:^id(RACTuple *tuple) {
-        return [tuple[1] lastObject];
-    }] doNext:^(id x) {
-        [self.manager stopUpdatingLocation];
-    }] flattenMap:^RACStream *(CLLocation *location) {
-        return [[self.client search: nil around: location origin: nil] collect];
-    }] map:^id(NSArray *results) {
-        return results.lastObject;
-    }];
-    
+
     RAC(self, title) = [RACObserve(self, origin) map:^id(BBCity *city) {
         NSLog(@"Chaging title to %@", city.fullname);
         return city.fullname;
     }];
-    
+
+    self.manager = [[CLLocationManager alloc] init];
+    [self.manager requestWhenInUseAuthorization];
+    self.manager.delegate = self;
     [self.manager startUpdatingLocation];
 }
 
@@ -60,7 +52,13 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    NSLog(@"Locations = %@", locations);
+    [manager stopUpdatingLocation];
+    
+    @weakify(self);
+    [[[self.client search: nil around: locations.lastObject origin: nil] collect] subscribeNext:^(NSArray *suggestions) {
+        @strongify(self);
+        self.origin = suggestions.firstObject;
+    }];
 }
 
 @end
