@@ -12,8 +12,6 @@
 
 #import <FXKeychain/FXKeychain.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <ReactiveCocoa/RACEXTScope.h>
-
 @import CoreLocation;
 
 @interface ViewController () <CLLocationManagerDelegate>
@@ -22,6 +20,7 @@
 @property (nonatomic, strong) CLLocationManager *manager;
 @property (nonatomic, strong) BBCity *origin;
 
+@property (nonatomic, strong) UILabel *originCityLabel;
 @end
 
 @implementation ViewController
@@ -31,15 +30,24 @@
                                               locale: NSLocale.currentLocale
                                             keychain: [FXKeychain defaultKeychain]];
     
-
-    RAC(self, title) = [RACObserve(self, origin) map:^id(BBCity *city) {
-        NSLog(@"Chaging title to %@", city.fullname);
-        return city.fullname;
-    }];
-
     self.manager = [[CLLocationManager alloc] init];
     [self.manager requestWhenInUseAuthorization];
     self.manager.delegate = self;
+    RAC(self, origin) = [[[[[self rac_signalForSelector: @selector(locationManager:didUpdateLocations:)
+                       fromProtocol: @protocol(CLLocationManagerDelegate)] map:^id(RACTuple *tuple) {
+        return [tuple[1] lastObject];
+    }] doNext:^(id x) {
+        [self.manager stopUpdatingLocation];
+    }] flattenMap:^RACStream *(CLLocation *location) {
+        return [[self.client search: nil around: location origin: nil] collect];
+    }] map:^id(NSArray *results) {
+        return results.lastObject;
+    }];
+    
+    RAC(self.originField, text) = [RACObserve(self, origin) map:^id(BBCity *city) {
+        return city.fullname;
+    }];
+    
     [self.manager startUpdatingLocation];
 }
 
@@ -52,13 +60,23 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    [manager stopUpdatingLocation];
+    NSLog(@"Locations = %@", locations);
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    @weakify(self);
-    [[[self.client search: nil around: locations.lastObject origin: nil] collect] subscribeNext:^(NSArray *suggestions) {
-        @strongify(self);
-        self.origin = suggestions.firstObject;
-    }];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 0;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 0;
 }
 
 @end
