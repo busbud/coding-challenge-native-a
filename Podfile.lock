@@ -2,14 +2,14 @@ PODS:
   - Expecta (0.3.1)
   - FXKeychain (1.5.2)
   - Mantle (1.5.1):
-    - Mantle/extobjc
+    - Mantle/extobjc (= 1.5.1)
   - Mantle/extobjc (1.5.1)
   - OCMock (3.1.1)
   - OHHTTPStubs (3.1.7):
-    - OHHTTPStubs/Core
+    - OHHTTPStubs/Core (= 3.1.7)
   - OHHTTPStubs/Core (3.1.7)
   - ReactiveCocoa (2.3.1):
-    - ReactiveCocoa/UI
+    - ReactiveCocoa/UI (= 2.3.1)
   - ReactiveCocoa/Core (2.3.1):
     - ReactiveCocoa/no-arc
   - ReactiveCocoa/no-arc (2.3.1)
@@ -35,4 +35,4 @@ SPEC CHECKSUMS:
   ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
   Specta: 9141310f46b1f68b676650ff2854e1ed0b74163a
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.35.0
