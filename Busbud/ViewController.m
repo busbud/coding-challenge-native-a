@@ -20,7 +20,6 @@
 @property (nonatomic, strong) CLLocationManager *manager;
 @property (nonatomic, strong) BBCity *origin;
 
-@property (nonatomic, strong) UILabel *originCityLabel;
 @end
 
 @implementation ViewController
@@ -29,25 +28,13 @@
     self.client = [[BBClient alloc] initWithEndpoint: [NSURL URLWithString: @"https://busbud-napi-prod.global.ssl.fastly.net"]
                                               locale: NSLocale.currentLocale
                                             keychain: [FXKeychain defaultKeychain]];
-    
+    RAC(self.originCityField, text) = [RACObserve(self, origin) map:^id(BBCity *city) {
+        return city.fullname;
+    }];
+
     self.manager = [[CLLocationManager alloc] init];
     [self.manager requestWhenInUseAuthorization];
     self.manager.delegate = self;
-    RAC(self, origin) = [[[[[self rac_signalForSelector: @selector(locationManager:didUpdateLocations:)
-                       fromProtocol: @protocol(CLLocationManagerDelegate)] map:^id(RACTuple *tuple) {
-        return [tuple[1] lastObject];
-    }] doNext:^(id x) {
-        [self.manager stopUpdatingLocation];
-    }] flattenMap:^RACStream *(CLLocation *location) {
-        return [[self.client search: nil around: location origin: nil] collect];
-    }] map:^id(NSArray *results) {
-        return results.lastObject;
-    }];
-    
-    RAC(self.originField, text) = [RACObserve(self, origin) map:^id(BBCity *city) {
-        return city.fullname;
-    }];
-    
     [self.manager startUpdatingLocation];
 }
 
@@ -60,7 +47,13 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    [manager stopUpdatingLocation];
     NSLog(@"Locations = %@", locations);
+    
+    RACSignal *searchSignal = [[self.client search: nil around: locations.firstObject origin: nil] collect];
+    [[searchSignal deliverOn: RACScheduler.mainThreadScheduler] subscribeNext:^(NSArray *results) {
+        self.origin = results.firstObject;
+    }];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

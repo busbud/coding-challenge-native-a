@@ -10,8 +10,8 @@
 
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *originField;
-@property (weak, nonatomic) IBOutlet UITextField *destinationField;
+@property (weak, nonatomic) IBOutlet UITextField *originCityField;
+@property (weak, nonatomic) IBOutlet UITextField *destinationCityField;
 
 @end
 

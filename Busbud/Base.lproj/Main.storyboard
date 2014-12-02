@@ -108,8 +108,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="Xfo-F1-tVf"/>
                     <connections>
-                        <outlet property="destinationField" destination="gdu-q2-sCZ" id="muI-jq-ApM"/>
-                        <outlet property="originField" destination="b0z-LF-f46" id="Nsd-7T-RNR"/>
+                        <outlet property="destinationCityField" destination="gdu-q2-sCZ" id="3N5-3X-PWk"/>
+                        <outlet property="originCityField" destination="b0z-LF-f46" id="1BI-Vi-90V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qbv-ap-yoS" userLabel="First Responder" sceneMemberID="firstResponder"/>
