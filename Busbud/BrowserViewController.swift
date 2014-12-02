@@ -8,13 +8,14 @@
 
 import UIKit
 
-class BrowserViewController: UIViewController {
+@objc class BrowserViewController: UIViewController {
 
     @IBOutlet weak var browser: UIWebView!
+    var url: NSURL!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        browser.loadRequest(NSURLRequest(URL: NSURL(string: "http://busbud.com")!));
+        browser.loadRequest(NSURLRequest(URL: url));
     }
 }

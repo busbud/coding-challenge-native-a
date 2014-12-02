@@ -13,11 +13,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Hk9-Xr-94O"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uqh-mM-8P3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Wx-fT-ou6">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
@@ -131,6 +131,7 @@
                         <outlet property="destinationCityField" destination="gdu-q2-sCZ" id="3N5-3X-PWk"/>
                         <outlet property="originCityField" destination="b0z-LF-f46" id="1BI-Vi-90V"/>
                         <outlet property="tableView" destination="fqS-hy-EKi" id="e8C-mZ-oMO"/>
+                        <segue destination="9zJ-sp-9a8" kind="show" identifier="ToSchedules" id="UIQ-wO-28a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qbv-ap-yoS" userLabel="First Responder" sceneMemberID="firstResponder"/>
