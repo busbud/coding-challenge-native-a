@@ -19,6 +19,7 @@
 @property (nonatomic, strong) BBClient *client;
 @property (nonatomic, strong) CLLocationManager *manager;
 @property (nonatomic, strong) BBCity *origin;
+@property (nonatomic, copy) NSArray *destinations;
 
 @end
 
@@ -51,8 +52,17 @@
     NSLog(@"Locations = %@", locations);
     
     RACSignal *searchSignal = [[self.client search: nil around: locations.firstObject origin: nil] collect];
-    [[searchSignal deliverOn: RACScheduler.mainThreadScheduler] subscribeNext:^(NSArray *results) {
-        self.origin = results.firstObject;
+    [[[[[searchSignal deliverOn: RACScheduler.mainThreadScheduler] map:^id(NSArray *results) {
+        return results.firstObject;
+    }] doNext: ^(BBCity *originCity) {
+        self.origin = originCity;
+    }] flattenMap:^RACStream *(BBCity *originCity) {
+        return [[self.client search: nil around: nil origin: originCity] collect];
+    }] subscribeNext:^(NSArray *destinations) {
+        NSLog(@"Destinations = %@", destinations);
+        self.destinations = destinations;
+    } completed:^{
+        NSLog(@"Reload!");
     }];
 }
 
