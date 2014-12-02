@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *originCityField;
 @property (weak, nonatomic) IBOutlet UITextField *destinationCityField;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
