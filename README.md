@@ -1,7 +1,7 @@
 # Busbud native challenge
 
-![https://raw.githubusercontent.com/PerfectlyCooked/coding-challenge-native-a/master/screenshots/screenshot1.png](Home screenshot)
-![https://raw.githubusercontent.com/PerfectlyCooked/coding-challenge-native-a/master/screenshots/screenshot2.png](Home screenshot)
+![Home screenshot](https://raw.githubusercontent.com/PerfectlyCooked/coding-challenge-native-a/master/screenshots/screenshot1.png)
+![Browser screenshot](https://raw.githubusercontent.com/PerfectlyCooked/coding-challenge-native-a/master/screenshots/screenshot2.png)
 
 ## How to install
 
