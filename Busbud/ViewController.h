@@ -11,8 +11,9 @@
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *originCityField;
-@property (weak, nonatomic) IBOutlet UITextField *destinationCityField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *originContainer;
+
 
 @end
 

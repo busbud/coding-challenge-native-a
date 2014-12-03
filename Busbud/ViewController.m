@@ -29,6 +29,11 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
+    UIColor *busbudColor = self.navigationController.navigationBar.barTintColor;
+    self.originContainer.backgroundColor = busbudColor;
+    
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"logo"]];
+    
     self.client = [[BBClient alloc] initWithEndpoint: [NSURL URLWithString: @"https://busbud-napi-prod.global.ssl.fastly.net"]
                                               locale: NSLocale.currentLocale
                                             keychain: [FXKeychain defaultKeychain]];

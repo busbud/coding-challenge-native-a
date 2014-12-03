@@ -124,6 +124,7 @@
                     <navigationItem key="navigationItem" id="Xfo-F1-tVf"/>
                     <connections>
                         <outlet property="originCityField" destination="b0z-LF-f46" id="1BI-Vi-90V"/>
+                        <outlet property="originContainer" destination="Qwo-V6-PJ9" id="TRS-mQ-YHv"/>
                         <outlet property="tableView" destination="fqS-hy-EKi" id="e8C-mZ-oMO"/>
                         <segue destination="9zJ-sp-9a8" kind="show" identifier="ToSchedules" id="UIQ-wO-28a"/>
                     </connections>
