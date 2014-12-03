@@ -110,6 +110,13 @@ describe(@"with a token", ^{
         expect(laval.url).to.equal(@"Laval,Quebec,Canada");
         expect(laval.fullname).to.equal(@"Laval, Quebec, Canada");
     });
+    
+    it(@"should build a proper URL", ^{
+        NSDictionary *parameters = @{@"q": @"Mont", @"limit": @5};
+        NSURL *searchURL = [client createURLForEndpoint: @"search" parameters: parameters];
+        NSURLComponents *components = [NSURLComponents componentsWithURL: searchURL resolvingAgainstBaseURL: NO];
+        expect(components.query).to.equal(@"lang=en&q=Mont&limit=5");
+    });
 });
 
 SpecEnd

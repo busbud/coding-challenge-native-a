@@ -28,4 +28,6 @@ typedef NS_ENUM(NSUInteger, BBClientError) {
 
 - (RACSignal *)search:(NSString *)prefix around:(CLLocation *)location origin:(BBCity *)originCity;
 
+- (NSURL *)createURLForEndpoint:(NSString *)endpoint parameters:(NSDictionary *)parameters;
+
 @end

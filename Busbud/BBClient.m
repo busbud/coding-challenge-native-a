@@ -91,11 +91,23 @@ NSString * const BBClientErrorDomain = @"BBClientErrorDomain";
         NSLog(@"Got token %@", token);
         
         return [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
-            NSURLComponents *components = [[NSURLComponents alloc] initWithURL: self.endpoint resolvingAgainstBaseURL: YES];
-            components.path = @"/search";
-            components.query = [NSString stringWithFormat: @"lang=%@&q=%@&limit=%d&lat=%f&lon=%f&origin_id=%@", [self.locale objectForKey: NSLocaleLanguageCode], prefix, 5, location.coordinate.latitude, location.coordinate.longitude, originCity ? originCity.identifier : @""];
-            NSLog(@"Final url = %@", components.URL);
-            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: components.URL];
+            NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObject: @5 forKey: @"limit"];
+            if (prefix) {
+                parameters[@"q"] = prefix;
+            }
+            
+            if (location) {
+                parameters[@"lat"] = @(location.coordinate.latitude);
+                parameters[@"lon"] = @(location.coordinate.longitude);
+            }
+            
+            if (originCity) {
+                parameters[@"origin_id"] = originCity.identifier;
+            }
+            
+            NSURL *searchUrl = [self createURLForEndpoint: @"search" parameters: parameters];
+            NSLog(@"Final url = %@", searchUrl);
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: searchUrl];
             [request setValue: token forHTTPHeaderField: @"X-Busbud-Token"];
             
             NSURLSessionTask *task = [NSURLSession.sharedSession dataTaskWithRequest: request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -140,6 +152,24 @@ NSString * const BBClientErrorDomain = @"BBClientErrorDomain";
         
         return [RACSignal return: value];
     }];
+}
+
+- (NSURL *)createURLForEndpoint:(NSString *)endpoint parameters:(NSDictionary *)parameters {
+    NSURLComponents *components = [[NSURLComponents alloc] initWithURL: self.endpoint resolvingAgainstBaseURL: YES];
+    
+    if (![[endpoint substringWithRange:(NSRange){0, 1}] isEqualToString: @"/"]) {
+        endpoint = [@"/" stringByAppendingString: endpoint];
+    }
+    components.path = endpoint;
+
+    NSString *lang = [self.locale objectForKey: NSLocaleLanguageCode];
+    NSMutableString *query = [NSMutableString stringWithFormat: @"lang=%@", lang];
+    [parameters.allKeys enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
+        [query appendFormat: @"&%@=%@", key, parameters[key]];
+    }];
+    components.query = query;
+    
+    return components.URL;
 }
 
 @end
