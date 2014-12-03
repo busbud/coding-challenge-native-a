@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  Busbud
+
+  Created by Romain Pouclet on 2014-12-03.
+  Copyright (c) 2014 Romain Pouclet. All rights reserved.
+*/
+"SEARCH_ORIGIN_CITY_NOT_SUPPORTED"="I know, I know, I would probably have tapped here too but it's not supported right now, sorry about that!";
+"ALERT_DISMISS"="It's okay, I like you anyway";

@@ -74,6 +74,22 @@
     }];
 }
 
+#pragma mark UITextFieldDelegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    NSString *title = @"😰😱😨"; // Not using localized strings because emojis are universal
+    NSString *message = NSLocalizedString(@"SEARCH_ORIGIN_CITY_NOT_SUPPORTED", @"Warning message displayed on tap on origin city field");
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle: title
+                                                                        message: message
+                                                                 preferredStyle: UIAlertControllerStyleAlert];
+    [controller addAction: [UIAlertAction actionWithTitle: NSLocalizedString(@"ALERT_DISMISS", @"Dismiss button label full of love")
+                                                    style: UIAlertActionStyleDefault
+                                                  handler: nil]];
+    
+    [self presentViewController: controller animated: YES completion: nil];
+
+    return NO;
+}
+
 #pragma mark UITableViewDelegate / UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BBCity *city = self.destinations[indexPath.row];

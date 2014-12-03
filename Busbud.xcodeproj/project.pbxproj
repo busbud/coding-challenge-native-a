@@ -22,6 +22,7 @@
 		7AB411EF1A27D117006D2928 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AB411ED1A27D117006D2928 /* Main.storyboard */; };
 		7AB411F11A27D117006D2928 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AB411F01A27D117006D2928 /* Images.xcassets */; };
 		7AB411F41A27D117006D2928 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AB411F21A27D117006D2928 /* LaunchScreen.xib */; };
+		7AD88E441A2F55D400F664FC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7AD88E431A2F55D400F664FC /* Localizable.strings */; };
 		EF1B8FA86BF23F0626263F5C /* libPods-Busbud.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A84C656F41F4CD41E56BAFC /* libPods-Busbud.a */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		7AB411F31A27D117006D2928 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		7AB411F91A27D117006D2928 /* BusbudTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BusbudTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB411FE1A27D117006D2928 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7AD88E431A2F55D400F664FC /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		BA79E9924DB9A615F547E4D7 /* Pods-BusbudTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BusbudTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BusbudTests/Pods-BusbudTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D00FA9F4DD7757FEF930C97A /* Pods-Busbud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Busbud.release.xcconfig"; path = "Pods/Target Support Files/Pods-Busbud/Pods-Busbud.release.xcconfig"; sourceTree = "<group>"; };
 		F6379E472837482EB7EC6D60 /* Pods-Busbud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Busbud.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Busbud/Pods-Busbud.debug.xcconfig"; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			children = (
 				7AB411E41A27D117006D2928 /* Info.plist */,
 				7AB411E51A27D117006D2928 /* main.m */,
+				7AD88E431A2F55D400F664FC /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7AB411EF1A27D117006D2928 /* Main.storyboard in Resources */,
+				7AD88E441A2F55D400F664FC /* Localizable.strings in Resources */,
 				7AB411F41A27D117006D2928 /* LaunchScreen.xib in Resources */,
 				7AB411F11A27D117006D2928 /* Images.xcassets in Resources */,
 			);
