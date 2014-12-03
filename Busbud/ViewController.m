@@ -56,7 +56,7 @@
 
 #pragma mark CLLocationManager
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    NSLog(@"Failed with error %@", error);
+    NSLog(@"Unable to retrieve your location %@", error);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
