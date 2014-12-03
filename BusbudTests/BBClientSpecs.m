@@ -70,7 +70,7 @@ describe(@"with a token", ^{
         OCMStub([keychain objectForKey: BBClientTokenKey]).andReturn(@"GUESS_my-saved-token");
         
         client = [[BBClient alloc] initWithEndpoint: [NSURL URLWithString: @"https://busbud-napi-prod.herokuapp.com"]
-                                             locale: NSLocale.currentLocale
+                                             locale: [NSLocale localeWithLocaleIdentifier: @"en_US"]
                                            keychain: keychain];
         
         [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
