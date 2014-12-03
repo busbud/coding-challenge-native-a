@@ -71,10 +71,8 @@
     }] flattenMap:^RACStream *(BBCity *originCity) {
         return [[self.client search: nil around: nil origin: originCity] collect];
     }] deliverOn: RACScheduler.mainThreadScheduler] subscribeNext:^(NSArray *destinations) {
-        NSLog(@"Destinations = %@", destinations);
         self.destinations = destinations;
     } completed:^{
-        NSLog(@"Reload!");
         [self.tableView reloadData];
     }];
 }
