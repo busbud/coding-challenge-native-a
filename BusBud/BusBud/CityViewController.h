@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CityViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface CityViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, strong) NSString *languageString;
 @property (nonatomic, assign) SearchType searchType;

@@ -70,6 +70,11 @@ Updated by Chris Comeau: 2014.11.04
 IMPORTANT: To compile project, first install required Cocoapods in the Terminal :
 - `pod install`
 
+Open newly created workspace:
+
+- `open BusBud.xcworkspace`
+
+
 Project uses these Cocoapods:
 - `AFNetworking` for simple block based networking
 - `SVProgressHUD` show progress during network operation
@@ -81,8 +86,10 @@ Project uses these Cocoapods:
 - using similar font "Ashemore Softened Condensed Medium", purchased from `https://www.myfonts.com` reverse-found using `https://www.myfonts.com/WhatTheFont/`
 - using terms from `https://www.busbud.com/` like "Leaving from", "Going to"
 - using auto layout and size classes (not customized for different classes)
--API: did not use the `prefix` parameter yet, no filtering
--API: using `origin_id` parameter 
+- Filtering city with `&q=filter` parameter
+- API: using `origin_id` parameter 
+- Using NSTimer for API debounce
+
 ##Contact
 Thanks for the consideration and let me know if you have any questions!
 - Chris Comeau

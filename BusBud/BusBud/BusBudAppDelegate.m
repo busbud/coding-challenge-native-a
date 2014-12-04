@@ -76,8 +76,13 @@
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:urlString]]];
     
+    //hud
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"kStringSearching", nil)];
+    
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation* operation, id responseObject){
         
+        [SVProgressHUD dismiss];
+
         NSData* data =  [operation responseData];
         NSError* error;
         NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
@@ -107,6 +112,9 @@
     }failure:^(AFHTTPRequestOperation* operation, NSError* error){
         //error
         NSLog(@"Error getting API token ");
+        
+        [SVProgressHUD dismiss];
+
     }];
     
     [operation start];

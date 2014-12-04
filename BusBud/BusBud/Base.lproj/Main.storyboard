@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eNA-U2-RbW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eNA-U2-RbW">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -38,28 +38,40 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="cGo-ge-DQ3">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="40" width="600" height="496"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="l2l-FJ-jDx" id="p0f-5P-f1d"/>
                                     <outlet property="delegate" destination="l2l-FJ-jDx" id="cMS-Vc-0Nh"/>
                                 </connections>
                             </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Filter" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hen-xw-BPX">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="SZc-TC-b2U"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mxC-36-EY2" firstAttribute="leading" secondItem="cnt-nr-o2c" secondAttribute="leading" id="DdB-Bc-pXs"/>
-                            <constraint firstItem="cGo-ge-DQ3" firstAttribute="top" secondItem="cnt-nr-o2c" secondAttribute="top" id="GJy-32-dod"/>
+                            <constraint firstItem="hen-xw-BPX" firstAttribute="leading" secondItem="cnt-nr-o2c" secondAttribute="leading" id="DzA-QD-3vW"/>
+                            <constraint firstItem="cGo-ge-DQ3" firstAttribute="top" secondItem="cnt-nr-o2c" secondAttribute="top" constant="40" id="GJy-32-dod"/>
                             <constraint firstAttribute="trailing" secondItem="mxC-36-EY2" secondAttribute="trailing" id="a6g-nY-1Ms"/>
+                            <constraint firstItem="hen-xw-BPX" firstAttribute="top" secondItem="cnt-nr-o2c" secondAttribute="top" id="bPh-t9-sZ1"/>
                             <constraint firstAttribute="bottom" secondItem="cGo-ge-DQ3" secondAttribute="bottom" id="edR-re-EAN"/>
                             <constraint firstAttribute="trailing" secondItem="cGo-ge-DQ3" secondAttribute="trailing" id="jgg-qE-fQ3"/>
                             <constraint firstItem="cGo-ge-DQ3" firstAttribute="leading" secondItem="cnt-nr-o2c" secondAttribute="leading" id="k9G-cg-QSS"/>
                             <constraint firstAttribute="bottom" secondItem="mxC-36-EY2" secondAttribute="bottom" id="oPX-6x-dv5"/>
+                            <constraint firstAttribute="trailing" secondItem="hen-xw-BPX" secondAttribute="trailing" id="vEc-EP-nrH"/>
                             <constraint firstItem="mxC-36-EY2" firstAttribute="top" secondItem="cnt-nr-o2c" secondAttribute="top" id="vL6-xk-ppt"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="cGo-ge-DQ3" id="TZ6-nl-jhq"/>
+                        <outlet property="textView" destination="hen-xw-BPX" id="keS-OK-c7K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yNC-Jh-af5" userLabel="First Responder" sceneMemberID="firstResponder"/>

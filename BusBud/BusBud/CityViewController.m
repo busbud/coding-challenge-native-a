@@ -11,12 +11,14 @@
 
 @interface CityViewController ()
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UITextField *textView;
 
 @property (nonatomic, assign) float latitude;
 @property (nonatomic, assign) float longitude;
 @property (nonatomic, assign) BOOL alreadyUpdating;
 @property (strong, nonatomic) NSString *foundCityString;
 @property (strong, nonatomic) NSArray *citiesArray;
+@property (strong, nonatomic) NSTimer *timer;
 
 @end
 
@@ -27,9 +29,15 @@
     [super viewDidLoad];
     
     //title
-
     self.title = NSLocalizedString(@"kTitleCity", nil);
     
+    //text
+    self.textView.delegate = self;
+    self.textView.textColor = RGB(20,20,20);
+
+    self.textView.font = [UIFont fontWithName:@"AshemoreSoftCondMedium" size:16.0];
+    [self.textView addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+
     //table
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorColor = [UIColor whiteColor];
@@ -74,8 +82,8 @@
     self.longitude = kAppDelegate.locationManager.location.coordinate.longitude;
     
     [self updateData];
+    
     [self updateUI];
-
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
@@ -97,7 +105,6 @@
     
     if(self.alreadyUpdating)
         return;
-                        
     
     self.foundCityString = nil;
     self.citiesArray = nil;
@@ -135,7 +142,7 @@
         return;
     }
     
-    
+    //hud
     [SVProgressHUD showWithStatus:NSLocalizedString(@"kStringSearching", nil)];
     
     NSString * urlString = nil;
@@ -145,6 +152,12 @@
     if(self.fromId) {
         urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"%@%@", kAPICityOriginParam, self.fromId]];
     }
+    
+    //filter
+    urlString = [urlString stringByAppendingString:[NSString stringWithFormat:@"&q=%@",self.textView.text]];
+
+    //encode
+    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSLog(@"url: %@", urlString);
     
@@ -290,6 +303,42 @@
     
     [self updateData];
     [self updateUI];
+}
+
+#pragma mark - Text
+
+- (void)textFieldDidChange:(id)sender
+{
+    //update now
+    //[self updateData];
+
+    //update with timer, debounce
+    [self resetTimer];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+ 
+    return YES;
+}
+
+#pragma mark - Timer
+
+- (void)resetTimer{
+    
+    [self.timer invalidate];
+    self.timer = nil;
+    
+    float interval = 0.5f; //delay before triggering search
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:interval target:self
+                                                selector:@selector(actionTimer:) userInfo:@"actionTimer" repeats:NO];
+    
+}
+
+- (void) actionTimer:(NSTimer *)incomingTimer
+{
+        [self updateData];
 }
 
 
