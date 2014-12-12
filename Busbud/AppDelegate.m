@@ -20,15 +20,15 @@
                                            green: (CGFloat)124/255
                                             blue: (CGFloat)203/255
                                            alpha: 1.0];
+
     [[UINavigationBar appearance] setBarTintColor: busbudColor];
     [[UINavigationBar appearance] setTintColor: UIColor.whiteColor];
     [[UINavigationBar appearance] setShadowImage: [UIImage imageNamed:@"TransparentPixel"]];
-    // "Pixel" is a solid white 1x1 image.
     [[UINavigationBar appearance] setBackgroundImage: [UIImage imageNamed:@"Pixel"]
                                        forBarMetrics: UIBarMetricsDefault];
-    
+        
     [[UISearchBar appearance] setBarTintColor: busbudColor];
-    
+    [[UISearchBar appearance] setTintColor: UIColor.whiteColor];
     return YES;
 }
 

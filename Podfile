@@ -7,6 +7,7 @@ target 'Busbud' do
 	pod 'ReactiveCocoa', '~> 2.3'
 	pod 'Mantle', '~> 1.5'
 	pod 'FXKeychain', '~> 1.5'
+	pod 'SVProgressHUD', '~> 1.1'
 end
 
 target 'BusbudTests' do

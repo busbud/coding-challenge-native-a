@@ -71,4 +71,10 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.searchDelegate respondsToSelector: @selector(searchTableViewController:didSelectCity:)]) {
+        [self.searchDelegate searchTableViewController: self didSelectCity: self.cities[indexPath.row]];
+    }
+}
+
 @end

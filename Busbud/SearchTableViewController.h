@@ -8,9 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@class BBClient;
+@class BBClient, BBCity;
+@class SearchTableViewController;
+
+@protocol SearchTableViewControllerDelegate <NSObject>
+
+- (void)searchTableViewController:(SearchTableViewController *)controller didSelectCity:(BBCity *)city;
+
+@end
 
 @interface SearchTableViewController : UITableViewController
+
+@property (nonatomic, weak) id<SearchTableViewControllerDelegate> searchDelegate;
 
 - (instancetype)initWithClient:(BBClient *)client;
 - (void)updateWithSearchResultsFor:(NSString *)prefix;

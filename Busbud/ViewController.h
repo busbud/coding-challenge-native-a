@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UITableViewController <UITextFieldDelegate>
+@interface ViewController : UIViewController <UITableViewDataSource, UITabBarDelegate, UITextFieldDelegate>
+
+@property (nonatomic, weak) IBOutlet UIView *originContainer;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end
 
