@@ -70,7 +70,7 @@
     }] flattenMap:^RACStream *(BBCity *originCity) {
         @strongify(self);
         NSLog(@"Origin city changed : loading destinations");
-        return [[[self.client search: nil around: nil origin: originCity] collect] deliverOn: RACScheduler.mainThreadScheduler];
+        return [[[self.client search: nil around: nil origin: originCity limit: @20] collect] deliverOn: RACScheduler.mainThreadScheduler];
     }] subscribeNext:^(NSArray *destinations) {
         @strongify(self);
         NSLog(@"Destinations = %@", destinations);
@@ -105,7 +105,7 @@
     [manager stopUpdatingLocation];
 
     @weakify(self);
-    RACSignal *searchSignal = [[self.client search: nil around: locations.firstObject origin: nil] collect];
+    RACSignal *searchSignal = [[self.client search: nil around: locations.firstObject origin: nil limit: @1] collect];
     [[searchSignal map:^id(NSArray *results) {
         return results.firstObject;
     }] subscribeNext: ^(BBCity *originCity) {

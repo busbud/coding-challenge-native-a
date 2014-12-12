@@ -38,7 +38,7 @@
 }
 
 - (void)updateWithSearchResultsFor:(NSString *)prefix {
-    RACSignal *search = [[[self.client search: prefix around: nil origin: nil] collect] deliverOn: RACScheduler.mainThreadScheduler];
+    RACSignal *search = [[[self.client search: prefix around: nil origin: nil limit: @20] collect] deliverOn: RACScheduler.mainThreadScheduler];
     
     @weakify(self);
     [search subscribeNext:^(NSArray *cities) {

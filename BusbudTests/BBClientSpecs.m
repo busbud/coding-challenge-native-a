@@ -98,7 +98,7 @@ describe(@"with a token", ^{
     });
 
     it(@"should fetch cities around the user", ^{
-        RACSignal *searchSignal = [client search: @"Quebec" around: nil origin: nil];
+        RACSignal *searchSignal = [client search: @"Quebec" around: nil origin: nil limit: @5];
         NSArray *cities = [[searchSignal collect] asynchronousFirstOrDefault: nil success: &success error: &error];
         
         expect(success).to.beTruthy();

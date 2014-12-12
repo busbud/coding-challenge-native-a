@@ -86,12 +86,12 @@ NSString * const BBClientErrorDomain = @"BBClientErrorDomain";
     }];
 }
 
-- (RACSignal *)search:(NSString *)prefix around:(CLLocation *)location origin:(BBCity *)originCity {
+- (RACSignal *)search:(NSString *)prefix around:(CLLocation *)location origin:(BBCity *)originCity limit:(id)limit {
     return [[[[self fetchToken] flattenMap:^RACStream *(NSString *token) {
         NSLog(@"Got token %@", token);
         
         return [RACSignal createSignal: ^RACDisposable *(id<RACSubscriber> subscriber) {
-            NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObject: @5 forKey: @"limit"];
+            NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObject: limit forKey: @"limit"];
             if (prefix) {
                 parameters[@"q"] = prefix;
             }
