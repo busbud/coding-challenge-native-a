@@ -47,14 +47,7 @@
     self.searchController = [[UISearchController alloc] initWithSearchResultsController: searchController];
     self.searchController.searchBar.frame = CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), 44.);
     self.searchController.searchResultsUpdater = self;
-    
-    self.originContainer.translatesAutoresizingMaskIntoConstraints = NO;
-    self.searchController.searchBar.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.originContainer addSubview: self.searchController.searchBar];
-    [self.originContainer addConstraints: [NSLayoutConstraint constraintsWithVisualFormat: @"|-5-[searchBar]-5-|"
-                                                                                  options:NSLayoutFormatDirectionLeadingToTrailing
-                                                                                  metrics: @{}
-                                                                                    views: @{@"searchBar": self.searchController.searchBar}]];
+    self.tableView.tableHeaderView = self.searchController.searchBar;
     
     // Use Busbud logo
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"logo"]];
