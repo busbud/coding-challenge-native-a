@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  Busbud
+
+  Created by Romain Pouclet on 2014-12-03.
+  Copyright (c) 2014 Romain Pouclet. All rights reserved.
+*/
+"LOCATION_MANAGER_ERROR"="Unable to retrieve your current location 😞";
+"SEARCHING_DESTINATIONS"="Stand still, we are fetching a couple destinations for you...";
