@@ -14,6 +14,7 @@
 
 #import <FXKeychain/FXKeychain.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveCocoa/RACEXTScope.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 
 @import CoreLocation;
@@ -60,14 +61,18 @@
     
     [self.tableView registerClass: UITableViewCell.class forCellReuseIdentifier: @"CityCell"];
 
+    @weakify(self);
     [[[[RACObserve(self, origin) deliverOn: RACScheduler.mainThreadScheduler] doNext:^(BBCity *origin) {
+        @strongify(self);
         self.searchController.searchBar.text = origin.fullname;
         NSString *status = NSLocalizedString(@"SEARCHING_DESTINATIONS", @"Searching for destinations hud message");
         [SVProgressHUD showWithStatus: status maskType: SVProgressHUDMaskTypeBlack];
     }] flattenMap:^RACStream *(BBCity *originCity) {
+        @strongify(self);
         NSLog(@"Origin city changed : loading destinations");
         return [[[self.client search: nil around: nil origin: originCity] collect] deliverOn: RACScheduler.mainThreadScheduler];
     }] subscribeNext:^(NSArray *destinations) {
+        @strongify(self);
         NSLog(@"Destinations = %@", destinations);
         self.destinations = destinations;
         NSLog(@"Reloading");
@@ -98,11 +103,13 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     [manager stopUpdatingLocation];
-    
+
+    @weakify(self);
     RACSignal *searchSignal = [[self.client search: nil around: locations.firstObject origin: nil] collect];
     [[searchSignal map:^id(NSArray *results) {
         return results.firstObject;
     }] subscribeNext: ^(BBCity *originCity) {
+        @strongify(self);
         self.origin = originCity;
     }];
 }
