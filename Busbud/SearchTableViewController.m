@@ -38,14 +38,11 @@
 }
 
 - (void)updateWithSearchResultsFor:(NSString *)prefix {
-    NSLog(@"updateWithSearchResultsFor %@", prefix);
-
     RACSignal *search = [[[self.client search: prefix around: nil origin: nil] collect] deliverOn: RACScheduler.mainThreadScheduler];
     
     @weakify(self);
     [search subscribeNext:^(NSArray *cities) {
         @strongify(self);
-        NSLog(@"Cities = %@", cities);
         self.cities = cities;
         [self.tableView reloadData];
     } error:^(NSError *error) {
@@ -67,7 +64,7 @@
     BBCity *city = self.cities[indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: @"CityResultCell" forIndexPath:indexPath];
     cell.textLabel.text = city.fullname;
-    NSLog(@"Returning cell");
+
     return cell;
 }
 

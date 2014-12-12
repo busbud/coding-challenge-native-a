@@ -139,7 +139,6 @@
 #pragma mark UISearchResultsUpdating
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     NSString *newTerms = searchController.searchBar.text;
-    NSLog(@"NewTerms is = %@", newTerms);
     [(SearchTableViewController *)searchController.searchResultsController updateWithSearchResultsFor: newTerms];
 }
 
