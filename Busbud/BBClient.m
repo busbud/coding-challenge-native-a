@@ -23,7 +23,7 @@ NSString * const BBClientErrorDomain = @"BBClientErrorDomain";
 @property (nonatomic, strong) NSURL *endpoint;
 @property (nonatomic, strong) NSLocale *locale;
 @property (nonatomic, strong) FXKeychain *keychain;
-
+@property (nonatomic, strong) NSURLSession *session;
 @end
 
 @implementation BBClient
@@ -34,6 +34,7 @@ NSString * const BBClientErrorDomain = @"BBClientErrorDomain";
         _endpoint = endpoint;
         _locale = locale;
         _keychain = keychain;
+        _session = [NSURLSession sessionWithConfiguration: NSURLSessionConfiguration.defaultSessionConfiguration];
     }
     
     return self;
@@ -50,8 +51,7 @@ NSString * const BBClientErrorDomain = @"BBClientErrorDomain";
     return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         NSURL *tokenUrl = [self.endpoint URLByAppendingPathComponent: @"/auth/guest"];
         
-        NSURLSession *session = NSURLSession.sharedSession;
-        NSURLSessionTask *task = [session dataTaskWithURL: tokenUrl completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSURLSessionTask *task = [self.session dataTaskWithURL: tokenUrl completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             if (error) {
                 [subscriber sendError: error];
                 return;
@@ -110,7 +110,7 @@ NSString * const BBClientErrorDomain = @"BBClientErrorDomain";
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: searchUrl];
             [request setValue: token forHTTPHeaderField: @"X-Busbud-Token"];
             
-            NSURLSessionTask *task = [NSURLSession.sharedSession dataTaskWithRequest: request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            NSURLSessionTask *task = [self.session dataTaskWithRequest: request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                 if (error) {
                     [subscriber sendError: error];
                     return;

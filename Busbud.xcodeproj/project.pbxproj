@@ -23,6 +23,7 @@
 		7AB411F11A27D117006D2928 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AB411F01A27D117006D2928 /* Images.xcassets */; };
 		7AB411F41A27D117006D2928 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AB411F21A27D117006D2928 /* LaunchScreen.xib */; };
 		7AD88E441A2F55D400F664FC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7AD88E431A2F55D400F664FC /* Localizable.strings */; };
+		827E551F1A375DC200559596 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 827E551E1A375DC200559596 /* SearchTableViewController.m */; };
 		EF1B8FA86BF23F0626263F5C /* libPods-Busbud.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A84C656F41F4CD41E56BAFC /* libPods-Busbud.a */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,8 @@
 		7AB411F91A27D117006D2928 /* BusbudTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BusbudTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB411FE1A27D117006D2928 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7AD88E431A2F55D400F664FC /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		827E551D1A375DC200559596 /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
+		827E551E1A375DC200559596 /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		BA79E9924DB9A615F547E4D7 /* Pods-BusbudTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BusbudTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BusbudTests/Pods-BusbudTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D00FA9F4DD7757FEF930C97A /* Pods-Busbud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Busbud.release.xcconfig"; path = "Pods/Target Support Files/Pods-Busbud/Pods-Busbud.release.xcconfig"; sourceTree = "<group>"; };
 		F6379E472837482EB7EC6D60 /* Pods-Busbud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Busbud.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Busbud/Pods-Busbud.debug.xcconfig"; sourceTree = "<group>"; };
@@ -144,6 +147,8 @@
 				62BB68D01A281276006229B4 /* BBCity.m */,
 				62BB68D41A2A2DD5006229B4 /* BrowserViewController.swift */,
 				62BB68D31A2A2DD4006229B4 /* Busbud-Bridging-Header.h */,
+				827E551D1A375DC200559596 /* SearchTableViewController.h */,
+				827E551E1A375DC200559596 /* SearchTableViewController.m */,
 			);
 			path = Busbud;
 			sourceTree = "<group>";
@@ -230,7 +235,7 @@
 				TargetAttributes = {
 					7AB411DF1A27D117006D2928 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = N7684Y42UF;
+						DevelopmentTeam = 24BQCVN9W2;
 					};
 					7AB411F81A27D117006D2928 = {
 						CreatedOnToolsVersion = 6.2;
@@ -348,6 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				827E551F1A375DC200559596 /* SearchTableViewController.m in Sources */,
 				62BB68D11A281276006229B4 /* BBCity.m in Sources */,
 				626D6F811A28034800B72343 /* BBClient.m in Sources */,
 				7AB411EC1A27D117006D2928 /* ViewController.m in Sources */,
@@ -416,6 +422,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -458,6 +465,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -482,11 +490,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Busbud/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Busbud/Busbud-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -499,11 +510,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Busbud/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Busbud/Busbud-Bridging-Header.h";
 			};
 			name = Release;

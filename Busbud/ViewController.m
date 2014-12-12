@@ -10,12 +10,13 @@
 #import "BBClient.h"
 #import "BBCity.h"
 #import "Busbud-Swift.h"
+#import "SearchTableViewController.h"
 
 #import <FXKeychain/FXKeychain.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 @import CoreLocation;
 
-@interface ViewController () <CLLocationManagerDelegate>
+@interface ViewController () <CLLocationManagerDelegate, UISearchResultsUpdating>
 
 @property (nonatomic, strong) BBClient *client;
 @property (nonatomic, strong) CLLocationManager *manager;
@@ -23,23 +24,29 @@
 @property (nonatomic, strong) BBCity *destination;
 
 @property (nonatomic, copy) NSArray *destinations;
-
+@property (nonatomic, strong) UISearchController *searchController;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
-    UIColor *busbudColor = self.navigationController.navigationBar.barTintColor;
-    self.originContainer.backgroundColor = busbudColor;
-    
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"logo"]];
-    
     self.client = [[BBClient alloc] initWithEndpoint: [NSURL URLWithString: @"https://busbud-napi-prod.global.ssl.fastly.net"]
                                               locale: NSLocale.currentLocale
                                             keychain: [FXKeychain defaultKeychain]];
-    RAC(self.originCityField, text) = [[RACObserve(self, origin) deliverOn: RACScheduler.mainThreadScheduler] map:^id(BBCity *city) {
-        return city.fullname;
-    }];
+
+    // Setup search controller
+    self.definesPresentationContext = YES;
+    SearchTableViewController *searchController = [[SearchTableViewController alloc] initWithClient: self.client];
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController: searchController];
+    self.searchController.searchBar.frame = CGRectMake(0, 0, CGRectGetWidth(self.tableView.frame), 44.);
+    self.searchController.searchResultsUpdater = self;
+//    self.searchController.hidesNavigationBarDuringPresentation = NO;
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+    
+    // Use Busbud logo
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"logo"]];
+    
+    [self.tableView registerClass: UITableViewCell.class forCellReuseIdentifier: @"CityCell"];
 
     self.manager = [[CLLocationManager alloc] init];
     [self.manager requestWhenInUseAuthorization];
@@ -68,10 +75,13 @@
         return results.firstObject;
     }] doNext: ^(BBCity *originCity) {
         self.origin = originCity;
+        self.searchController.searchBar.text = originCity.fullname;
     }] flattenMap:^RACStream *(BBCity *originCity) {
         return [[self.client search: nil around: nil origin: originCity] collect];
     }] deliverOn: RACScheduler.mainThreadScheduler] subscribeNext:^(NSArray *destinations) {
         self.destinations = destinations;
+    } error:^(NSError *error) {
+        NSLog(@"Got error = %@", error);
     } completed:^{
         [self.tableView reloadData];
     }];
@@ -104,7 +114,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.destination = self.destinations[indexPath.row];
-
     [self performSegueWithIdentifier: @"ToSchedules" sender: self];
 }
 
@@ -114,6 +123,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.destinations.count;
+}
+
+#pragma mark UISearchResultsUpdating
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    NSString *newTerms = searchController.searchBar.text;
+    NSLog(@"NewTerms is = %@", newTerms);
+    [(SearchTableViewController *)searchController.searchResultsController updateWithSearchResultsFor: newTerms];
 }
 
 @end

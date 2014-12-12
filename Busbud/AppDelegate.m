@@ -27,6 +27,8 @@
     [[UINavigationBar appearance] setBackgroundImage: [UIImage imageNamed:@"Pixel"]
                                        forBarMetrics: UIBarMetricsDefault];
     
+    [[UISearchBar appearance] setBarTintColor: busbudColor];
+    
     return YES;
 }
 
