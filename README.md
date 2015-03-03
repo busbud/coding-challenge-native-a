@@ -1,9 +1,19 @@
-# Details
+# Installation
+Pods need to be installed for a Swift projet.
+Xcode 6 is required
+$ gem install cocoapods --pre
+$ cd /path/to/project
+$ pod install
 
-#Notes
+Now use the generated .xcodeworkspace to launch the project!
 
+Note: Since this app uses location services, it is better to test it from an iOS device.
+
+# Notes
 Style guide used to implement the solution: `https://github.com/raywenderlich/swift-style-guide`
 - In Swift, classes should NOT be prefixed. (i.e. City model is named City and not BBCity)
+
+
 
 # Requirements
 Write a native Busbud app that
