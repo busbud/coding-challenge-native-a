@@ -3,7 +3,7 @@ Pods need to be installed for a Swift projet. Xcode 6 is required.
 
 $ gem install cocoapods --pre
 
-$ cd /path/to/project
+$ cd coding-challenge-native-a/Busbud-Challenge
 
 $ pod install
 
