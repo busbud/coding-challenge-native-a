@@ -1,8 +1,10 @@
 # Installation
-Pods need to be installed for a Swift projet.
-Xcode 6 is required
+Pods need to be installed for a Swift projet. Xcode 6 is required.
+
 $ gem install cocoapods --pre
+
 $ cd /path/to/project
+
 $ pod install
 
 Now use the generated .xcodeworkspace to launch the project!
