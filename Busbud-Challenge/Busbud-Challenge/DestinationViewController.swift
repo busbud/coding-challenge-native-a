@@ -23,12 +23,16 @@ class DestinationViewController: BusbudViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        adaptUI()
+    }
+    
+    private func adaptUI() {
         cityNameLabel.text = "\(city.name)"
         cityNameLabel.font = UIFont(name: "Lucida Grande", size: 15.0)
         destinationTextField.font = UIFont(name: "Lucida Grande", size: 15.0)
+       
+        // Remove default tableView separators
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
-        
-        
     }
     
     @IBAction func searchButtonTapped(sender: AnyObject) {
@@ -70,8 +74,6 @@ class DestinationViewController: BusbudViewController {
     }
     
     // MARK: - Navigation
-
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "WebView" {
             let vc = segue.destinationViewController as WebViewViewController
@@ -104,6 +106,8 @@ extension DestinationViewController: UITextFieldDelegate {
 extension DestinationViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell : UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("CityCell") as? UITableViewCell
+        
+        // Simple cell UI
         cell?.backgroundColor = UIColor(red: 18/255, green: 124/255, blue: 203/255, alpha: 0.8)
         cell!.textLabel!.text = _destinationCites[indexPath.row].name
         cell?.textLabel?.font = UIFont(name: "Lucida Grande", size: 15.0)
@@ -122,7 +126,7 @@ extension DestinationViewController: UITableViewDataSource {
 // MARK: UITableViewDelegate
 extension DestinationViewController: UITableViewDelegate {
     /*
-    Tells the delegate the table view is about to draw a cell for a particular row.
+    Remove separators when generating cell
     */
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
         forRowAtIndexPath indexPath: NSIndexPath)
@@ -145,7 +149,6 @@ extension DestinationViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Select destination city and dismiss tableView
-        
         destinationTextField.resignFirstResponder()
         destinationTextField.text = _destinationCites[indexPath.row].name
         self.destinationCity = _destinationCites[indexPath.row]

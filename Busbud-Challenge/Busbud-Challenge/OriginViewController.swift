@@ -14,6 +14,7 @@ import MBProgressHUD
 class OriginViewController: BusbudViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var shareLocationButton: UIButton!
+    
     private var _locationManager:CLLocationManager!
     private var _currentCity:City?
     private var _user:User!
@@ -25,20 +26,21 @@ class OriginViewController: BusbudViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
+        adaptUI()
+        
+        // Get the device's language and show it on the bottom screen
+        let language = NSLocale.preferredLanguages()[0] as String
+        _user = User(language: language)
+        languageLabel.text = "Lang: \(_user.language)"
 
+    }
+    
+    private func adaptUI() {
         contentView.layer.shadowColor = UIColor.blackColor().CGColor
         contentView.layer.shadowRadius = 3.0
         contentView.layer.shadowOffset = CGSizeMake(1, 1)
         contentView.layer.shadowOpacity = 0.3
-        
-        let language = NSLocale.preferredLanguages()[0] as String
-
-        _user = User(language: language)
-        
-        languageLabel.text = "Lang: \(_user.language)"
-
     }
     
     private func fetchUserLocation() {
@@ -57,11 +59,6 @@ class OriginViewController: BusbudViewController, CLLocationManagerDelegate {
         _loadingNotification.labelText = "Fetching your location..."
         
         fetchUserLocation()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     private func authorizeApp() {
@@ -109,6 +106,7 @@ class OriginViewController: BusbudViewController, CLLocationManagerDelegate {
         }
     }
     
+    // Get results from first city and transition to destination page
     private func parseFirstCityResults(json: JSON){
         
         let cityId = json["city_id"].string
@@ -117,7 +115,7 @@ class OriginViewController: BusbudViewController, CLLocationManagerDelegate {
         
         _currentCity = City(id: cityId!, name: name!, url:url!)
         
-        
+        // Make sure the transition is only done once
         if !_didFetchCityInfo {
             _didFetchCityInfo = true
             self.performSegueWithIdentifier("destinationSegue", sender: self)
