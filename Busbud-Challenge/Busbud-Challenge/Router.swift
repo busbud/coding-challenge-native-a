@@ -12,10 +12,12 @@ import Alamofire
 enum Router: URLRequestConvertible {
     static let baseURLString = "https://busbud-napi-prod.global.ssl.fastly.net"
     static var BusbudToken: String?
+    static var limit = 5
     
     case Authorize
-    case SearchOrigin(lang: String, limit: String, lat: String, lon: String)
-    case SearchDest(lang: String, limit: String, lat: String, lon: String, originId: String)
+    case SearchOrigin(lang: String, lat: String, lon: String)
+    case SearchDest(q: String, lang: String, lat: String, lon: String, originId: String)
+    case WebView(lang: String, originUrl: String, destUrl: String)
     
     var method: Alamofire.Method {
         switch self {
@@ -24,6 +26,8 @@ enum Router: URLRequestConvertible {
         case .SearchOrigin:
             return .GET
         case .SearchDest:
+            return .GET
+        case .WebView:
             return .GET
         }
     }
@@ -36,14 +40,25 @@ enum Router: URLRequestConvertible {
             return "/search"
         case .SearchDest:
             return "/search"
+        case .WebView(let lang, let originUrl, let destUrl):
+            return "https://www.busbud.com/\(lang)/bus-schedules/\(originUrl)/\(destUrl)"
         }
     }
     
     // MARK: URLRequestConvertible
     
     var URLRequest: NSURLRequest {
-        let URL = NSURL(string: Router.baseURLString)!
-        let mutableURLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
+        var URL: NSURL
+        var mutableURLRequest: NSMutableURLRequest
+        switch self {
+        case .WebView:
+            URL = NSURL(string: path)!
+            mutableURLRequest = NSMutableURLRequest(URL: URL)
+        default:
+            URL = NSURL(string: Router.baseURLString)!
+            mutableURLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
+        }
+        
         mutableURLRequest.HTTPMethod = method.rawValue
         
         if let token = Router.BusbudToken {
@@ -53,12 +68,10 @@ enum Router: URLRequestConvertible {
         switch self {
         case .Authorize:
             return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: nil).0
-        case .SearchOrigin(let lang, let limit, let lat, let lon):
-            let parameters = ["lang":lang, "limit":limit, "lat":lat, "lon":lon]
-            return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: parameters).0
-        case .SearchDest(let lang, let limit, let lat, let lon, let originId):
-            let parameters = ["lang":lang, "limit":limit, "lat":lat, "lon":lon, "originId":originId]
-            return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: parameters).0
+        case .SearchOrigin(let lang, let lat, let lon):
+            return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: ["lang":lang, "limit":Router.limit, "lat":lat, "lon":lon]).0
+        case .SearchDest(let q, let lang, let lat, let lon, let originId):
+            return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: ["q":q, "lang":lang, "limit":Router.limit, "lat":lat, "lon":lon, "originId":originId]).0
         default:
             return mutableURLRequest
         }
