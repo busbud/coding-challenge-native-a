@@ -38,7 +38,16 @@ class DestinationViewController: BusbudViewController {
     @IBAction func searchButtonTapped(sender: AnyObject) {
         destinationTextField.resignFirstResponder()
         
-        self.performSegueWithIdentifier("WebView", sender: self)
+
+        if let destinationCity = self.destinationCity {
+            if self.destinationCity?.name == self.destinationTextField.text {
+                self.performSegueWithIdentifier("WebView", sender: self)
+            } else {
+                Alert.Warning(self, message: "Please select a destination from the list")
+            }
+        } else {
+            Alert.Warning(self, message: "Make sure to choose a destination!")
+        }
     }
     
     private func fetchDestinations(q: String){
