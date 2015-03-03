@@ -15,8 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        // Setup default UINavigationBar
+        setupNavigationBar()
+        
         return true
+    }
+    
+    private func setupNavigationBar() {
+        var navigationBarAppearace = UINavigationBar.appearance()
+        
+        navigationBarAppearace.tintColor = UIColor.whiteColor()
+        navigationBarAppearace.barTintColor = BusbudConstants.blueColor
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
     }
 
     func applicationWillResignActive(application: UIApplication) {

@@ -13,6 +13,17 @@
 		0C4F32C91AA522F6004F1A5E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32C81AA522F6004F1A5E /* Images.xcassets */; };
 		0C4F32CC1AA522F6004F1A5E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C4F32CA1AA522F6004F1A5E /* LaunchScreen.xib */; };
 		0C4F32D81AA522F6004F1A5E /* Busbud_ChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C4F32D71AA522F6004F1A5E /* Busbud_ChallengeTests.swift */; };
+		0C5F94471AA5252600A18F55 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F94461AA5252600A18F55 /* City.swift */; };
+		0C5F944A1AA5FD0B00A18F55 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F94491AA5FD0B00A18F55 /* Router.swift */; };
+		0C5F94651AA6056500A18F55 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F945B1AA6056500A18F55 /* SwiftyJSON.swift */; };
+		0C5F94661AA6056500A18F55 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F945C1AA6056500A18F55 /* Info.plist */; };
+		0C5F94671AA6056500A18F55 /* Pods-SwiftyJSON.modulemap in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F945D1AA6056500A18F55 /* Pods-SwiftyJSON.modulemap */; };
+		0C5F94681AA6056500A18F55 /* Pods-SwiftyJSON.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F945E1AA6056500A18F55 /* Pods-SwiftyJSON.xcconfig */; };
+		0C5F94691AA6056500A18F55 /* Pods-SwiftyJSON-Private.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F945F1AA6056500A18F55 /* Pods-SwiftyJSON-Private.xcconfig */; };
+		0C5F946A1AA6056500A18F55 /* Pods-SwiftyJSON-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F94601AA6056500A18F55 /* Pods-SwiftyJSON-dummy.m */; };
+		0C5F946C1AA6057C00A18F55 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F946B1AA6057C00A18F55 /* User.swift */; };
+		0C5F946E1AA6071100A18F55 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F946D1AA6071100A18F55 /* Config.swift */; };
+		0C5F94701AA607A500A18F55 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F946F1AA607A500A18F55 /* Helpers.swift */; };
 		E65ED3B38CCE08BDD1B0FA5D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BA3E30F6140C13DF21A26B3 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -38,6 +49,19 @@
 		0C4F32D11AA522F6004F1A5E /* Busbud-ChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Busbud-ChallengeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C4F32D61AA522F6004F1A5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C4F32D71AA522F6004F1A5E /* Busbud_ChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Busbud_ChallengeTests.swift; sourceTree = "<group>"; };
+		0C5F94461AA5252600A18F55 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		0C5F94491AA5FD0B00A18F55 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		0C5F945B1AA6056500A18F55 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Source/SwiftyJSON.swift; sourceTree = "<group>"; };
+		0C5F945C1AA6056500A18F55 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C5F945D1AA6056500A18F55 /* Pods-SwiftyJSON.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "Pods-SwiftyJSON.modulemap"; sourceTree = "<group>"; };
+		0C5F945E1AA6056500A18F55 /* Pods-SwiftyJSON.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Pods-SwiftyJSON.xcconfig"; sourceTree = "<group>"; };
+		0C5F945F1AA6056500A18F55 /* Pods-SwiftyJSON-Private.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Pods-SwiftyJSON-Private.xcconfig"; sourceTree = "<group>"; };
+		0C5F94601AA6056500A18F55 /* Pods-SwiftyJSON-dummy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Pods-SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
+		0C5F94611AA6056500A18F55 /* Pods-SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pods-SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
+		0C5F94621AA6056500A18F55 /* Pods-SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Pods-SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
+		0C5F946B1AA6057C00A18F55 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0C5F946D1AA6071100A18F55 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		0C5F946F1AA607A500A18F55 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		12DF7F3FD23604447B9F8EB2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		922DA080BCA9558C33980BFC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,12 +108,17 @@
 		0C4F32BE1AA522F5004F1A5E /* Busbud-Challenge */ = {
 			isa = PBXGroup;
 			children = (
+				0C5F94641AA6056500A18F55 /* SwiftyJSON */,
+				0C5F94451AA5246200A18F55 /* Model */,
 				0C4F32C11AA522F6004F1A5E /* AppDelegate.swift */,
 				0C4F32C31AA522F6004F1A5E /* ViewController.swift */,
 				0C4F32C51AA522F6004F1A5E /* Main.storyboard */,
 				0C4F32C81AA522F6004F1A5E /* Images.xcassets */,
 				0C4F32CA1AA522F6004F1A5E /* LaunchScreen.xib */,
 				0C4F32BF1AA522F6004F1A5E /* Supporting Files */,
+				0C5F94491AA5FD0B00A18F55 /* Router.swift */,
+				0C5F946D1AA6071100A18F55 /* Config.swift */,
+				0C5F946F1AA607A500A18F55 /* Helpers.swift */,
 			);
 			path = "Busbud-Challenge";
 			sourceTree = "<group>";
@@ -117,6 +146,40 @@
 				0C4F32D61AA522F6004F1A5E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0C5F94451AA5246200A18F55 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0C5F94461AA5252600A18F55 /* City.swift */,
+				0C5F946B1AA6057C00A18F55 /* User.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		0C5F94631AA6056500A18F55 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0C5F945C1AA6056500A18F55 /* Info.plist */,
+				0C5F945D1AA6056500A18F55 /* Pods-SwiftyJSON.modulemap */,
+				0C5F945E1AA6056500A18F55 /* Pods-SwiftyJSON.xcconfig */,
+				0C5F945F1AA6056500A18F55 /* Pods-SwiftyJSON-Private.xcconfig */,
+				0C5F94601AA6056500A18F55 /* Pods-SwiftyJSON-dummy.m */,
+				0C5F94611AA6056500A18F55 /* Pods-SwiftyJSON-prefix.pch */,
+				0C5F94621AA6056500A18F55 /* Pods-SwiftyJSON-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-SwiftyJSON";
+			sourceTree = "<group>";
+		};
+		0C5F94641AA6056500A18F55 /* SwiftyJSON */ = {
+			isa = PBXGroup;
+			children = (
+				0C5F945B1AA6056500A18F55 /* SwiftyJSON.swift */,
+				0C5F94631AA6056500A18F55 /* Support Files */,
+			);
+			name = SwiftyJSON;
+			path = ../Pods/SwiftyJSON;
 			sourceTree = "<group>";
 		};
 		3AD057A8B7D406745CC5044C /* Frameworks */ = {
@@ -219,6 +282,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C5F94661AA6056500A18F55 /* Info.plist in Resources */,
+				0C5F94681AA6056500A18F55 /* Pods-SwiftyJSON.xcconfig in Resources */,
+				0C5F94691AA6056500A18F55 /* Pods-SwiftyJSON-Private.xcconfig in Resources */,
 				0C4F32C71AA522F6004F1A5E /* Main.storyboard in Resources */,
 				0C4F32CC1AA522F6004F1A5E /* LaunchScreen.xib in Resources */,
 				0C4F32C91AA522F6004F1A5E /* Images.xcassets in Resources */,
@@ -287,8 +353,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C5F946A1AA6056500A18F55 /* Pods-SwiftyJSON-dummy.m in Sources */,
+				0C5F944A1AA5FD0B00A18F55 /* Router.swift in Sources */,
 				0C4F32C41AA522F6004F1A5E /* ViewController.swift in Sources */,
+				0C5F94701AA607A500A18F55 /* Helpers.swift in Sources */,
+				0C5F94671AA6056500A18F55 /* Pods-SwiftyJSON.modulemap in Sources */,
+				0C5F946C1AA6057C00A18F55 /* User.swift in Sources */,
 				0C4F32C21AA522F6004F1A5E /* AppDelegate.swift in Sources */,
+				0C5F94651AA6056500A18F55 /* SwiftyJSON.swift in Sources */,
+				0C5F94471AA5252600A18F55 /* City.swift in Sources */,
+				0C5F946E1AA6071100A18F55 /* Config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

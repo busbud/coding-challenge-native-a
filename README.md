@@ -1,3 +1,10 @@
+# Details
+
+#Notes
+
+Style guide used to implement the solution: `https://github.com/raywenderlich/swift-style-guide`
+- In Swift, classes should NOT be prefixed. (i.e. City model is named City and not BBCity)
+
 # Requirements
 Write a native Busbud app that
 - uses geo-location to find the user's current city as an origin city

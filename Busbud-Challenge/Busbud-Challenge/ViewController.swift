@@ -7,12 +7,22 @@
 //
 
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let bbLogoImageView = UIImageView(image: UIImage(named: "logo"))
+        self.navigationItem.titleView = bbLogoImageView;
+
+       /* Alamofire.request(Router.Authorize)
+            .responseJSON { (_, _, data, _) in
+                println(data)
+                let json = JSON(data!)
+        }*/
     }
 
     override func didReceiveMemoryWarning() {
