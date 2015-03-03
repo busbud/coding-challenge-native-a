@@ -21,12 +21,17 @@ class OriginViewController: BusbudViewController, CLLocationManagerDelegate {
     private var _didFetchCityInfo = false
 
     @IBOutlet weak var languageLabel: UILabel!
+    @IBOutlet weak var contentView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-  
+
+        contentView.layer.shadowColor = UIColor.blackColor().CGColor
+        contentView.layer.shadowRadius = 3.0
+        contentView.layer.shadowOffset = CGSizeMake(1, 1)
+        contentView.layer.shadowOpacity = 0.3
         
         let language = NSBundle.mainBundle().preferredLocalizations.first as NSString
         

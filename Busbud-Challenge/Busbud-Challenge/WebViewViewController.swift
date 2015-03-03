@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MBProgressHUD
 
-class WebViewViewController: UIViewController {
+class WebViewViewController: BusbudViewController {
     
     var originCity: City!
     var destinationCity: City!
@@ -18,31 +19,46 @@ class WebViewViewController: UIViewController {
     @IBOutlet weak var closeButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: UIStatusBarAnimation.Fade)
 
         let routeRequest = Router.WebView(lang: user.language, originUrl: originCity.url, destUrl: destinationCity.url)
-        
+        self.webView.scrollView.bounces = false
         self.webView.loadRequest(routeRequest.URLRequest)
+        self.webView.delegate = self
 
     }
 
     @IBAction func closeButtonTapped(sender: AnyObject) {
+        UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: UIStatusBarAnimation.Fade)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        closeButton.layer.backgroundColor = BusbudConstants.blueColor.CGColor
+        closeButton.layer.cornerRadius = closeButton.frame.size.width/2
+        closeButton.layer.shadowColor = UIColor.blackColor().CGColor
+        closeButton.layer.shadowRadius = 3.0
+        closeButton.layer.shadowOffset = CGSizeMake(1, 1)
+        closeButton.layer.shadowOpacity = 0.3
     }
     
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+// MARK: UIWebViewDelegate
+extension WebViewViewController: UIWebViewDelegate {
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        _loadingNotification = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        _loadingNotification.mode = MBProgressHUDModeIndeterminate
+        _loadingNotification.labelText = "Getting ticket options!"
+        return true
     }
-    */
-
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+    }
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
+        MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+    }
 }

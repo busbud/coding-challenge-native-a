@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import MBProgressHUD
 
 class DestinationViewController: BusbudViewController {
 
@@ -63,7 +62,6 @@ class DestinationViewController: BusbudViewController {
                 } else {
                     println(error)
                 }
-                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
         }
     }
 
