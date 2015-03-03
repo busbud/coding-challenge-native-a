@@ -33,11 +33,10 @@ class OriginViewController: BusbudViewController, CLLocationManagerDelegate {
         contentView.layer.shadowOffset = CGSizeMake(1, 1)
         contentView.layer.shadowOpacity = 0.3
         
-        let language = NSBundle.mainBundle().preferredLocalizations.first as NSString
-        
+        let language = NSLocale.preferredLanguages()[0] as String
+
         _user = User(language: language)
         
-        println(language)
         languageLabel.text = "Lang: \(_user.language)"
 
     }

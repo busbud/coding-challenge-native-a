@@ -52,19 +52,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0SN-2M-EdT">
-                                <rect key="frame" x="10" y="255" width="301" height="177"/>
+                                <rect key="frame" x="10" y="255" width="301" height="192"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Busbud needs to access your location to serve you better!" textAlignment="center" lineBreakMode="clip" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aSG-Fu-cTa">
-                                        <rect key="frame" x="20" y="20" width="261" height="99"/>
-                                        <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="16"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Busbud needs to access your location to serve you better!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aSG-Fu-cTa">
+                                        <rect key="frame" x="20" y="20" width="261" height="102"/>
+                                        <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="18"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7N-Aq-8UN">
-                                        <rect key="frame" x="86" y="127" width="128" height="30"/>
+                                        <rect key="frame" x="86" y="130" width="128" height="42"/>
                                         <color key="backgroundColor" red="0.070588235294117646" green="0.48627450980392156" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="2Kj-nN-KIi"/>
+                                            <constraint firstAttribute="height" constant="42" id="2Kj-nN-KIi"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="14"/>
                                         <state key="normal" title="Share Location">
@@ -81,6 +81,7 @@
                                     <constraint firstItem="f7N-Aq-8UN" firstAttribute="top" secondItem="aSG-Fu-cTa" secondAttribute="bottom" constant="8" id="CqX-JR-nMQ"/>
                                     <constraint firstItem="f7N-Aq-8UN" firstAttribute="centerX" secondItem="aSG-Fu-cTa" secondAttribute="centerX" id="F8v-B0-FdL"/>
                                     <constraint firstItem="aSG-Fu-cTa" firstAttribute="top" secondItem="0SN-2M-EdT" secondAttribute="top" constant="20" id="LTw-oB-lO9"/>
+                                    <constraint firstAttribute="height" constant="192" id="T64-uI-df1"/>
                                     <constraint firstItem="f7N-Aq-8UN" firstAttribute="leading" secondItem="0SN-2M-EdT" secondAttribute="leading" constant="86" id="fi7-88-Ius"/>
                                     <constraint firstItem="aSG-Fu-cTa" firstAttribute="leading" secondItem="0SN-2M-EdT" secondAttribute="leading" constant="20" id="lOr-gM-cko"/>
                                     <constraint firstAttribute="bottom" secondItem="f7N-Aq-8UN" secondAttribute="bottom" constant="20" id="qgW-DL-Sdc"/>
@@ -100,7 +101,6 @@
                             <constraint firstItem="0SN-2M-EdT" firstAttribute="top" secondItem="hOl-0D-35q" secondAttribute="bottom" constant="26" id="K1E-mb-Xat"/>
                             <constraint firstItem="hOl-0D-35q" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="MWb-s4-yvi"/>
                             <constraint firstItem="Kt2-kI-eXu" firstAttribute="centerX" secondItem="hOl-0D-35q" secondAttribute="centerX" id="deV-ID-kWW"/>
-                            <constraint firstItem="V3k-To-Z3z" firstAttribute="top" secondItem="0SN-2M-EdT" secondAttribute="bottom" constant="95" id="l80-0U-r4Y"/>
                             <constraint firstItem="Kt2-kI-eXu" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="11" id="vyZ-cw-VYC"/>
                             <constraint firstItem="0SN-2M-EdT" firstAttribute="top" secondItem="Kt2-kI-eXu" secondAttribute="bottom" constant="36" id="y3g-oo-vVn"/>
                         </constraints>
