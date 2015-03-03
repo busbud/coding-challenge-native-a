@@ -1,3 +1,22 @@
+# Installation
+Pods need to be installed for a Swift projet. Xcode 6 is required.
+
+$ gem install cocoapods --pre
+
+$ cd coding-challenge-native-a/Busbud-Challenge
+
+$ pod install
+
+Now use the generated .xcodeworkspace to launch the project!
+
+Note: Since this app uses location services, it is better to test it from an iOS device.
+
+# Notes
+Style guide used to implement the solution: `https://github.com/raywenderlich/swift-style-guide`
+- In Swift, classes should NOT be prefixed. (i.e. City model is named City and not BBCity)
+
+
+
 # Requirements
 Write a native Busbud app that
 - uses geo-location to find the user's current city as an origin city
