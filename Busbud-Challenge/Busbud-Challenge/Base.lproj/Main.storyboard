@@ -2,7 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="gGa-H5-Owk">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="6216.ttf">
+            <string>LucidaGrande</string>
+            <string>LucidaGrande</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
@@ -16,20 +23,65 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kt2-kI-eXu">
-                                <rect key="frame" x="139" y="116" width="42" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rio" translatesAutoresizingMaskIntoConstraints="NO" id="hOl-0D-35q">
+                                <rect key="frame" x="0.0" y="64" width="320" height="165"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Busbud Native Coding Challenge" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kt2-kI-eXu">
+                                <rect key="frame" x="45" y="75" width="230" height="144"/>
+                                <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="0.19" colorSpace="calibratedWhite"/>
+                                <size key="shadowOffset" width="1" height="1"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Busbud needs to access your location to serve you better!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aSG-Fu-cTa">
+                                <rect key="frame" x="30" y="275" width="261" height="99"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="99" id="qfY-Nb-8Ho"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="LucidaGrande" family="Lucida Grande" pointSize="16"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7N-Aq-8UN">
+                                <rect key="frame" x="96" y="382" width="128" height="30"/>
+                                <color key="backgroundColor" red="0.070588235294117646" green="0.48627450980392156" blue="0.79607843137254897" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Share Location">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapShareLocation:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="KO6-Ls-rcF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Kt2-kI-eXu" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="29" id="3Cn-Kn-Cjm"/>
+                            <constraint firstItem="f7N-Aq-8UN" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="80" id="7Am-uz-1d3"/>
+                            <constraint firstAttribute="trailing" secondItem="hOl-0D-35q" secondAttribute="trailing" id="AsC-Wi-Udg"/>
+                            <constraint firstItem="aSG-Fu-cTa" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="14" id="B4C-WC-cCy"/>
+                            <constraint firstItem="hOl-0D-35q" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="D72-Ll-WEO"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="f7N-Aq-8UN" secondAttribute="bottom" constant="156" id="EEC-dk-cqh"/>
+                            <constraint firstItem="hOl-0D-35q" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="MWb-s4-yvi"/>
+                            <constraint firstItem="f7N-Aq-8UN" firstAttribute="top" secondItem="aSG-Fu-cTa" secondAttribute="bottom" constant="8" symbolic="YES" id="Qff-QG-hfq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="f7N-Aq-8UN" secondAttribute="trailing" constant="80" id="RrM-tu-isd"/>
+                            <constraint firstItem="aSG-Fu-cTa" firstAttribute="top" secondItem="hOl-0D-35q" secondAttribute="bottom" constant="46" id="ccl-aX-VlG"/>
+                            <constraint firstItem="Kt2-kI-eXu" firstAttribute="centerX" secondItem="hOl-0D-35q" secondAttribute="centerX" id="deV-ID-kWW"/>
+                            <constraint firstItem="Kt2-kI-eXu" firstAttribute="centerX" secondItem="aSG-Fu-cTa" secondAttribute="centerX" id="hkZ-lu-qbe"/>
+                            <constraint firstItem="aSG-Fu-cTa" firstAttribute="top" secondItem="Kt2-kI-eXu" secondAttribute="bottom" constant="56" id="nXz-Ov-CG2"/>
+                            <constraint firstItem="aSG-Fu-cTa" firstAttribute="centerX" secondItem="f7N-Aq-8UN" secondAttribute="centerX" id="twu-80-6hj"/>
+                            <constraint firstItem="Kt2-kI-eXu" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="11" id="vyZ-cw-VYC"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="j4v-92-A4B"/>
+                    <connections>
+                        <outlet property="shareLocationButton" destination="f7N-Aq-8UN" id="JuN-AQ-vp0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="844" y="215"/>
+            <point key="canvasLocation" x="844.5" y="226"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="THJ-yN-u4p">
@@ -50,6 +102,9 @@
             <point key="canvasLocation" x="312" y="215"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="rio" width="307" height="205"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

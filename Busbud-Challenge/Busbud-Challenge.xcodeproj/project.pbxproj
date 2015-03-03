@@ -39,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		0BA3E30F6140C13DF21A26B3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C1667401AA60A4100ED20B9 /* 6216.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 6216.ttf; sourceTree = "<group>"; };
 		0C4F32BC1AA522F5004F1A5E /* Busbud-Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Busbud-Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C4F32C01AA522F6004F1A5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C4F32C11AA522F6004F1A5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +86,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C1667411AA60A4300ED20B9 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0C1667401AA60A4100ED20B9 /* 6216.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		0C4F32B31AA522F5004F1A5E = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +117,7 @@
 		0C4F32BE1AA522F5004F1A5E /* Busbud-Challenge */ = {
 			isa = PBXGroup;
 			children = (
+				0C1667411AA60A4300ED20B9 /* Fonts */,
 				0C5F94641AA6056500A18F55 /* SwiftyJSON */,
 				0C5F94451AA5246200A18F55 /* Model */,
 				0C4F32C11AA522F6004F1A5E /* AppDelegate.swift */,
