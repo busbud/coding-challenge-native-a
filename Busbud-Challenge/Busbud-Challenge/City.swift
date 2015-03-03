@@ -10,13 +10,13 @@ import Foundation
 
 class City {
     
-    private let _id: String
-    private let _name: String
-    private let _url: String
+    let id: String
+    let name: String
+    let url: String
     
     init(id: String, name: String, url: String){
-        _id = id
-        _name = name
-        _url = url
+        self.id = id
+        self.name = name
+        self.url = url
     }
 }
